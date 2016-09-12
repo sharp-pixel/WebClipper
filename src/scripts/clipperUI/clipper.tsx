@@ -623,13 +623,13 @@ class ClipperClass extends ComponentBase<ClipperState, {}> {
 		this.state.setState({ oneNoteApiResult: { status: Status.InProgress } });
 		SaveToOneNote.startClip(this.state).then((startClipPackage: StartClipPackage) => {
 			RatingsHelper.incrementClipSuccessCount().then(() => {
-				// TODO on incrementClipSuccessCount resolve?
+				// do nothing special on incrementClipSuccessCount resolve
 			}).then(() => {
 				// will happen regardless of success/failure of incrementClipSuccessCount
 				RatingsHelper.shouldShowRatingsPrompt(this.state).then((shouldShowRatingsPrompt) => {
 					this.state.setState({ shouldShowRatingsPrompt: shouldShowRatingsPrompt });
 				}, () => {
-					// err on the side of caution on reject
+					// err on the side of caution on shouldShowRatingsPrompt reject, do not show ratings prompt
 					this.state.setState({ shouldShowRatingsPrompt: false });
 				}).then(() => {
 					// will happen regardless of success/failure of shouldShowRatingsPrompt
