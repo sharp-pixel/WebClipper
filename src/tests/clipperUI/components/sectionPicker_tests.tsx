@@ -112,7 +112,7 @@ QUnit.module("sectionPicker", {
 	}
 });
 
-test("fetchCachedNotebookAndSectionInfoAsState should return the cached notebooks, cached current section, and the succeed status if cached information is found", () => {
+QUnit.test("fetchCachedNotebookAndSectionInfoAsState should return the cached notebooks, cached current section, and the succeed status if cached information is found", () => {
 	let clipperState = HelperFunctions.getMockClipperState();
 
 	let mockNotebooks = HelperFunctions.getMockNotebooks();
@@ -134,7 +134,7 @@ test("fetchCachedNotebookAndSectionInfoAsState should return the cached notebook
 	});
 });
 
-test("fetchCachedNotebookAndSectionInfoAsState should return undefined if no cached information is found", () => {
+QUnit.test("fetchCachedNotebookAndSectionInfoAsState should return undefined if no cached information is found", () => {
 	let clipperState = HelperFunctions.getMockClipperState();
 
 	initializeClipperStorage(undefined, undefined);
@@ -150,7 +150,7 @@ test("fetchCachedNotebookAndSectionInfoAsState should return undefined if no cac
 	});
 });
 
-test("fetchCachedNotebookAndSectionInfoAsState should return the cached notebooks, undefined section, and the succeed status if no cached section is found", () => {
+QUnit.test("fetchCachedNotebookAndSectionInfoAsState should return the cached notebooks, undefined section, and the succeed status if no cached section is found", () => {
 	let clipperState = HelperFunctions.getMockClipperState();
 
 	let mockNotebooks = HelperFunctions.getMockNotebooks();
@@ -167,7 +167,7 @@ test("fetchCachedNotebookAndSectionInfoAsState should return the cached notebook
 	});
 });
 
-test("fetchCachedNotebookAndSectionInfoAsState should return undefined when no notebooks are found, even if section information is found", () => {
+QUnit.test("fetchCachedNotebookAndSectionInfoAsState should return undefined when no notebooks are found, even if section information is found", () => {
 	let clipperState = HelperFunctions.getMockClipperState();
 
 	let mockSection = {
@@ -208,7 +208,7 @@ QUnit.module("sectionPicker-sinon", {
 	}
 });
 
-test("retrieveAndUpdateNotebookAndSectionSelection should update states correctly when there's notebook and curSection information found in storage," +
+QUnit.test("retrieveAndUpdateNotebookAndSectionSelection should update states correctly when there's notebook and curSection information found in storage," +
 	"the user does not make a new selection, and then information is found on the server. Also the notebooks are the same in storage and on the server, " +
 	"and the current section in storage is the same as the default section in the server's notebook list", (assert: QUnitAssert) => {
 	let done = assert.async();
@@ -263,7 +263,7 @@ test("retrieveAndUpdateNotebookAndSectionSelection should update states correctl
 	server.respond();
 });
 
-test("retrieveAndUpdateNotebookAndSectionSelection should update states correctly when there's notebook and curSection information found in storage," +
+QUnit.test("retrieveAndUpdateNotebookAndSectionSelection should update states correctly when there's notebook and curSection information found in storage," +
 	"the user does not make a new selection, and then information is found on the server. The notebooks on the server is not the same as the ones in storage, " +
 	"and the current section in storage is the same as the default section in the server's notebook list", (assert: QUnitAssert) => {
 	let done = assert.async();
@@ -320,7 +320,7 @@ test("retrieveAndUpdateNotebookAndSectionSelection should update states correctl
 	server.respond();
 });
 
-test("retrieveAndUpdateNotebookAndSectionSelection should update states correctly when there's notebook, but no curSection information found in storage," +
+QUnit.test("retrieveAndUpdateNotebookAndSectionSelection should update states correctly when there's notebook, but no curSection information found in storage," +
 	"the user does not make a selection, and then information is found on the server. The notebooks on the server is the same as the ones in storage, " +
 	"and the current section in storage is still undefined by the time the fresh notebooks have been retrieved", (assert: QUnitAssert) => {
 	let done = assert.async();
@@ -378,7 +378,7 @@ test("retrieveAndUpdateNotebookAndSectionSelection should update states correctl
 	server.respond();
 });
 
-test("retrieveAndUpdateNotebookAndSectionSelection should update states correctly when there's notebook, but no curSection information found in storage," +
+QUnit.test("retrieveAndUpdateNotebookAndSectionSelection should update states correctly when there's notebook, but no curSection information found in storage," +
 	"the user makes a new section selection, and then information is found on the server. The notebooks on the server is the same as the ones in storage, " +
 	"and the current section in storage is still undefined by the time the fresh notebooks have been retrieved", (assert: QUnitAssert) => {
 	let done = assert.async();
@@ -461,7 +461,7 @@ test("retrieveAndUpdateNotebookAndSectionSelection should update states correctl
 	server.respond();
 });
 
-test("retrieveAndUpdateNotebookAndSectionSelection should update states correctly when there's notebook and curSection information found in storage," +
+QUnit.test("retrieveAndUpdateNotebookAndSectionSelection should update states correctly when there's notebook and curSection information found in storage," +
 	" and then information is found on the server, but that selected section no longer exists.", (assert: QUnitAssert) => {
 	let done = assert.async();
 	let clipperState = HelperFunctions.getMockClipperState();
@@ -515,7 +515,7 @@ test("retrieveAndUpdateNotebookAndSectionSelection should update states correctl
 	server.respond();
 });
 
-test("retrieveAndUpdateNotebookAndSectionSelection should update states correctly when there's notebook and curSection information found in storage," +
+QUnit.test("retrieveAndUpdateNotebookAndSectionSelection should update states correctly when there's notebook and curSection information found in storage," +
 	"the user does not make a new selection, and then notebooks is incorrectly returned as undefined or null from the server", (assert: QUnitAssert) => {
 	let done = assert.async();
 
@@ -575,7 +575,7 @@ test("retrieveAndUpdateNotebookAndSectionSelection should update states correctl
 	server.respond();
 });
 
-test("retrieveAndUpdateNotebookAndSectionSelection should update states correctly when there's notebook and curSection information found in storage," +
+QUnit.test("retrieveAndUpdateNotebookAndSectionSelection should update states correctly when there's notebook and curSection information found in storage," +
 	"the user does not make a new selection, and the server returns an error status code", (assert: QUnitAssert) => {
 	let done = assert.async();
 
@@ -625,7 +625,7 @@ test("retrieveAndUpdateNotebookAndSectionSelection should update states correctl
 	server.respond();
 });
 
-test("retrieveAndUpdateNotebookAndSectionSelection should update states correctly when there's no notebook and curSection information found in storage," +
+QUnit.test("retrieveAndUpdateNotebookAndSectionSelection should update states correctly when there's no notebook and curSection information found in storage," +
 	"the user does not make a new selection, and the server returns an error status code, therefore there's no fallback notebooks", (assert: QUnitAssert) => {
 	let done = assert.async();
 
@@ -669,7 +669,7 @@ test("retrieveAndUpdateNotebookAndSectionSelection should update states correctl
 	server.respond();
 });
 
-test("fetchFreshNotebooks should parse out @odata.context from the raw 200 response and return the notebook object list and XHR in the resolve", (assert: QUnitAssert) => {
+QUnit.test("fetchFreshNotebooks should parse out @odata.context from the raw 200 response and return the notebook object list and XHR in the resolve", (assert: QUnitAssert) => {
 	let done = assert.async();
 	let controllerInstance = HelperFunctions.mountToFixture(defaultComponent);
 
@@ -694,7 +694,7 @@ test("fetchFreshNotebooks should parse out @odata.context from the raw 200 respo
 	server.respond();
 });
 
-test("fetchFreshNotebooks should parse out @odata.context from the raw 201 response and return the notebook object list and XHR in the resolve", (assert: QUnitAssert) => {
+QUnit.test("fetchFreshNotebooks should parse out @odata.context from the raw 201 response and return the notebook object list and XHR in the resolve", (assert: QUnitAssert) => {
 	let done = assert.async();
 	let controllerInstance = HelperFunctions.mountToFixture(defaultComponent);
 
@@ -718,7 +718,7 @@ test("fetchFreshNotebooks should parse out @odata.context from the raw 201 respo
 	server.respond();
 });
 
-test("fetchFreshNotebooks should reject with the error object and a copy of the response if the status code is 4XX", (assert: QUnitAssert) => {
+QUnit.test("fetchFreshNotebooks should reject with the error object and a copy of the response if the status code is 4XX", (assert: QUnitAssert) => {
 	let done = assert.async();
 	let controllerInstance = HelperFunctions.mountToFixture(defaultComponent);
 
@@ -749,7 +749,7 @@ test("fetchFreshNotebooks should reject with the error object and a copy of the 
 	server.respond();
 });
 
-test("fetchFreshNotebooks should reject with the error object and an API response code if one is returned by the API", (assert: QUnitAssert) => {
+QUnit.test("fetchFreshNotebooks should reject with the error object and an API response code if one is returned by the API", (assert: QUnitAssert) => {
 	let done = assert.async();
 	let controllerInstance = HelperFunctions.mountToFixture(defaultComponent);
 
@@ -785,7 +785,7 @@ test("fetchFreshNotebooks should reject with the error object and an API respons
 	server.respond();
 });
 
-test("fetchFreshNotebooks should reject with the error object and a copy of the response if the status code is 5XX", (assert: QUnitAssert) => {
+QUnit.test("fetchFreshNotebooks should reject with the error object and a copy of the response if the status code is 5XX", (assert: QUnitAssert) => {
 	let done = assert.async();
 	let controllerInstance = HelperFunctions.mountToFixture(defaultComponent);
 
@@ -816,7 +816,7 @@ test("fetchFreshNotebooks should reject with the error object and a copy of the 
 
 QUnit.module("sectionPicker-static", {});
 
-test("convertNotebookListToState should return the notebook list, success status, and default section in the general case", () => {
+QUnit.test("convertNotebookListToState should return the notebook list, success status, and default section in the general case", () => {
 	let section = createSection("S", true);
 	let sectionGroup2 = createSectionGroup("SG2", [], [section]);
 	let sectionGroup1 = createSectionGroup("SG1", [sectionGroup2], []);
@@ -830,7 +830,7 @@ test("convertNotebookListToState should return the notebook list, success status
 		"The curSection property is correct");
 });
 
-test("convertNotebookListToState should return the notebook list, success status, and undefined default section in case where there is no default section", () => {
+QUnit.test("convertNotebookListToState should return the notebook list, success status, and undefined default section in case where there is no default section", () => {
 	let sectionGroup2 = createSectionGroup("SG2", [], []);
 	let sectionGroup1 = createSectionGroup("SG1", [sectionGroup2], []);
 	let notebook = createNotebook("N", true, [sectionGroup1], []);
@@ -842,7 +842,7 @@ test("convertNotebookListToState should return the notebook list, success status
 	strictEqual(actual.curSection, undefined, "The curSection property is undefined");
 });
 
-test("convertNotebookListToState should return the notebook list, success status, and undefined default section in case where there is only one empty notebook", () => {
+QUnit.test("convertNotebookListToState should return the notebook list, success status, and undefined default section in case where there is only one empty notebook", () => {
 	let notebook = createNotebook("N", true, [], []);
 
 	let notebooks = [notebook];
@@ -852,21 +852,21 @@ test("convertNotebookListToState should return the notebook list, success status
 	strictEqual(actual.curSection, undefined, "The curSection property is undefined");
 });
 
-test("convertNotebookListToState should return the undefined notebook list, success status, and undefined default section if the input is undefined", () => {
+QUnit.test("convertNotebookListToState should return the undefined notebook list, success status, and undefined default section if the input is undefined", () => {
 	let actual = SectionPickerClass.convertNotebookListToState(undefined);
 	strictEqual(actual.notebooks, undefined, "The notebooks property is undefined");
 	strictEqual(actual.status, Status.Succeeded, "The status property is correct");
 	strictEqual(actual.curSection, undefined, "The curSection property is undefined");
 });
 
-test("convertNotebookListToState should return the empty notebook list, success status, and undefined default section if the input is undefined", () => {
+QUnit.test("convertNotebookListToState should return the empty notebook list, success status, and undefined default section if the input is undefined", () => {
 	let actual = SectionPickerClass.convertNotebookListToState([]);
 	strictEqual(actual.notebooks.length, 0, "The notebooks property is the empty list");
 	strictEqual(actual.status, Status.Succeeded, "The status property is correct");
 	strictEqual(actual.curSection, undefined, "The curSection property is undefined");
 });
 
-test("formatSectionInfoForStorage should return a ' > ' delimited name path and the last element in the general case", () => {
+QUnit.test("formatSectionInfoForStorage should return a ' > ' delimited name path and the last element in the general case", () => {
 	let section = createSection("4");
 	let actual = SectionPickerClass.formatSectionInfoForStorage([
 		createNotebook("1"),
@@ -878,7 +878,7 @@ test("formatSectionInfoForStorage should return a ' > ' delimited name path and 
 		"The section info should be formatted correctly");
 });
 
-test("formatSectionInfoForStorage should return a ' > ' delimited name path and the last element if there are no section groups", () => {
+QUnit.test("formatSectionInfoForStorage should return a ' > ' delimited name path and the last element if there are no section groups", () => {
 	let section = createSection("2");
 	let actual = SectionPickerClass.formatSectionInfoForStorage([
 		createNotebook("1"),
@@ -888,12 +888,12 @@ test("formatSectionInfoForStorage should return a ' > ' delimited name path and 
 		"The section info should be formatted correctly");
 });
 
-test("formatSectionInfoForStorage should return undefined if the list that is passed in is undefined", () => {
+QUnit.test("formatSectionInfoForStorage should return undefined if the list that is passed in is undefined", () => {
 	let actual = SectionPickerClass.formatSectionInfoForStorage(undefined);
 	strictEqual(actual, undefined, "The section info should be formatted correctly");
 });
 
-test("formatSectionInfoForStorage should return undefined if the list that is passed in is empty", () => {
+QUnit.test("formatSectionInfoForStorage should return undefined if the list that is passed in is empty", () => {
 	let actual = SectionPickerClass.formatSectionInfoForStorage([]);
 	strictEqual(actual, undefined, "The section info should be formatted correctly");
 });

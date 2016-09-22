@@ -13,7 +13,7 @@ QUnit.module("oneNoteApiUtils", {
 	}
 });
 
-test("getApiResponseCode should correctly parse out the http response code from the error object", () => {
+QUnit.test("getApiResponseCode should correctly parse out the http response code from the error object", () => {
 	let expectedCode = "12345";
 	let requestError: OneNoteApi.RequestError = {
 		error: "err",
@@ -31,19 +31,19 @@ test("getApiResponseCode should correctly parse out the http response code from 
 		"The http response code should be correctly parsed out of the request error");
 });
 
-test("getApiResponseCode should return undefined if the error object is null", () => {
+QUnit.test("getApiResponseCode should return undefined if the error object is null", () => {
 	/* tslint:disable:no-null-keyword */
 	strictEqual(OneNoteApiUtils.getApiResponseCode(null), undefined,
 		"Undefined should be returned");
 	/* tslint:enable:no-null-keyword */
 });
 
-test("getApiResponseCode should return undefined if the error object is undefined", () => {
+QUnit.test("getApiResponseCode should return undefined if the error object is undefined", () => {
 	strictEqual(OneNoteApiUtils.getApiResponseCode(undefined), undefined,
 		"Undefined should be returned");
 });
 
-test("getApiResponseCode should return undefined if the response in the request error is undefined", () => {
+QUnit.test("getApiResponseCode should return undefined if the response in the request error is undefined", () => {
 	let requestError: OneNoteApi.RequestError = {
 		error: "err",
 		statusCode: 404,
@@ -55,7 +55,7 @@ test("getApiResponseCode should return undefined if the response in the request 
 		"Undefined should be returned");
 });
 
-test("getApiResponseCode should return undefined if the response's error in the request error is undefined", () => {
+QUnit.test("getApiResponseCode should return undefined if the response's error in the request error is undefined", () => {
 	let requestError: OneNoteApi.RequestError = {
 		error: "err",
 		statusCode: 404,
@@ -69,7 +69,7 @@ test("getApiResponseCode should return undefined if the response's error in the 
 		"Undefined should be returned");
 });
 
-test("getApiResponseCode should return undefined if the response's error's code in the request error is empty string", () => {
+QUnit.test("getApiResponseCode should return undefined if the response's error's code in the request error is empty string", () => {
 	let requestError: OneNoteApi.RequestError = {
 		error: "err",
 		statusCode: 404,
@@ -86,7 +86,7 @@ test("getApiResponseCode should return undefined if the response's error's code 
 		"Undefined should be returned");
 });
 
-test("getApiResponseCode should return undefined if the response's error's code in the request error is null", () => {
+QUnit.test("getApiResponseCode should return undefined if the response's error's code in the request error is null", () => {
 	/* tslint:disable:no-null-keyword */
 	let requestError: OneNoteApi.RequestError = {
 		error: "err",
@@ -105,7 +105,7 @@ test("getApiResponseCode should return undefined if the response's error's code 
 	/* tslint:enable:no-null-keyword */
 });
 
-test("getApiResponseCode should return undefined if the response's error's code in the request error is undefined", () => {
+QUnit.test("getApiResponseCode should return undefined if the response's error's code in the request error is undefined", () => {
 	let requestError: OneNoteApi.RequestError = {
 		error: "err",
 		statusCode: 404,
@@ -122,7 +122,7 @@ test("getApiResponseCode should return undefined if the response's error's code 
 		"Undefined should be returned");
 });
 
-test("For matching error codes, isRetryable should return true for error codes that should be retryable", () => {
+QUnit.test("For matching error codes, isRetryable should return true for error codes that should be retryable", () => {
 	let retryableCodes = [ "10001", "10002", "10007", "19999", "30103" ];
 	for (let i = 0; i < retryableCodes.length; i++) {
 		ok(OneNoteApiUtils.isRetryable(retryableCodes[i]),
@@ -130,7 +130,7 @@ test("For matching error codes, isRetryable should return true for error codes t
 	}
 });
 
-test("For matching error codes, isRetryable should return false for error codes that should not be retryable", () => {
+QUnit.test("For matching error codes, isRetryable should return false for error codes that should not be retryable", () => {
 	let retryableCodes = [ "10003", "10004", "10006", "30101", "30102", "30104", "30105" ];
 	for (let i = 0; i < retryableCodes.length; i++) {
 		ok(!OneNoteApiUtils.isRetryable(retryableCodes[i]),
@@ -138,13 +138,13 @@ test("For matching error codes, isRetryable should return false for error codes 
 	}
 });
 
-test("For an unknown error code, isRetryable should return false", () => {
+QUnit.test("For an unknown error code, isRetryable should return false", () => {
 	ok(!OneNoteApiUtils.isRetryable("-1"), "Code -1 should not be retryable");
 	ok(!OneNoteApiUtils.isRetryable("3456"), "Code 3456 should not be retryable");
 	ok(!OneNoteApiUtils.isRetryable(undefined));
 });
 
-test("For matching error codes, isExpected should return true for error codes that are expected", () => {
+QUnit.test("For matching error codes, isExpected should return true for error codes that are expected", () => {
 	let expectedCodes = [ "10001", "10002", "10004", "10006", "10007", "30101", "30102", "30103", "30104", "30105" ];
 	for (let i = 0; i < expectedCodes.length; i++) {
 		ok(OneNoteApiUtils.isExpected(expectedCodes[i]),
@@ -152,7 +152,7 @@ test("For matching error codes, isExpected should return true for error codes th
 	}
 });
 
-test("For matching error codes, isExpected should return false for error codes that are not expected", () => {
+QUnit.test("For matching error codes, isExpected should return false for error codes that are not expected", () => {
 	let nonExpectedCodes = [ "19999" ];
 	for (let i = 0; i < nonExpectedCodes.length; i++) {
 		ok(!OneNoteApiUtils.isExpected(nonExpectedCodes[i]),
@@ -160,12 +160,12 @@ test("For matching error codes, isExpected should return false for error codes t
 	}
 });
 
-test("For an unknown error code, isExpected should return false", () => {
+QUnit.test("For an unknown error code, isExpected should return false", () => {
 	ok(!OneNoteApiUtils.isExpected("-1"), "Code -1 should not be expected");
 	ok(!OneNoteApiUtils.isExpected("123980123"), "Code 123980123 should not be expected");
 });
 
-test("For known error codes, the appropriate failure message should be returned from getLocalizedErrorMessage", () => {
+QUnit.test("For known error codes, the appropriate failure message should be returned from getLocalizedErrorMessage", () => {
 	let stringsJson = require("../../strings.json");
 	let codeMessagePairs = [
 		{ code: "10001", message: stringsJson["WebClipper.Error.GenericError"] },
@@ -188,7 +188,7 @@ test("For known error codes, the appropriate failure message should be returned 
 	}
 });
 
-test("For unknown error codes, the generic failure message should be returned from getLocalizedErrorMessage", () => {
+QUnit.test("For unknown error codes, the generic failure message should be returned from getLocalizedErrorMessage", () => {
 	let stringsJson = require("../../strings.json");
 	strictEqual(OneNoteApiUtils.getLocalizedErrorMessage("-1"), stringsJson["WebClipper.Error.GenericError"],
 		"Unknown code -1 should be associated with the generic error message");

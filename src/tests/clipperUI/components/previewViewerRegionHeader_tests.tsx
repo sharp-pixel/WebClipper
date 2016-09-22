@@ -21,17 +21,17 @@ QUnit.module("previewViewerAugmentationHeader", {
 	}
 });
 
-test("The addRegionControl should be visible", () => {
+QUnit.test("The addRegionControl should be visible", () => {
 	HelperFunctions.mountToFixture(defaultComponent);
 	ok(!!document.getElementById(Constants.Ids.addRegionControl));
 });
 
-test("The addRegionControl's buttons should be visible", () => {
+QUnit.test("The addRegionControl's buttons should be visible", () => {
 	HelperFunctions.mountToFixture(defaultComponent);
 	ok(!!document.getElementById(Constants.Ids.addAnotherRegionButton));
 });
 
-test("When clicking on the add region button, the regionResult prop should be set accordingly", () => {
+QUnit.test("When clicking on the add region button, the regionResult prop should be set accordingly", () => {
 	let previewViewerRegionHeader = HelperFunctions.mountToFixture(defaultComponent);
 
 	let previousRegionResultData = mockClipperState.regionResult.data;

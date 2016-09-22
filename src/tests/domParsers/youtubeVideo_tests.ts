@@ -41,7 +41,7 @@ QUnit.module("youtubeExtractor");
 
 let youtubeExtractor = new YoutubeVideoExtractor();
 
-test("getVideoSrcValues should return undefined when provided unsupported parameters for the YouTube domain", () => {
+QUnit.test("getVideoSrcValues should return undefined when provided unsupported parameters for the YouTube domain", () => {
 	for (let otherUrl of unsupportedOtherUrls) {
 		let videoSrcUrl = youtubeExtractor.getVideoSrcValues(otherUrl, "");
 		deepEqual(videoSrcUrl, undefined, otherUrl + " is unsupported by YouTube domain");
@@ -58,7 +58,7 @@ test("getVideoSrcValues should return undefined when provided unsupported parame
 	}
 });
 
-test("getVideoSrcValues should return undefined when provided unsupported parameters for the YouTube domain", () => {
+QUnit.test("getVideoSrcValues should return undefined when provided unsupported parameters for the YouTube domain", () => {
 	for (let otherUrl of unsupportedOtherUrls) {
 		let videoSrcUrl = youtubeExtractor.getVideoSrcValues(otherUrl, "");
 		deepEqual(videoSrcUrl, undefined, otherUrl + " is unsupported by YouTube domain");
@@ -75,7 +75,7 @@ test("getVideoSrcValues should return undefined when provided unsupported parame
 	}
 });
 
-test("getVideoIds should return undefined for unsupported urls", () => {
+QUnit.test("getVideoIds should return undefined for unsupported urls", () => {
 	for (let pageUrl of unsupportedOtherUrls) {
 		let videoId = youtubeExtractor.getVideoIds(pageUrl, "");
 		deepEqual(videoId, undefined);
@@ -92,7 +92,7 @@ test("getVideoIds should return undefined for unsupported urls", () => {
 	}
 });
 
-test("getVideoIds should return id for supported YouTube video url", () => {
+QUnit.test("getVideoIds should return id for supported YouTube video url", () => {
 	for (let pageUrl of supportedYouTubeUrls) {
 		let videoId = youtubeExtractor.getVideoIds(pageUrl, "");
 		deepEqual(videoId, ["dQw4w9WgXcQ"]);

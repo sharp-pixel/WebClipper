@@ -4,7 +4,7 @@ import {SmartValue} from "../../scripts/communicator/smartValue";
 
 QUnit.module("smartValue", {});
 
-test("Test that SmartValue subscriptions are triggered with the appropriate values", () => {
+QUnit.test("Test that SmartValue subscriptions are triggered with the appropriate values", () => {
 	let smartValue = new SmartValue<string>("originalValue");
 
 	let counter = 0;
@@ -36,7 +36,7 @@ test("Test that SmartValue subscriptions are triggered with the appropriate valu
 	strictEqual(smartValue.get(), "finalValue", "The get method should return the updated value");
 });
 
-test("Test SmartValue.Subscribe for multiple smart values", () => {
+QUnit.test("Test SmartValue.Subscribe for multiple smart values", () => {
 	let smartValue1 = new SmartValue<string>("initialValue1");
 	let smartValue2 = new SmartValue<string>("initialValue2");
 
@@ -65,7 +65,7 @@ test("Test SmartValue.Subscribe for multiple smart values", () => {
 	smartValue2.set("updatedValue2");
 });
 
-test("If specified, a given subscription callback should only be called n number of times",
+QUnit.test("If specified, a given subscription callback should only be called n number of times",
 () => {
 	let smartValue = new SmartValue<string>("");
 
@@ -111,7 +111,7 @@ test("If specified, a given subscription callback should only be called n number
 	strictEqual(e, 3, "Given times is set to n > set-calls, the callback should be called set-calls times");
 });
 
-test("If specified, a given subscription callback should not be called on subscribe, the opposite likewise", () => {
+QUnit.test("If specified, a given subscription callback should not be called on subscribe, the opposite likewise", () => {
 	let smartValue = new SmartValue<string>("");
 
 	let a = 0;
@@ -140,7 +140,7 @@ test("If specified, a given subscription callback should not be called on subscr
 		"Subsequent sets should call the callback as per normal");
 });
 
-test("The initial call if callOnSubscribe is set to true should not use up one of the 'times' calls", () => {
+QUnit.test("The initial call if callOnSubscribe is set to true should not use up one of the 'times' calls", () => {
 	let smartValue = new SmartValue<string>("");
 
 	let a = 0;
@@ -160,7 +160,7 @@ test("The initial call if callOnSubscribe is set to true should not use up one o
 		"The count is now at 0, so the callback should not fire");
 });
 
-test("The callback should fire if callOnSubscribe is set to true despite times being set to 0", () => {
+QUnit.test("The callback should fire if callOnSubscribe is set to true despite times being set to 0", () => {
 	let smartValue = new SmartValue<string>("");
 
 	let a = 0;
@@ -174,7 +174,7 @@ test("The callback should fire if callOnSubscribe is set to true despite times b
 		"The subscribe should trigger a call despite times being set to 0");
 });
 
-test("A function that was previously subscribed should no longer be called if it is unsubscribed", () => {
+QUnit.test("A function that was previously subscribed should no longer be called if it is unsubscribed", () => {
 	let smartValue = new SmartValue<string>("");
 
 	let a = 0;
@@ -189,7 +189,7 @@ test("A function that was previously subscribed should no longer be called if it
 	strictEqual(a, 0, "The unsubscribed function should not be called");
 });
 
-test("Only one function should be unsubscribed at a time even if there are multiple functions with the same references", () => {
+QUnit.test("Only one function should be unsubscribed at a time even if there are multiple functions with the same references", () => {
 	let smartValue = new SmartValue<string>("");
 
 	let a = 0;
@@ -205,7 +205,7 @@ test("Only one function should be unsubscribed at a time even if there are multi
 	strictEqual(a, 1, "Only one function should be unsubscribed");
 });
 
-test("If two identical (but not same reference) functions were added and the first was unsubscribed, it should not affect the second", () => {
+QUnit.test("If two identical (but not same reference) functions were added and the first was unsubscribed, it should not affect the second", () => {
 	let smartValue = new SmartValue<string>("");
 
 	let a = 0;
@@ -224,7 +224,7 @@ test("If two identical (but not same reference) functions were added and the fir
 	strictEqual(a, 1, "Only one function should be unsubscribed");
 });
 
-test("If the function that was unsubscribed wasn't present in the smart value, no functions should be unsubscribed", () => {
+QUnit.test("If the function that was unsubscribed wasn't present in the smart value, no functions should be unsubscribed", () => {
 	let smartValue = new SmartValue<string>("");
 
 	let a = 0;
@@ -243,7 +243,7 @@ test("If the function that was unsubscribed wasn't present in the smart value, n
 	strictEqual(a, 1, "No function should be unsubscribed");
 });
 
-test("If undefined is the parameter to unsubscribe, no functions should be unsubscribed", () => {
+QUnit.test("If undefined is the parameter to unsubscribe, no functions should be unsubscribed", () => {
 	let smartValue = new SmartValue<string>("");
 
 	let a = 0;
@@ -258,7 +258,7 @@ test("If undefined is the parameter to unsubscribe, no functions should be unsub
 	strictEqual(a, 1, "No function should be unsubscribed");
 });
 
-test("Nothing should break if unsubscribe is called when there's no subscribed functions", () => {
+QUnit.test("Nothing should break if unsubscribe is called when there's no subscribed functions", () => {
 	let smartValue = new SmartValue<string>("");
 
 	let a = 0;

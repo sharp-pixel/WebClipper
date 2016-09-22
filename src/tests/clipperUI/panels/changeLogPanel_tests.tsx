@@ -10,7 +10,7 @@ import {HelperFunctions} from "../../helperFunctions";
 
 QUnit.module("changeLogPanel", {});
 
-test("For a single update containing multiple changes, those changes should be displayed", () => {
+QUnit.test("For a single update containing multiple changes, those changes should be displayed", () => {
 	let updates = HelperFunctions.getMockUpdates();
 	let controllerInstance = HelperFunctions.mountToFixture(
 		<ChangeLogPanel updates={updates} />);
@@ -27,7 +27,7 @@ test("For a single update containing multiple changes, those changes should be d
 	strictEqual(changeElements.length, flattenedMockChanges.length);
 });
 
-test("For multiple updates containing multiple changes each, all changes should be displayed", () => {
+QUnit.test("For multiple updates containing multiple changes each, all changes should be displayed", () => {
 	let updates = HelperFunctions.getMockMultipleUpdates();
 	let controllerInstance = HelperFunctions.mountToFixture(
 		<ChangeLogPanel updates={updates} />);
@@ -44,7 +44,7 @@ test("For multiple updates containing multiple changes each, all changes should 
 	strictEqual(changeElements.length, flattenedMockChanges.length);
 });
 
-test("For a single update containing multiple changes, check that their titles and descriptions are being displayed in order", () => {
+QUnit.test("For a single update containing multiple changes, check that their titles and descriptions are being displayed in order", () => {
 	let updates = HelperFunctions.getMockUpdates();
 	let controllerInstance = HelperFunctions.mountToFixture(
 		<ChangeLogPanel updates={updates} />);
@@ -71,7 +71,7 @@ test("For a single update containing multiple changes, check that their titles a
 	}
 });
 
-test("For an update containing some changes with image urls, check that they get rendered if they have an image, and not rendered if they don't", () => {
+QUnit.test("For an update containing some changes with image urls, check that they get rendered if they have an image, and not rendered if they don't", () => {
 	let updates = HelperFunctions.getMockUpdatesWithSomeImages();
 	let controllerInstance = HelperFunctions.mountToFixture(
 		<ChangeLogPanel updates={updates} />);
@@ -96,7 +96,7 @@ test("For an update containing some changes with image urls, check that they get
 	}
 });
 
-test("For multiple updates containing multiple changes each, check that their titles and descriptions are being displayed in order", () => {
+QUnit.test("For multiple updates containing multiple changes each, check that their titles and descriptions are being displayed in order", () => {
 	let updates = HelperFunctions.getMockMultipleUpdates();
 	let controllerInstance = HelperFunctions.mountToFixture(
 		<ChangeLogPanel updates={updates} />);

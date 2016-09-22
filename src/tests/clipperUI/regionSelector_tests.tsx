@@ -24,7 +24,7 @@ let assertAreaIsBlack = (pixelValueList: Uint8ClampedArray) => {
 	}
 };
 
-test("The innerFrame's dimensions should match corners p1 (top left) and p2 (bottom right)", () => {
+QUnit.test("The innerFrame's dimensions should match corners p1 (top left) and p2 (bottom right)", () => {
 	let controllerInstance = HelperFunctions.mountToFixture(defaultComponent);
 
 	let point1: Point = { x: 50, y: 60 };
@@ -50,7 +50,7 @@ test("The innerFrame's dimensions should match corners p1 (top left) and p2 (bot
 		"The height style of the inner frame should be yMax - yMin");
 });
 
-test("The innerFrame's dimensions should match corners p1 (bottom left) and p2 (top right)", () => {
+QUnit.test("The innerFrame's dimensions should match corners p1 (bottom left) and p2 (top right)", () => {
 	let controllerInstance = HelperFunctions.mountToFixture(defaultComponent);
 
 	let point1: Point = { x: 50, y: 60 };
@@ -76,7 +76,7 @@ test("The innerFrame's dimensions should match corners p1 (bottom left) and p2 (
 		"The height style of the inner frame should be yMax - yMin");
 });
 
-test("The innerFrame's dimensions should match corners p1 (top right) and p2 (bottom left)", () => {
+QUnit.test("The innerFrame's dimensions should match corners p1 (top right) and p2 (bottom left)", () => {
 	let controllerInstance = HelperFunctions.mountToFixture(defaultComponent);
 
 	let point1: Point = { x: 50, y: 60 };
@@ -102,7 +102,7 @@ test("The innerFrame's dimensions should match corners p1 (top right) and p2 (bo
 		"The height style of the inner frame should be yMax - yMin");
 });
 
-test("The innerFrame's dimensions should match corners p1 (bottom right) and p2 (top left)", () => {
+QUnit.test("The innerFrame's dimensions should match corners p1 (bottom right) and p2 (top left)", () => {
 	let controllerInstance = HelperFunctions.mountToFixture(defaultComponent);
 
 	let point1: Point = { x: 50, y: 60 };
@@ -128,7 +128,7 @@ test("The innerFrame's dimensions should match corners p1 (bottom right) and p2 
 		"The height style of the inner frame should be yMax - yMin");
 });
 
-test("The innerFrame's left and top values should be allowed to go negative if xMin and yMin are 0", () => {
+QUnit.test("The innerFrame's left and top values should be allowed to go negative if xMin and yMin are 0", () => {
 	let controllerInstance = HelperFunctions.mountToFixture(defaultComponent);
 
 	let point1: Point = { x: 0, y: 0 };
@@ -154,7 +154,7 @@ test("The innerFrame's left and top values should be allowed to go negative if x
 		"The height style of the inner frame should be yMax - yMin");
 });
 
-test("The innerFrame should not exist if no points have been registered, and the outerFrame should", () => {
+QUnit.test("The innerFrame should not exist if no points have been registered, and the outerFrame should", () => {
 	let controllerInstance = HelperFunctions.mountToFixture(defaultComponent);
 	ok(document.getElementById(Constants.Ids.outerFrame),
 		"The outer frame should be rendered");
@@ -162,7 +162,7 @@ test("The innerFrame should not exist if no points have been registered, and the
 		"The inner frame should not be rendered");
 });
 
-test("The innerFrame should not exist if only the first point has been registered, and the outerFrame should", () => {
+QUnit.test("The innerFrame should not exist if only the first point has been registered, and the outerFrame should", () => {
 	let controllerInstance = HelperFunctions.mountToFixture(defaultComponent);
 
 	HelperFunctions.simulateAction(() => {
@@ -175,7 +175,7 @@ test("The innerFrame should not exist if only the first point has been registere
 		"The inner frame should not be rendered");
 });
 
-test("The outerFrame should be the size of the window", () => {
+QUnit.test("The outerFrame should be the size of the window", () => {
 	let controllerInstance = HelperFunctions.mountToFixture(defaultComponent);
 
 	ok(document.getElementById(Constants.Ids.outerFrame),
@@ -188,7 +188,7 @@ test("The outerFrame should be the size of the window", () => {
 		"The outerFrame's height is the window's innerHeight");
 });
 
-test("The outerFrame should not paint over the space occupied by the innerFrame", () => {
+QUnit.test("The outerFrame should not paint over the space occupied by the innerFrame", () => {
 	let controllerInstance = HelperFunctions.mountToFixture(defaultComponent);
 
 	let point1: Point = { x: 50, y: 60 };
@@ -212,7 +212,7 @@ test("The outerFrame should not paint over the space occupied by the innerFrame"
 	}
 });
 
-test("The outerFrame should paint over the space not occupied by the innerFrame", () => {
+QUnit.test("The outerFrame should paint over the space not occupied by the innerFrame", () => {
 	let controllerInstance = HelperFunctions.mountToFixture(defaultComponent);
 
 	let point1: Point = { x: 45, y: 20 };
@@ -281,7 +281,7 @@ test("The outerFrame should paint over the space not occupied by the innerFrame"
 	assertAreaIsBlack(area.data);
 });
 
-test("The winWidth and winHeight states should be equal to the window's innerWidth and innerHeight by default", () => {
+QUnit.test("The winWidth and winHeight states should be equal to the window's innerWidth and innerHeight by default", () => {
 	let controllerInstance = HelperFunctions.mountToFixture(defaultComponent);
 	strictEqual(controllerInstance.state.winWidth, window.innerWidth,
 		"The winHeight state should equal window.innerWidth");
@@ -289,7 +289,7 @@ test("The winWidth and winHeight states should be equal to the window's innerWid
 		"The winHeight state should equal window.innerHeight");
 });
 
-test("The state's firstPoint and secondPoint should update accordingly after a drag event", () => {
+QUnit.test("The state's firstPoint and secondPoint should update accordingly after a drag event", () => {
 	let controllerInstance = HelperFunctions.mountToFixture(defaultComponent);
 
 	let from: Point = { x: 100, y: 100 };
@@ -306,7 +306,7 @@ test("The state's firstPoint and secondPoint should update accordingly after a d
 		"The second point should be the same point as the mouseup point");
 });
 
-test("The state's firstPoint and secondPoint should be undefined if the drag distance is zero", () => {
+QUnit.test("The state's firstPoint and secondPoint should be undefined if the drag distance is zero", () => {
 	let controllerInstance = HelperFunctions.mountToFixture(defaultComponent);
 
 	let point: Point = { x: 100, y: 100 };
@@ -320,7 +320,7 @@ test("The state's firstPoint and secondPoint should be undefined if the drag dis
 	ok(!controllerInstance.state.secondPoint, "The second point should be undefined");
 });
 
-test("The state's firstPoint and secondPoint should be undefined if the horizontal drag distance is zero", () => {
+QUnit.test("The state's firstPoint and secondPoint should be undefined if the horizontal drag distance is zero", () => {
 	let controllerInstance = HelperFunctions.mountToFixture(defaultComponent);
 
 	let from: Point = { x: 100, y: 100 };
@@ -335,7 +335,7 @@ test("The state's firstPoint and secondPoint should be undefined if the horizont
 	ok(!controllerInstance.state.secondPoint, "The second point should be undefined");
 });
 
-test("The state's firstPoint and secondPoint should be undefined if the vertical drag distance is zero", () => {
+QUnit.test("The state's firstPoint and secondPoint should be undefined if the vertical drag distance is zero", () => {
 	let controllerInstance = HelperFunctions.mountToFixture(defaultComponent);
 
 	let from: Point = { x: 100, y: 100 };
@@ -350,7 +350,7 @@ test("The state's firstPoint and secondPoint should be undefined if the vertical
 	ok(!controllerInstance.state.secondPoint, "The second point should be undefined");
 });
 
-test("The state's secondPoint should be updated in the middle of the drag (i.e., before mouseup)", () => {
+QUnit.test("The state's secondPoint should be updated in the middle of the drag (i.e., before mouseup)", () => {
 	let controllerInstance = HelperFunctions.mountToFixture(defaultComponent);
 
 	let from: Point = { x: 100, y: 100 };
@@ -366,7 +366,7 @@ test("The state's secondPoint should be updated in the middle of the drag (i.e.,
 		"The second point should be the same point as the mouseup point");
 });
 
-test("For a single white pixel as the region selection, its quality should not be downgraded", (assert: QUnitAssert) => {
+QUnit.test("For a single white pixel as the region selection, its quality should not be downgraded", (assert: QUnitAssert) => {
 	let done = assert.async();
 	let controllerInstance = HelperFunctions.mountToFixture(defaultComponent);
 
@@ -384,7 +384,7 @@ test("For a single white pixel as the region selection, its quality should not b
 	img.src = DataUrls.whitePixelUrl;
 });
 
-test("For a large image as the region selection, the resulting image should be downgraded sufficiently to not exceed maxBytesForMediaTypes", (assert: QUnitAssert) => {
+QUnit.test("For a large image as the region selection, the resulting image should be downgraded sufficiently to not exceed maxBytesForMediaTypes", (assert: QUnitAssert) => {
 	let done = assert.async();
 	let controllerInstance = HelperFunctions.mountToFixture(defaultComponent);
 
@@ -401,7 +401,7 @@ test("For a large image as the region selection, the resulting image should be d
 	img.src = DataUrls.bigImgUrl;
 });
 
-test("When the region selection is turned into a canvas, the canvas width and height should be the absolute distance between (x1,x2) and (y1,y2) respectively", (assert: QUnitAssert) => {
+QUnit.test("When the region selection is turned into a canvas, the canvas width and height should be the absolute distance between (x1,x2) and (y1,y2) respectively", (assert: QUnitAssert) => {
 	let done = assert.async();
 	let controllerInstance = HelperFunctions.mountToFixture(defaultComponent);
 
@@ -421,7 +421,7 @@ test("When the region selection is turned into a canvas, the canvas width and he
 	});
 });
 
-test("When the region selection is turned into a canvas, the canvas width and height should be correct when the base image is large", (assert: QUnitAssert) => {
+QUnit.test("When the region selection is turned into a canvas, the canvas width and height should be correct when the base image is large", (assert: QUnitAssert) => {
 	let done = assert.async();
 	let controllerInstance = HelperFunctions.mountToFixture(defaultComponent);
 
@@ -441,7 +441,7 @@ test("When the region selection is turned into a canvas, the canvas width and he
 	});
 });
 
-test("When the region selection is turned into a canvas, the canvas width and height should be correct when p1 > p2", (assert: QUnitAssert) => {
+QUnit.test("When the region selection is turned into a canvas, the canvas width and height should be correct when p1 > p2", (assert: QUnitAssert) => {
 	let done = assert.async();
 	let controllerInstance = HelperFunctions.mountToFixture(defaultComponent);
 
@@ -461,7 +461,7 @@ test("When the region selection is turned into a canvas, the canvas width and he
 	});
 });
 
-test("When the region selection is turned into a canvas, the canvas width and height should be correct when p1 is northeast of p2", (assert: QUnitAssert) => {
+QUnit.test("When the region selection is turned into a canvas, the canvas width and height should be correct when p1 is northeast of p2", (assert: QUnitAssert) => {
 	let done = assert.async();
 	let controllerInstance = HelperFunctions.mountToFixture(defaultComponent);
 
@@ -481,7 +481,7 @@ test("When the region selection is turned into a canvas, the canvas width and he
 	});
 });
 
-test("Given the base image is a white transparent background with 2x2 black on the top left, check that the canvas captures it", (assert: QUnitAssert) => {
+QUnit.test("Given the base image is a white transparent background with 2x2 black on the top left, check that the canvas captures it", (assert: QUnitAssert) => {
 	let done = assert.async();
 	let controllerInstance = HelperFunctions.mountToFixture(defaultComponent);
 
@@ -524,7 +524,7 @@ test("Given the base image is a white transparent background with 2x2 black on t
 	});
 });
 
-test("createSelectionAsCanvas should call reject if the base image url is empty", (assert: QUnitAssert) => {
+QUnit.test("createSelectionAsCanvas should call reject if the base image url is empty", (assert: QUnitAssert) => {
 	let done = assert.async();
 	let controllerInstance = HelperFunctions.mountToFixture(defaultComponent);
 
@@ -545,7 +545,7 @@ test("createSelectionAsCanvas should call reject if the base image url is empty"
 	});
 });
 
-test("createSelectionAsCanvas should call reject if the base image url is null", (assert: QUnitAssert) => {
+QUnit.test("createSelectionAsCanvas should call reject if the base image url is null", (assert: QUnitAssert) => {
 	/* tslint:disable:no-null-keyword */
 	let done = assert.async();
 	let controllerInstance = HelperFunctions.mountToFixture(defaultComponent);
@@ -568,7 +568,7 @@ test("createSelectionAsCanvas should call reject if the base image url is null",
 	/* tslint:enable:no-null-keyword */
 });
 
-test("createSelectionAsCanvas should call reject if the base image url is undefined", (assert: QUnitAssert) => {
+QUnit.test("createSelectionAsCanvas should call reject if the base image url is undefined", (assert: QUnitAssert) => {
 	let done = assert.async();
 	let controllerInstance = HelperFunctions.mountToFixture(defaultComponent);
 
@@ -589,7 +589,7 @@ test("createSelectionAsCanvas should call reject if the base image url is undefi
 	});
 });
 
-test("createSelectionAsCanvas should call reject if the first point is undefined", (assert: QUnitAssert) => {
+QUnit.test("createSelectionAsCanvas should call reject if the first point is undefined", (assert: QUnitAssert) => {
 	let done = assert.async();
 	let controllerInstance = HelperFunctions.mountToFixture(defaultComponent);
 
@@ -608,7 +608,7 @@ test("createSelectionAsCanvas should call reject if the first point is undefined
 	});
 });
 
-test("createSelectionAsCanvas should call reject if the second point is undefined", (assert: QUnitAssert) => {
+QUnit.test("createSelectionAsCanvas should call reject if the second point is undefined", (assert: QUnitAssert) => {
 	let done = assert.async();
 	let controllerInstance = HelperFunctions.mountToFixture(defaultComponent);
 
@@ -627,7 +627,7 @@ test("createSelectionAsCanvas should call reject if the second point is undefine
 	});
 });
 
-test("createSelectionAsCanvas should call reject if both points are undefined", (assert: QUnitAssert) => {
+QUnit.test("createSelectionAsCanvas should call reject if both points are undefined", (assert: QUnitAssert) => {
 	let done = assert.async();
 	let controllerInstance = HelperFunctions.mountToFixture(defaultComponent);
 
@@ -640,7 +640,7 @@ test("createSelectionAsCanvas should call reject if both points are undefined", 
 	});
 });
 
-test("saveCompressedSelectionToState should resolve with the canvas in the general case", (assert: QUnitAssert) => {
+QUnit.test("saveCompressedSelectionToState should resolve with the canvas in the general case", (assert: QUnitAssert) => {
 	let done = assert.async();
 	let controllerInstance = HelperFunctions.mountToFixture(defaultComponent);
 
@@ -660,7 +660,7 @@ test("saveCompressedSelectionToState should resolve with the canvas in the gener
 	});
 });
 
-test("saveCompressedSelectionToState should set the regionResult state to success in the general case", (assert: QUnitAssert) => {
+QUnit.test("saveCompressedSelectionToState should set the regionResult state to success in the general case", (assert: QUnitAssert) => {
 	let done = assert.async();
 	let controllerInstance = HelperFunctions.mountToFixture(defaultComponent);
 
@@ -681,7 +681,7 @@ test("saveCompressedSelectionToState should set the regionResult state to succes
 	});
 });
 
-test("saveCompressedSelectionToState should append the result on subsequent calls", (assert: QUnitAssert) => {
+QUnit.test("saveCompressedSelectionToState should append the result on subsequent calls", (assert: QUnitAssert) => {
 	let done = assert.async();
 	let controllerInstance = HelperFunctions.mountToFixture(defaultComponent);
 
@@ -721,7 +721,7 @@ test("saveCompressedSelectionToState should append the result on subsequent call
 	});
 });
 
-test("saveCompressedSelectionToState should unset the user's selection in the reject case", (assert: QUnitAssert) => {
+QUnit.test("saveCompressedSelectionToState should unset the user's selection in the reject case", (assert: QUnitAssert) => {
 	let done = assert.async();
 	let controllerInstance = HelperFunctions.mountToFixture(defaultComponent);
 
@@ -739,7 +739,7 @@ test("saveCompressedSelectionToState should unset the user's selection in the re
 	});
 });
 
-test("The captured content should display the inner frame", (assert: QUnitAssert) => {
+QUnit.test("The captured content should display the inner frame", (assert: QUnitAssert) => {
 	let done = assert.async();
 	let controllerInstance = HelperFunctions.mountToFixture(defaultComponent);
 

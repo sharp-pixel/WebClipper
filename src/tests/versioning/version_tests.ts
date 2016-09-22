@@ -2,7 +2,7 @@ import {Version} from "../../scripts/versioning/version";
 
 QUnit.module("version", {});
 
-test("The constructor should throw an error if the parameter does not follow 'int.int.int'", () => {
+QUnit.test("The constructor should throw an error if the parameter does not follow 'int.int.int'", () => {
 	throws(() => {
 		let version = new Version("abcd");
 	}, Error("version must match 'int.int.int' pattern, but was: abcd"));
@@ -54,7 +54,7 @@ test("The constructor should throw an error if the parameter does not follow 'in
 	/* tslint:enable:no-null-keyword */
 });
 
-test("Test comparison methods where both versions are instantiated with the same parameters", () => {
+QUnit.test("Test comparison methods where both versions are instantiated with the same parameters", () => {
 	let v1 = new Version("1.2.3");
 	let v2 = new Version("1.2.3");
 
@@ -71,7 +71,7 @@ test("Test comparison methods where both versions are instantiated with the same
 	ok(v2.isLesserThanOrEqualTo(v1));
 });
 
-test("Test comparison methods where both the versions are same but had different parameters in the ctor", () => {
+QUnit.test("Test comparison methods where both the versions are same but had different parameters in the ctor", () => {
 	let v1 = new Version("01.2.003");
 	let v2 = new Version("1.02.3");
 
@@ -88,7 +88,7 @@ test("Test comparison methods where both the versions are same but had different
 	ok(v2.isLesserThanOrEqualTo(v1));
 });
 
-test("Test one version's major number being greater than the other", () => {
+QUnit.test("Test one version's major number being greater than the other", () => {
 	let greater = new Version("50.10.5");
 	let lesser = new Version("40.99.99");
 
@@ -105,7 +105,7 @@ test("Test one version's major number being greater than the other", () => {
 	ok(lesser.isLesserThanOrEqualTo(greater));
 });
 
-test("Test major numbers being the same, and the minor numbers are not", () => {
+QUnit.test("Test major numbers being the same, and the minor numbers are not", () => {
 	let greater = new Version("50.30.5");
 	let lesser = new Version("50.10.99");
 
@@ -122,7 +122,7 @@ test("Test major numbers being the same, and the minor numbers are not", () => {
 	ok(lesser.isLesserThanOrEqualTo(greater));
 });
 
-test("Test major and minor numbers being the same, and the patch numbers are not", () => {
+QUnit.test("Test major and minor numbers being the same, and the patch numbers are not", () => {
 	let greater = new Version("50.10.5");
 	let lesser = new Version("50.10.1");
 
@@ -139,7 +139,7 @@ test("Test major and minor numbers being the same, and the patch numbers are not
 	ok(lesser.isLesserThanOrEqualTo(greater));
 });
 
-test("Test that we aren't just only comparing the patch", () => {
+QUnit.test("Test that we aren't just only comparing the patch", () => {
 	let greater = new Version("50.11.1");
 	let lesser = new Version("50.10.99");
 
@@ -156,12 +156,12 @@ test("Test that we aren't just only comparing the patch", () => {
 	ok(lesser.isLesserThanOrEqualTo(greater));
 });
 
-test("toString should return the major, minor, and patch numbers delimited with periods", () => {
+QUnit.test("toString should return the major, minor, and patch numbers delimited with periods", () => {
 	let version = new Version("3.1.0");
 	strictEqual(version.toString(), "3.1.0");
 });
 
-test("toString should remove 0s at the start of each number", () => {
+QUnit.test("toString should remove 0s at the start of each number", () => {
 	let version = new Version("03.1.0");
 	strictEqual(version.toString(), "3.1.0");
 	version = new Version("3.01.0");
@@ -170,7 +170,7 @@ test("toString should remove 0s at the start of each number", () => {
 	strictEqual(version.toString(), "3.1.0");
 });
 
-test("toString should correctly allow more than one digit per number", () => {
+QUnit.test("toString should correctly allow more than one digit per number", () => {
 	let version = new Version("31.10.9");
 	strictEqual(version.toString(), "31.10.9");
 });

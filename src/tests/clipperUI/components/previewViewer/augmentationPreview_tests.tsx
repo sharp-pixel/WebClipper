@@ -41,7 +41,7 @@ let sansSerifDefaultFontSize = stringsJson["WebClipper.FontSize.Preview.SansSeri
 let serifFontFamily = stringsJson["WebClipper.FontFamily.Preview.SerifDefault"];
 let fontSizeStep = Constants.Settings.fontSizeStep;
 
-test("The tab order flow from the header to the preview title is correct in Augmentation mode, and each tab index should not be less than 1", () => {
+QUnit.test("The tab order flow from the header to the preview title is correct in Augmentation mode, and each tab index should not be less than 1", () => {
 	let mockClipperState = getMockAugmentationModeState();
 	let defaultComponent = <AugmentationPreview clipperState={mockClipperState} />;
 	HelperFunctions.mountToFixture(defaultComponent);
@@ -65,7 +65,7 @@ test("The tab order flow from the header to the preview title is correct in Augm
 	}
 });
 
-test("The augmentation header and all related controls should be displayed in Augmentation mode", () => {
+QUnit.test("The augmentation header and all related controls should be displayed in Augmentation mode", () => {
 	let mockClipperState = getMockAugmentationModeState();
 	let defaultComponent = <AugmentationPreview clipperState={mockClipperState} />;
 	HelperFunctions.mountToFixture(defaultComponent);
@@ -78,7 +78,7 @@ test("The augmentation header and all related controls should be displayed in Au
 	ok(document.getElementById(Constants.Ids.incrementFontSize), "The increment font size control should exist");
 });
 
-test("The editable title of the page should be displayed in the preview title in Augmentation mode", () => {
+QUnit.test("The editable title of the page should be displayed in the preview title in Augmentation mode", () => {
 	let mockClipperState = getMockAugmentationModeState();
 	let defaultComponent = <AugmentationPreview clipperState={mockClipperState} />;
 	HelperFunctions.mountToFixture(defaultComponent);
@@ -89,7 +89,7 @@ test("The editable title of the page should be displayed in the preview title in
 	ok(!previewHeaderInput.readOnly);
 });
 
-test("The augmented content of the page should be displayed in the highlightable preview body in Augmentation Mode", () => {
+QUnit.test("The augmented content of the page should be displayed in the highlightable preview body in Augmentation Mode", () => {
 	let mockClipperState = getMockAugmentationModeState();
 	let defaultComponent = <AugmentationPreview clipperState={mockClipperState} />;
 	HelperFunctions.mountToFixture(defaultComponent);
@@ -99,7 +99,7 @@ test("The augmented content of the page should be displayed in the highlightable
 		"The editable augmentation result content is displayed in the preview body's highlightable portion");
 });
 
-test("When the augmentation successfully completes, but no data is returned, the preview should indicate no content was found in Augmentation mode", () => {
+QUnit.test("When the augmentation successfully completes, but no data is returned, the preview should indicate no content was found in Augmentation mode", () => {
 	let clipperState = HelperFunctions.getMockClipperState();
 	clipperState.currentMode.set(ClipMode.Augmentation);
 	clipperState.augmentationResult = {
@@ -117,7 +117,7 @@ test("When the augmentation successfully completes, but no data is returned, the
 		"The preview body should be empty");
 });
 
-test("When the call to augmentation has not started, the preview should indicate that it is loading in Augmentation mode", () => {
+QUnit.test("When the call to augmentation has not started, the preview should indicate that it is loading in Augmentation mode", () => {
 	let clipperState = HelperFunctions.getMockClipperState();
 	clipperState.currentMode.set(ClipMode.Augmentation);
 	clipperState.augmentationResult = {
@@ -136,7 +136,7 @@ test("When the call to augmentation has not started, the preview should indicate
 		"The spinner should be present in the preview body");
 });
 
-test("When augmentation is in progress, the preview should indicate that it is loading in Augmentation mode", () => {
+QUnit.test("When augmentation is in progress, the preview should indicate that it is loading in Augmentation mode", () => {
 	let clipperState = HelperFunctions.getMockClipperState();
 	clipperState.currentMode.set(ClipMode.Augmentation);
 	clipperState.augmentationResult = {
@@ -155,7 +155,7 @@ test("When augmentation is in progress, the preview should indicate that it is l
 		"The spinner should be present in the preview body");
 });
 
-test("When the call to augmentation has not started, the preview should indicate that it is loading, even when data is defined in Augmentation mode", () => {
+QUnit.test("When the call to augmentation has not started, the preview should indicate that it is loading, even when data is defined in Augmentation mode", () => {
 	let clipperState = HelperFunctions.getMockClipperState();
 	clipperState.currentMode.set(ClipMode.Augmentation);
 	clipperState.augmentationResult = {
@@ -174,7 +174,7 @@ test("When the call to augmentation has not started, the preview should indicate
 		"The spinner should be present in the preview body");
 });
 
-test("When augmentation is in progress, the preview should indicate that it is loading, even when data is defined in Augmentation mode", () => {
+QUnit.test("When augmentation is in progress, the preview should indicate that it is loading, even when data is defined in Augmentation mode", () => {
 	let clipperState = HelperFunctions.getMockClipperState();
 	clipperState.currentMode.set(ClipMode.Augmentation);
 	clipperState.augmentationResult = {
@@ -193,7 +193,7 @@ test("When augmentation is in progress, the preview should indicate that it is l
 		"The spinner should be present in the preview body");
 });
 
-test("When the augmentation response is a failure, the preview should display an error message in Augmentation mode", () => {
+QUnit.test("When the augmentation response is a failure, the preview should display an error message in Augmentation mode", () => {
 	let expectedMessage = "An error message.";
 
 	let clipperState = HelperFunctions.getMockClipperState();
@@ -212,7 +212,7 @@ test("When the augmentation response is a failure, the preview should display an
 	ok(previewHeaderInput.readOnly);
 });
 
-test("The default font-size and font-family should be the same as those specified in strings.json in Augmentation mode", () => {
+QUnit.test("The default font-size and font-family should be the same as those specified in strings.json in Augmentation mode", () => {
 	let mockClipperState = getMockAugmentationModeState();
 	let defaultComponent = <AugmentationPreview clipperState={mockClipperState} />;
 	HelperFunctions.mountToFixture(defaultComponent);
@@ -222,7 +222,7 @@ test("The default font-size and font-family should be the same as those specifie
 	strictEqual(previewBody.style.fontFamily, sansSerifFontFamily);
 });
 
-test("On clicking Serif, the fontFamily should be changed to the fontFamily specified in strings.json, and then back upon clicking Sans-Serif in Augmentation mode", () => {
+QUnit.test("On clicking Serif, the fontFamily should be changed to the fontFamily specified in strings.json, and then back upon clicking Sans-Serif in Augmentation mode", () => {
 	let mockClipperState = getMockAugmentationModeState();
 	let defaultComponent = <AugmentationPreview clipperState={mockClipperState} />;
 	HelperFunctions.mountToFixture(defaultComponent);
@@ -244,7 +244,7 @@ test("On clicking Serif, the fontFamily should be changed to the fontFamily spec
 	strictEqual(sansSerifFontFamily, previewBody.style.fontFamily);
 });
 
-test("Clicking on the same fontFamily button multiple times should only set that fontFamily once in Augmentation mode", () => {
+QUnit.test("Clicking on the same fontFamily button multiple times should only set that fontFamily once in Augmentation mode", () => {
 	let mockClipperState = getMockAugmentationModeState();
 	let defaultComponent = <AugmentationPreview clipperState={mockClipperState} />;
 	HelperFunctions.mountToFixture(defaultComponent);
@@ -265,7 +265,7 @@ test("Clicking on the same fontFamily button multiple times should only set that
 	strictEqual(serifFontFamily, previewBody.style.fontFamily);
 });
 
-test("The default fontSize should be the sansSerif default fontSize, and should increment by two and decrement by two for each click on up and down respectively in Augmentation mode", () => {
+QUnit.test("The default fontSize should be the sansSerif default fontSize, and should increment by two and decrement by two for each click on up and down respectively in Augmentation mode", () => {
 	let mockClipperState = getMockAugmentationModeState();
 	let defaultComponent = <AugmentationPreview clipperState={mockClipperState} />;
 	HelperFunctions.mountToFixture(defaultComponent);
@@ -295,7 +295,7 @@ test("The default fontSize should be the sansSerif default fontSize, and should 
 	strictEqual(parseInt(previewBody.style.fontSize, 10), largerFontSize);
 });
 
-test("If the user tries to increase beyond the maximum fontSize for either Serif or SansSerif, it should cap at the max font size defined in strongs.json in Augmentation mode", () => {
+QUnit.test("If the user tries to increase beyond the maximum fontSize for either Serif or SansSerif, it should cap at the max font size defined in strongs.json in Augmentation mode", () => {
 	let maximumFontSize = Constants.Settings.maximumFontSize;
 	let numClicks = (maximumFontSize - parseInt(sansSerifDefaultFontSize, 10)) / fontSizeStep;
 
@@ -315,7 +315,7 @@ test("If the user tries to increase beyond the maximum fontSize for either Serif
 	strictEqual(parseInt(previewBody.style.fontSize, 10), maximumFontSize);
 });
 
-test("If the user tries to decrease beyond the minimum fontSize for either Serif or SansSerif, it should reset at the minimum font size in Augmentation mode", () => {
+QUnit.test("If the user tries to decrease beyond the minimum fontSize for either Serif or SansSerif, it should reset at the minimum font size in Augmentation mode", () => {
 	let minimumFontSize = Constants.Settings.minimumFontSize;
 	let numClicks = (parseInt(sansSerifDefaultFontSize, 10) - minimumFontSize) / fontSizeStep;
 
@@ -335,7 +335,7 @@ test("If the user tries to decrease beyond the minimum fontSize for either Serif
 	strictEqual(parseInt(previewBody.style.fontSize, 10), minimumFontSize);
 });
 
-test("The default internal state should show that 'Highlighting' is disabled in Augmentation mode", () => {
+QUnit.test("The default internal state should show that 'Highlighting' is disabled in Augmentation mode", () => {
 	let mockClipperState = getMockAugmentationModeState();
 	let defaultComponent = <AugmentationPreview clipperState={mockClipperState} />;
 	let augmentationPreview = HelperFunctions.mountToFixture(defaultComponent);
@@ -346,7 +346,7 @@ test("The default internal state should show that 'Highlighting' is disabled in 
 	strictEqual(highlightButton.className.indexOf("active"), -1, "The active class should not be applied to the highlight button");
 });
 
-test("If the user clicks the highlight button, the internal state should show that 'Highlighting' is enabled in Augmentation mode", () => {
+QUnit.test("If the user clicks the highlight button, the internal state should show that 'Highlighting' is enabled in Augmentation mode", () => {
 	let mockClipperState = getMockAugmentationModeState();
 	let defaultComponent = <AugmentationPreview clipperState={mockClipperState} />;
 	let augmentationPreview = HelperFunctions.mountToFixture(defaultComponent);
@@ -361,7 +361,7 @@ test("If the user clicks the highlight button, the internal state should show th
 	notStrictEqual(highlightButton.className.indexOf("active"), -1, "The active class should be applied to the highlight button");
 });
 
-test("If the user selects something in the highlightable preview body, then clicks the highlight button, the internal state should show that 'Highlighting' is disabled in Augmentation mode, and the item should be highlighted", () => {
+QUnit.test("If the user selects something in the highlightable preview body, then clicks the highlight button, the internal state should show that 'Highlighting' is disabled in Augmentation mode, and the item should be highlighted", () => {
 	let mockClipperState = getMockAugmentationModeState();
 	let defaultComponent = <AugmentationPreview clipperState={mockClipperState} />;
 	let augmentationPreview = HelperFunctions.mountToFixture(defaultComponent);
@@ -396,7 +396,7 @@ test("If the user selects something in the highlightable preview body, then clic
 		"The highlighted element should be the inner text of the paragraph");
 });
 
-test("If the user selects something outside the highlightable preview body, then clicks the highlight button, the internal state should show that 'Highlighting' is enabled in Augmentation mode, and nothing should be highlighted", () => {
+QUnit.test("If the user selects something outside the highlightable preview body, then clicks the highlight button, the internal state should show that 'Highlighting' is enabled in Augmentation mode, and nothing should be highlighted", () => {
 	let mockClipperState = getMockAugmentationModeState();
 	let defaultComponent = <AugmentationPreview clipperState={mockClipperState} />;
 	let augmentationPreview = HelperFunctions.mountToFixture(defaultComponent);
@@ -430,7 +430,7 @@ test("If the user selects something outside the highlightable preview body, then
 	strictEqual(childSpans.length, 0, "There should only be one highlighted element");
 });
 
-test("If the user is highlighting (i.e., highlighting mode is active), then the 'active' class should be applied to the highlightButton in Augmentation mode", () => {
+QUnit.test("If the user is highlighting (i.e., highlighting mode is active), then the 'active' class should be applied to the highlightButton in Augmentation mode", () => {
 	let mockClipperState = getMockAugmentationModeState();
 	let defaultComponent = <AugmentationPreview clipperState={mockClipperState} />;
 	HelperFunctions.mountToFixture(defaultComponent);
@@ -446,7 +446,7 @@ test("If the user is highlighting (i.e., highlighting mode is active), then the 
 	notStrictEqual(highlightButton.className.indexOf("active"), -1, "The active class should be applied to the highlight button");
 });
 
-test("If the user is not highlighting (i.e., highlighting mode is active), then the 'active' class should not be applied to the highlightButton in Augmentation mode", () => {
+QUnit.test("If the user is not highlighting (i.e., highlighting mode is active), then the 'active' class should not be applied to the highlightButton in Augmentation mode", () => {
 	let mockClipperState = getMockAugmentationModeState();
 	let defaultComponent = <AugmentationPreview clipperState={mockClipperState} />;
 	HelperFunctions.mountToFixture(defaultComponent);
@@ -456,7 +456,7 @@ test("If the user is not highlighting (i.e., highlighting mode is active), then 
 	strictEqual(highlightButton.className.indexOf("active"), -1, "The active class should not be applied to the highlight button");
 });
 
-test("If the editable title feature is disabled, it should be readonly", () => {
+QUnit.test("If the editable title feature is disabled, it should be readonly", () => {
 	let mockClipperState = getMockAugmentationModeState();
 	mockClipperState.injectOptions.enableEditableTitle = false;
 	let defaultComponent = <AugmentationPreview clipperState={mockClipperState} />;

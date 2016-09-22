@@ -5,7 +5,7 @@ import {LogHelpers} from "../../scripts/logging/logHelpers";
 
 QUnit.module("logHelpers", {});
 
-test("createBaseEvent creates a k-v pair with EventType, Label, Category, and EventName", () => {
+QUnit.test("createBaseEvent creates a k-v pair with EventType, Label, Category, and EventName", () => {
 	let result = LogHelpers.createBaseEventAsJson("subCat", "lab");
 	deepEqual(result, {
 		EventType: "ReportData",
@@ -15,7 +15,7 @@ test("createBaseEvent creates a k-v pair with EventType, Label, Category, and Ev
 	});
 });
 
-test("createClickEvent creates a base k-v pair with subcategory as Click and eventname as the id", () => {
+QUnit.test("createClickEvent creates a base k-v pair with subcategory as Click and eventname as the id", () => {
 	let result = LogHelpers.createClickEventAsJson("buttonA");
 	deepEqual(result, {
 		EventType: "ReportData",
@@ -25,7 +25,7 @@ test("createClickEvent creates a base k-v pair with subcategory as Click and eve
 	});
 });
 
-test("createLogEvent creates a base k-v pair with additional Duration key if a BaseEvent", () => {
+QUnit.test("createLogEvent creates a base k-v pair with additional Duration key if a BaseEvent", () => {
 	let label = 0;
 	let labelAsString = Log.Event.Label[label];
 	let result = LogHelpers.createLogEventAsJson(new Log.Event.BaseEvent({
@@ -41,7 +41,7 @@ test("createLogEvent creates a base k-v pair with additional Duration key if a B
 	});
 });
 
-test("createLogEvent creates a base k-v pair with additional Duration, Status key if a non-failed PromiseEvent", () => {
+QUnit.test("createLogEvent creates a base k-v pair with additional Duration, Status key if a non-failed PromiseEvent", () => {
 	let label = 0;
 	let labelAsString = Log.Event.Label[label];
 	let result = LogHelpers.createLogEventAsJson(new Log.Event.PromiseEvent({
@@ -59,7 +59,7 @@ test("createLogEvent creates a base k-v pair with additional Duration, Status ke
 	});
 });
 
-test("createLogEvent creates a base k-v pair with additional Duration, Status, FailureInfo, FailureType key if a failed PromiseEvent", () => {
+QUnit.test("createLogEvent creates a base k-v pair with additional Duration, Status, FailureInfo, FailureType key if a failed PromiseEvent", () => {
 	let label = 0;
 	let labelAsString = Log.Event.Label[label];
 	let promiseEvent = new Log.Event.PromiseEvent({
@@ -86,7 +86,7 @@ test("createLogEvent creates a base k-v pair with additional Duration, Status, F
 	}));
 });
 
-test("createLogEvent creates a base k-v pair with additional Duration, Stream key if a StreamEvent", () => {
+QUnit.test("createLogEvent creates a base k-v pair with additional Duration, Stream key if a StreamEvent", () => {
 	let label = 0;
 	let labelAsString = Log.Event.Label[label];
 	let stream = ["a", "b"];
@@ -107,7 +107,7 @@ test("createLogEvent creates a base k-v pair with additional Duration, Stream ke
 	}));
 });
 
-test("createSetContextEvent creates a base k-v pair with addditional Key, Value properties", () => {
+QUnit.test("createSetContextEvent creates a base k-v pair with addditional Key, Value properties", () => {
 	let key = 0;
 	let keyAsString = Log.Context.toString(key);
 
@@ -122,7 +122,7 @@ test("createSetContextEvent creates a base k-v pair with addditional Key, Value 
 	}));
 });
 
-test("createFailureEvent creates a base k-v pair with additional FailureType, FailureInfo, Id, StackTrace", () => {
+QUnit.test("createFailureEvent creates a base k-v pair with additional FailureType, FailureInfo, Id, StackTrace", () => {
 	let label = 0;
 	let labelAsString = Log.Failure.Label[label];
 	let failureType = 0;
@@ -142,7 +142,7 @@ test("createFailureEvent creates a base k-v pair with additional FailureType, Fa
 	}));
 });
 
-test("createFunnelEvent creates a base k-v pair", () => {
+QUnit.test("createFunnelEvent creates a base k-v pair", () => {
 	let label = 0;
 	let labelAsString = Log.Funnel.Label[label];
 
@@ -155,7 +155,7 @@ test("createFunnelEvent creates a base k-v pair", () => {
 	}));
 });
 
-test("createSessionEvent Started creates a base k-v pair", () => {
+QUnit.test("createSessionEvent Started creates a base k-v pair", () => {
 	let result = LogHelpers.createSessionStartEventAsJson();
 	deepEqual(JSON.stringify(result), JSON.stringify({
 		EventType: "ReportData",
@@ -165,7 +165,7 @@ test("createSessionEvent Started creates a base k-v pair", () => {
 	}));
 });
 
-test("createSessionEvent Ended creates a base k-v pair with additional Trigger property", () => {
+QUnit.test("createSessionEvent Ended creates a base k-v pair with additional Trigger property", () => {
 	let trigger = 0;
 	let triggerAsString = Log.Session.EndTrigger[trigger];
 	let result = LogHelpers.createSessionEndEventAsJson(trigger);
@@ -178,7 +178,7 @@ test("createSessionEvent Ended creates a base k-v pair with additional Trigger p
 	}));
 });
 
-test("createTraceEvent creates a base k-v pair with additional Message, Level property if not a Warning", () => {
+QUnit.test("createTraceEvent creates a base k-v pair with additional Message, Level property if not a Warning", () => {
 	let label = 0;
 	let labelAsString = Log.Trace.Label[label];
 	let level = Log.Trace.Level.Information;

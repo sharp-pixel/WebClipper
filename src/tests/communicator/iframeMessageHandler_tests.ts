@@ -4,7 +4,7 @@ import {IFrameMessageHandler} from "../../scripts/communicator/iframeMessageHand
 
 QUnit.module("iframeMessageHandler", {});
 
-test("Test that we can send and receive a message", (assert: QUnitAssert) => {
+QUnit.test("Test that we can send and receive a message", (assert: QUnitAssert) => {
 	let done = assert.async();
 
 	// Note: this is currently posting and recieving to itself

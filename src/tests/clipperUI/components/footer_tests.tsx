@@ -28,14 +28,14 @@ QUnit.module("footer", {
 	}
 });
 
-test("The footer should be collapsed by default", () => {
+QUnit.test("The footer should be collapsed by default", () => {
 	let controllerInstance = HelperFunctions.mountToFixture(defaultComponent);
 
 	ok(!document.getElementById(Constants.Ids.userSettingsContainer),
 		"The user settings container should not be rendered by default");
 });
 
-test("The footer should be expanded after clicking on the user control dropdown button", () => {
+QUnit.test("The footer should be expanded after clicking on the user control dropdown button", () => {
 	let controllerInstance = HelperFunctions.mountToFixture(defaultComponent);
 
 	let currentUserControl = document.getElementById(Constants.Ids.currentUserControl);
@@ -47,7 +47,7 @@ test("The footer should be expanded after clicking on the user control dropdown 
 		"The user settings container should be rendered after clicking the user control dropdown button");
 });
 
-test("The footer should be collapsed when clicking on the user control dropdown button twice", () => {
+QUnit.test("The footer should be collapsed when clicking on the user control dropdown button twice", () => {
 	let controllerInstance = HelperFunctions.mountToFixture(defaultComponent);
 
 	let currentUserControl = document.getElementById(Constants.Ids.currentUserControl);
@@ -60,7 +60,7 @@ test("The footer should be collapsed when clicking on the user control dropdown 
 		"The user settings container should not be rendered after clicking the user control dropdown button twice");
 });
 
-test("The footer should remain expanded after clicking on the user control dropdown button then losing focus", () => {
+QUnit.test("The footer should remain expanded after clicking on the user control dropdown button then losing focus", () => {
 	let controllerInstance = HelperFunctions.mountToFixture(defaultComponent);
 
 	let currentUserControl = document.getElementById(Constants.Ids.currentUserControl);
@@ -74,7 +74,7 @@ test("The footer should remain expanded after clicking on the user control dropd
 		"The user settings container remain open regardless of focus");
 });
 
-test("The user settings opened state should match the visibility of the user settings container", () => {
+QUnit.test("The user settings opened state should match the visibility of the user settings container", () => {
 	let controllerInstance = HelperFunctions.mountToFixture(defaultComponent);
 
 	let currentUserControl = document.getElementById(Constants.Ids.currentUserControl);
@@ -94,7 +94,7 @@ test("The user settings opened state should match the visibility of the user set
 		"userSettingsOpened should be false after the user control dropdown button has been clicked twice");
 });
 
-test("The footer fields should be populated with the current user's info", () => {
+QUnit.test("The footer fields should be populated with the current user's info", () => {
 	let controllerInstance = HelperFunctions.mountToFixture(defaultComponent);
 
 	let currentUserName = document.getElementById(Constants.Ids.currentUserName);
@@ -110,7 +110,7 @@ test("The footer fields should be populated with the current user's info", () =>
 	strictEqual(currentUserEmail.innerText, startingState.userResult.data.user.emailAddress);
 });
 
-test("On clicking the sign out button, the user state must be set to undefined and userSettingsOpened state should be set to false", () => {
+QUnit.test("On clicking the sign out button, the user state must be set to undefined and userSettingsOpened state should be set to false", () => {
 	let controllerInstance = HelperFunctions.mountToFixture(defaultComponent);
 
 	HelperFunctions.simulateAction(() => {
@@ -126,7 +126,7 @@ test("On clicking the sign out button, the user state must be set to undefined a
 		"userSettingsOpened should be set to false on signout");
 });
 
-test("The feedback popup should not be open by default", () => {
+QUnit.test("The feedback popup should not be open by default", () => {
 	let controllerInstance = HelperFunctions.mountToFixture(defaultComponent);
 
 	let feedbackWindowRef = controllerInstance.getFeedbackWindowRef();
@@ -134,7 +134,7 @@ test("The feedback popup should not be open by default", () => {
 		"Popup should not be opened by default");
 });
 
-test("On clicking the feedback button, a popup should open", () => {
+QUnit.test("On clicking the feedback button, a popup should open", () => {
 	let controllerInstance = HelperFunctions.mountToFixture(defaultComponent);
 
 	HelperFunctions.simulateAction(() => {
@@ -145,7 +145,7 @@ test("On clicking the feedback button, a popup should open", () => {
 		"Popup should open when feedback button is clicked");
 });
 
-test("The generated feedback url should be correct with url query values set appropriately", () => {
+QUnit.test("The generated feedback url should be correct with url query values set appropriately", () => {
 	let controllerInstance = HelperFunctions.mountToFixture(defaultComponent);
 
 	let url = controllerInstance.generateFeedbackUrl();
@@ -181,7 +181,7 @@ test("The generated feedback url should be correct with url query values set app
 	}
 });
 
-test("The tabbing should flow from the feedback to dropdown to sign out buttons", () => {
+QUnit.test("The tabbing should flow from the feedback to dropdown to sign out buttons", () => {
 	let controllerInstance = HelperFunctions.mountToFixture(defaultComponent);
 
 	let feedbackButton = document.getElementById(Constants.Ids.feedbackButton);
@@ -197,7 +197,7 @@ test("The tabbing should flow from the feedback to dropdown to sign out buttons"
 		"The sign out button's tab index should be greater than the dropdown button's");
 });
 
-test("Tab indexes should not be less than 1", () => {
+QUnit.test("Tab indexes should not be less than 1", () => {
 	let controllerInstance = HelperFunctions.mountToFixture(defaultComponent);
 
 	let feedbackButton = document.getElementById(Constants.Ids.feedbackButton);

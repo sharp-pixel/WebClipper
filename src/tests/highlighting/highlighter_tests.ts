@@ -6,7 +6,7 @@ import {HelperFunctions} from "../helperFunctions";
 
 QUnit.module("highlighter", {});
 
-test("The previous highlighter should be disabled when a new one is reconstructed", () => {
+QUnit.test("The previous highlighter should be disabled when a new one is reconstructed", () => {
 	let textHighlighter = Highlighter.reconstructInstance(HelperFunctions.getFixture(), {
 		enabled: true
 	});

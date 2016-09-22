@@ -52,7 +52,7 @@ MainControllerClass.prototype.getInitialState = function() {
  * We don't test tabbing within expanded elements as that is tested lower in the component hierarchy
  */
 
-test("On the sign in panel, the tab order is correct, and each tab index should not be less than 1", () => {
+QUnit.test("On the sign in panel, the tab order is correct, and each tab index should not be less than 1", () => {
 	let controllerInstance = HelperFunctions.mountToFixture(defaultComponent);
 
 	HelperFunctions.simulateAction(() => {
@@ -75,7 +75,7 @@ test("On the sign in panel, the tab order is correct, and each tab index should 
 	}
 });
 
-test("On the clip options panel, the tab order is correct, and each tab index should not be less than 1", () => {
+QUnit.test("On the clip options panel, the tab order is correct, and each tab index should not be less than 1", () => {
 	let controllerInstance = HelperFunctions.mountToFixture(defaultComponent);
 
 	HelperFunctions.simulateAction(() => {
@@ -103,7 +103,7 @@ test("On the clip options panel, the tab order is correct, and each tab index sh
 	}
 });
 
-test("On the region instructions panel, the tab order is correct, and each tab index should not be less than 1", () => {
+QUnit.test("On the region instructions panel, the tab order is correct, and each tab index should not be less than 1", () => {
 	let controllerInstance = HelperFunctions.mountToFixture(defaultComponent);
 
 	HelperFunctions.simulateAction(() => {
@@ -125,7 +125,7 @@ test("On the region instructions panel, the tab order is correct, and each tab i
 	}
 });
 
-test("On the clip success panel, the tab order is correct, and each tab index should not be less than 1", () => {
+QUnit.test("On the clip success panel, the tab order is correct, and each tab index should not be less than 1", () => {
 	let controllerInstance = HelperFunctions.mountToFixture(defaultComponent);
 
 	HelperFunctions.simulateAction(() => {
@@ -147,7 +147,7 @@ test("On the clip success panel, the tab order is correct, and each tab index sh
 	}
 });
 
-test("On the clip failure panel, the tab order is correct, and each tab index should not be less than 1", () => {
+QUnit.test("On the clip failure panel, the tab order is correct, and each tab index should not be less than 1", () => {
 	let controllerInstance = HelperFunctions.mountToFixture(defaultComponent);
 
 	HelperFunctions.simulateAction(() => {
@@ -188,7 +188,7 @@ test("On the clip failure panel, the tab order is correct, and each tab index sh
 	}
 });
 
-test("On the clip failure panel, the right message is displayed for a particular API error code", () => {
+QUnit.test("On the clip failure panel, the right message is displayed for a particular API error code", () => {
 	let controllerInstance = HelperFunctions.mountToFixture(defaultComponent);
 
 	HelperFunctions.simulateAction(() => {
@@ -201,7 +201,7 @@ test("On the clip failure panel, the right message is displayed for a particular
 		"The correct message is displayed for the given status code");
 });
 
-test("If the close button is clicked, the uiExpanded prop should be set to false, and getPanelTypeToShow() should return the None panel", () => {
+QUnit.test("If the close button is clicked, the uiExpanded prop should be set to false, and getPanelTypeToShow() should return the None panel", () => {
 	let controllerInstance = HelperFunctions.mountToFixture(defaultComponent);
 
 	HelperFunctions.simulateAction(() => {
@@ -217,7 +217,7 @@ test("If the close button is clicked, the uiExpanded prop should be set to false
 		"If the close button is clicked, getPanelTypeToShow() should return the None panel");
 });
 
-test("If the uiExpanded prop is set to false, getPanelTypeToShow() should return the None panel", () => {
+QUnit.test("If the uiExpanded prop is set to false, getPanelTypeToShow() should return the None panel", () => {
 	let props = HelperFunctions.getMockMainControllerProps();
 	props.clipperState.uiExpanded = false;
 	let controllerInstance = HelperFunctions.mountToFixture(
@@ -232,7 +232,7 @@ test("If the uiExpanded prop is set to false, getPanelTypeToShow() should return
 		"If the clipper state is set to not show the UI, getPanelTypeToShow() should return the None panel");
 });
 
-test("If loc strings have not been fetched, the Loading panel should be displayed", () => {
+QUnit.test("If loc strings have not been fetched, the Loading panel should be displayed", () => {
 	let props = HelperFunctions.getMockMainControllerProps();
 	props.clipperState.fetchLocStringStatus = Status.InProgress;
 	let controllerInstance = HelperFunctions.mountToFixture(
@@ -249,7 +249,7 @@ test("If loc strings have not been fetched, the Loading panel should be displaye
 		"The Loading panel should be returned by getPanelTypeToShow()");
 });
 
-test("If user info is being fetched, the Loading panel should be displayed", () => {
+QUnit.test("If user info is being fetched, the Loading panel should be displayed", () => {
 	let props = HelperFunctions.getMockMainControllerProps();
 	props.clipperState.userResult.status = Status.InProgress;
 	let controllerInstance = HelperFunctions.mountToFixture(
@@ -266,7 +266,7 @@ test("If user info is being fetched, the Loading panel should be displayed", () 
 		"The Loading panel should be returned by getPanelTypeToShow()");
 });
 
-test("If invoke options is being fetched, the Loading panel should be displayed", () => {
+QUnit.test("If invoke options is being fetched, the Loading panel should be displayed", () => {
 	let props = HelperFunctions.getMockMainControllerProps();
 	props.clipperState.invokeOptions = undefined;
 	let controllerInstance = HelperFunctions.mountToFixture(
@@ -283,14 +283,14 @@ test("If invoke options is being fetched, the Loading panel should be displayed"
 		"The Loading panel should be returned by getPanelTypeToShow()");
 });
 
-test("If loc strings and user info have been fetched, getPanelTypeToShow() should not return the Loading panel", () => {
+QUnit.test("If loc strings and user info have been fetched, getPanelTypeToShow() should not return the Loading panel", () => {
 	let controllerInstance = HelperFunctions.mountToFixture(defaultComponent);
 
 	notStrictEqual(controllerInstance.getPanelTypeToShow(), PanelType.Loading,
 		"The Loading panel should be not shown when the loc strings and user info have been fetched");
 });
 
-test("If the user's info is not available, the SignInNeeded panel should be displayed", () => {
+QUnit.test("If the user's info is not available, the SignInNeeded panel should be displayed", () => {
 	let props = HelperFunctions.getMockMainControllerProps();
 	props.clipperState.userResult = { status: Status.Failed };
 	let controllerInstance = HelperFunctions.mountToFixture(
@@ -307,7 +307,7 @@ test("If the user's info is not available, the SignInNeeded panel should be disp
 		"The SignInNeeded panel should be returned by getPanelTypeToShow()");
 });
 
-test("If the region mode is selected and region selection is progress, the Loading panel should be displayed", () => {
+QUnit.test("If the region mode is selected and region selection is progress, the Loading panel should be displayed", () => {
 	let props = HelperFunctions.getMockMainControllerProps();
 	props.clipperState.currentMode = new SmartValue<ClipMode>(ClipMode.Region);
 	props.clipperState.regionResult.status = Status.InProgress;
@@ -325,7 +325,7 @@ test("If the region mode is selected and region selection is progress, the Loadi
 		"The Loading panel should be returned by getPanelTypeToShow()");
 });
 
-test("If the region mode is selected and region selection has not started, the RegionInstructions panel should be displayed", () => {
+QUnit.test("If the region mode is selected and region selection has not started, the RegionInstructions panel should be displayed", () => {
 	let props = HelperFunctions.getMockMainControllerProps();
 	props.clipperState.currentMode = new SmartValue<ClipMode>(ClipMode.Region);
 	props.clipperState.regionResult.status = Status.NotStarted;
@@ -343,7 +343,7 @@ test("If the region mode is selected and region selection has not started, the R
 		"The RegionInstructions panel should be returned by getPanelTypeToShow()");
 });
 
-test("If currently clipping to OneNote, the ClippingToApi panel should be displayed", () => {
+QUnit.test("If currently clipping to OneNote, the ClippingToApi panel should be displayed", () => {
 	let props = HelperFunctions.getMockMainControllerProps();
 	props.clipperState.oneNoteApiResult.status = Status.InProgress;
 	let controllerInstance = HelperFunctions.mountToFixture(
@@ -360,7 +360,7 @@ test("If currently clipping to OneNote, the ClippingToApi panel should be displa
 		"The ClippingToApi panel should be returned by getPanelTypeToShow()");
 });
 
-test("If clipping to OneNote failed, the dialog panel should be displayed", () => {
+QUnit.test("If clipping to OneNote failed, the dialog panel should be displayed", () => {
 	let props = HelperFunctions.getMockMainControllerProps();
 	props.clipperState.oneNoteApiResult.data = getMockRequestError();
 	props.clipperState.oneNoteApiResult.status = Status.Failed;
@@ -378,7 +378,7 @@ test("If clipping to OneNote failed, the dialog panel should be displayed", () =
 		"The ClippingFailure panel should be returned by getPanelTypeToShow()");
 });
 
-test("If clipping to OneNote succeeded, the ClippingSuccess panel should be displayed", () => {
+QUnit.test("If clipping to OneNote succeeded, the ClippingSuccess panel should be displayed", () => {
 	let props = HelperFunctions.getMockMainControllerProps();
 	props.clipperState.oneNoteApiResult.status = Status.Succeeded;
 	let controllerInstance = HelperFunctions.mountToFixture(
@@ -395,7 +395,7 @@ test("If clipping to OneNote succeeded, the ClippingSuccess panel should be disp
 		"The ClippingSuccess panel should be returned by getPanelTypeToShow()");
 });
 
-test("The footer should not be rendered when the Loading panel is shown", () => {
+QUnit.test("The footer should not be rendered when the Loading panel is shown", () => {
 	let controllerInstance = HelperFunctions.mountToFixture(defaultComponent);
 
 	HelperFunctions.simulateAction(() => {
@@ -406,7 +406,7 @@ test("The footer should not be rendered when the Loading panel is shown", () => 
 		"The footer container should not render when the clipper is loading");
 });
 
-test("The footer should be rendered when the SignIn panel is shown", () => {
+QUnit.test("The footer should be rendered when the SignIn panel is shown", () => {
 	let controllerInstance = HelperFunctions.mountToFixture(defaultComponent);
 
 	HelperFunctions.simulateAction(() => {
@@ -417,7 +417,7 @@ test("The footer should be rendered when the SignIn panel is shown", () => {
 		"The footer container should not render when the clipper is showing the sign in panel");
 });
 
-test("The footer should be rendered when the ClipOptions panel is shown", () => {
+QUnit.test("The footer should be rendered when the ClipOptions panel is shown", () => {
 	let controllerInstance = HelperFunctions.mountToFixture(defaultComponent);
 
 	HelperFunctions.simulateAction(() => {
@@ -428,7 +428,7 @@ test("The footer should be rendered when the ClipOptions panel is shown", () => 
 		"The footer container should render when the clipper is showing the clip options panel");
 });
 
-test("The footer should not be rendered when the RegionInstructions panel is shown", () => {
+QUnit.test("The footer should not be rendered when the RegionInstructions panel is shown", () => {
 	let controllerInstance = HelperFunctions.mountToFixture(defaultComponent);
 
 	HelperFunctions.simulateAction(() => {
@@ -439,7 +439,7 @@ test("The footer should not be rendered when the RegionInstructions panel is sho
 		"The footer container should not render when the clipper is showing the region instructions panel");
 });
 
-test("The footer should not be rendered when the ClippingToApi panel is shown", () => {
+QUnit.test("The footer should not be rendered when the ClippingToApi panel is shown", () => {
 	let controllerInstance = HelperFunctions.mountToFixture(defaultComponent);
 
 	HelperFunctions.simulateAction(() => {
@@ -450,7 +450,7 @@ test("The footer should not be rendered when the ClippingToApi panel is shown", 
 		"The footer container should not render when the clipper is clipping to OneNote API");
 });
 
-test("The footer should be rendered when the ClippingFailure panel is shown", () => {
+QUnit.test("The footer should be rendered when the ClippingFailure panel is shown", () => {
 	let controllerInstance = HelperFunctions.mountToFixture(defaultComponent);
 
 	HelperFunctions.simulateAction(() => {
@@ -462,7 +462,7 @@ test("The footer should be rendered when the ClippingFailure panel is shown", ()
 		"The footer container should render when the clipper is showing the clip failure panel");
 });
 
-test("The footer should be not be rendered when the ClippingSuccess panel is shown", () => {
+QUnit.test("The footer should be not be rendered when the ClippingSuccess panel is shown", () => {
 	let controllerInstance = HelperFunctions.mountToFixture(defaultComponent);
 
 	HelperFunctions.simulateAction(() => {
@@ -473,7 +473,7 @@ test("The footer should be not be rendered when the ClippingSuccess panel is sho
 		"The footer container should not be rendered when the clipper is showing the clip success panel");
 });
 
-test("The close button should not be rendered when the ClippingToApi panel is shown", () => {
+QUnit.test("The close button should not be rendered when the ClippingToApi panel is shown", () => {
 	let controllerInstance = HelperFunctions.mountToFixture(defaultComponent);
 
 	HelperFunctions.simulateAction(() => {
@@ -484,7 +484,7 @@ test("The close button should not be rendered when the ClippingToApi panel is sh
 		"The close button should not render when the clipper is clipping to OneNote API");
 });
 
-test("The close button should be rendered when the panel shown is not ClippingToApi", () => {
+QUnit.test("The close button should be rendered when the panel shown is not ClippingToApi", () => {
 	let controllerInstance = HelperFunctions.mountToFixture(defaultComponent);
 
 	let panels = [

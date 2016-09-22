@@ -8,7 +8,7 @@ import {MockLogger} from "./mockLogger";
 
 QUnit.module("logger", {});
 
-test("logFailure should be called as a Json parse unexpected failure when logJsonParseUnexpected is called", () => {
+QUnit.test("logFailure should be called as a Json parse unexpected failure when logJsonParseUnexpected is called", () => {
 	let mockLogger: Logger = new MockLogger();
 	let logFailureSpy = sinon.spy(mockLogger.logFailure);
 	mockLogger.logFailure = logFailureSpy;
@@ -20,7 +20,7 @@ test("logFailure should be called as a Json parse unexpected failure when logJso
 		"logFailure should be called as a Json parse unexpected failure");
 });
 
-test("logJsonParseUnexpected should pipe an undefined id to logFailure if called with undefined", () => {
+QUnit.test("logJsonParseUnexpected should pipe an undefined id to logFailure if called with undefined", () => {
 	let mockLogger: Logger = new MockLogger();
 	let logFailureSpy = sinon.spy(mockLogger.logFailure);
 	mockLogger.logFailure = logFailureSpy;
@@ -32,7 +32,7 @@ test("logJsonParseUnexpected should pipe an undefined id to logFailure if called
 		"logFailure should be called with an undefined id");
 });
 
-test("logJsonParseUnexpected should pipe an empty string id to logFailure if called with empty string", () => {
+QUnit.test("logJsonParseUnexpected should pipe an empty string id to logFailure if called with empty string", () => {
 	let mockLogger: Logger = new MockLogger();
 	let logFailureSpy = sinon.spy(mockLogger.logFailure);
 	mockLogger.logFailure = logFailureSpy;

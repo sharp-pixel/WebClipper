@@ -45,7 +45,7 @@ QUnit.module("modeButtonSelector", {
 	}
 });
 
-test("The region clipping button should not appear when enableRegionClipping is injected as false", () => {
+QUnit.test("The region clipping button should not appear when enableRegionClipping is injected as false", () => {
 	let startingState = HelperFunctions.getMockClipperState();
 	startingState.injectOptions.enableRegionClipping = false;
 	HelperFunctions.mountToFixture(
@@ -60,7 +60,7 @@ test("The region clipping button should not appear when enableRegionClipping is 
 	strictEqual(buttonElements[2].id, TestConstants.Ids.bookmarkButton, "The third button should be the bookmark button");
 });
 
-test("The region clipping button should appear when enableRegionClipping is injected as true", () => {
+QUnit.test("The region clipping button should appear when enableRegionClipping is injected as true", () => {
 	HelperFunctions.mountToFixture(defaultComponent);
 
 	let modeButtonSelector = HelperFunctions.getFixture().firstElementChild;
@@ -73,7 +73,7 @@ test("The region clipping button should appear when enableRegionClipping is inje
 	strictEqual(buttonElements[3].id, TestConstants.Ids.bookmarkButton, "The fourth button should be the bookmark button");
 });
 
-test("The region clipping button should appear when enableRegionClipping is injected as false, but invokeMode is set to image selection", () => {
+QUnit.test("The region clipping button should appear when enableRegionClipping is injected as false, but invokeMode is set to image selection", () => {
 	let startingState = HelperFunctions.getMockClipperState();
 	startingState.injectOptions.enableRegionClipping = false;
 	startingState.invokeOptions.invokeMode = InvokeMode.ContextImage;
@@ -90,7 +90,7 @@ test("The region clipping button should appear when enableRegionClipping is inje
 	strictEqual(buttonElements[3].id, TestConstants.Ids.bookmarkButton, "The fourth button should be the bookmark button");
 });
 
-test("The region button should be labeled 'Region' in non-Edge browsers", () => {
+QUnit.test("The region button should be labeled 'Region' in non-Edge browsers", () => {
 	let startingState = HelperFunctions.getMockClipperState();
 	startingState.clientInfo.clipperType = ClientType.ChromeExtension;
 	HelperFunctions.mountToFixture(
@@ -103,7 +103,7 @@ test("The region button should be labeled 'Region' in non-Edge browsers", () => 
 	strictEqual(label.textContent, stringsJson["WebClipper.ClipType.Region.Button"]);
 });
 
-test("The region button should be labeled 'Region' in non-Edge browsers and an image was selected", () => {
+QUnit.test("The region button should be labeled 'Region' in non-Edge browsers and an image was selected", () => {
 	let startingState = HelperFunctions.getMockClipperState();
 	startingState.clientInfo.clipperType = ClientType.FirefoxExtension;
 	startingState.invokeOptions = {
@@ -120,7 +120,7 @@ test("The region button should be labeled 'Region' in non-Edge browsers and an i
 	strictEqual(label.textContent, stringsJson["WebClipper.ClipType.Region.Button"]);
 });
 
-test("The region button should be labeled 'Image' in Edge and an image was selected", () => {
+QUnit.test("The region button should be labeled 'Image' in Edge and an image was selected", () => {
 	let startingState = HelperFunctions.getMockClipperState();
 	startingState.clientInfo.clipperType = ClientType.EdgeExtension;
 	startingState.invokeOptions = {
@@ -137,7 +137,7 @@ test("The region button should be labeled 'Image' in Edge and an image was selec
 	strictEqual(label.textContent, stringsJson["WebClipper.ClipType.Image.Button"]);
 });
 
-test("The selection button should appear when invokeMode is set to selection", () => {
+QUnit.test("The selection button should appear when invokeMode is set to selection", () => {
 	let startingState = HelperFunctions.getMockClipperState();
 	startingState.invokeOptions.invokeMode = InvokeMode.ContextTextSelection;
 	HelperFunctions.mountToFixture(
@@ -154,7 +154,7 @@ test("The selection button should appear when invokeMode is set to selection", (
 	strictEqual(buttonElements[4].id, TestConstants.Ids.bookmarkButton, "The fifth button should be the bookmark button");
 });
 
-test("The selection button should appear when invokeMode is set to selection, and the region button should not appear when its disabled", () => {
+QUnit.test("The selection button should appear when invokeMode is set to selection, and the region button should not appear when its disabled", () => {
 	let startingState = HelperFunctions.getMockClipperState();
 	startingState.injectOptions.enableRegionClipping = false;
 	startingState.invokeOptions.invokeMode = InvokeMode.ContextTextSelection;
@@ -171,7 +171,7 @@ test("The selection button should appear when invokeMode is set to selection, an
 	strictEqual(buttonElements[3].id, TestConstants.Ids.bookmarkButton, "The fourth button should be the bookmark button");
 });
 
-test("The tabbing should flow in element order, assuming they are all available, and each tab index should not be less than 1", () => {
+QUnit.test("The tabbing should flow in element order, assuming they are all available, and each tab index should not be less than 1", () => {
 	let startingState = HelperFunctions.getMockClipperState();
 	startingState.invokeOptions.invokeMode = InvokeMode.ContextTextSelection;
 	HelperFunctions.mountToFixture(
@@ -190,7 +190,7 @@ test("The tabbing should flow in element order, assuming they are all available,
 	}
 });
 
-test("The full page button should have the 'selected' class styling applied to it by default", () => {
+QUnit.test("The full page button should have the 'selected' class styling applied to it by default", () => {
 	HelperFunctions.mountToFixture(defaultComponent);
 
 	let modeButtonSelector = HelperFunctions.getFixture().firstElementChild;
@@ -204,7 +204,7 @@ test("The full page button should have the 'selected' class styling applied to i
 	ok(!augmentationButton.classList.contains(TestConstants.Classes.selected), "The augmentation button is not selected");
 });
 
-test("Other modes' buttons should have the 'selected' class styling applied to it if it's initially set as the starting mode", () => {
+QUnit.test("Other modes' buttons should have the 'selected' class styling applied to it if it's initially set as the starting mode", () => {
 	let startingState = HelperFunctions.getMockClipperState();
 	startingState.currentMode = new SmartValue<ClipMode>(ClipMode.Region);
 	HelperFunctions.mountToFixture(
@@ -221,7 +221,7 @@ test("Other modes' buttons should have the 'selected' class styling applied to i
 	ok(!augmentationButton.classList.contains(TestConstants.Classes.selected), "The augmentation button is not selected");
 });
 
-test("Other modes' buttons should have the 'selected' class styling applied to it if they are clicked on", () => {
+QUnit.test("Other modes' buttons should have the 'selected' class styling applied to it if they are clicked on", () => {
 	let controllerInstance = HelperFunctions.mountToFixture(defaultComponent);
 
 	let fullPageButton = document.getElementById(TestConstants.Ids.fullPageButton);
@@ -250,7 +250,7 @@ test("Other modes' buttons should have the 'selected' class styling applied to i
 	ok(augmentationButton.classList.contains(TestConstants.Classes.selected), "The augmentation button is selected");
 });
 
-test("The 'selected' class styling should not go away if the user clicks away from a previously clicked mode button", () => {
+QUnit.test("The 'selected' class styling should not go away if the user clicks away from a previously clicked mode button", () => {
 	let controllerInstance = HelperFunctions.mountToFixture(defaultComponent);
 
 	let fullPageButton = document.getElementById(TestConstants.Ids.fullPageButton);
@@ -266,7 +266,7 @@ test("The 'selected' class styling should not go away if the user clicks away fr
 	ok(!augmentationButton.classList.contains(TestConstants.Classes.selected), "The augmentation button is not selected");
 });
 
-test("The current mode state should be updated accordingly depending on the mode button that was pressed", () => {
+QUnit.test("The current mode state should be updated accordingly depending on the mode button that was pressed", () => {
 	let controllerInstance = HelperFunctions.mountToFixture(defaultComponent);
 
 	let fullPageButton = document.getElementById(TestConstants.Ids.fullPageButton);
@@ -292,7 +292,7 @@ test("The current mode state should be updated accordingly depending on the mode
 		"State of current mode should be augmentation after clicking on augmentation mode button");
 });
 
-test("The augmentation button should be labeled as 'Article' by default", () => {
+QUnit.test("The augmentation button should be labeled as 'Article' by default", () => {
 	HelperFunctions.mountToFixture(defaultComponent);
 
 	let modeButtonSelector = HelperFunctions.getFixture().firstElementChild;
@@ -302,7 +302,7 @@ test("The augmentation button should be labeled as 'Article' by default", () => 
 	strictEqual(label.textContent, stringsJson["WebClipper.ClipType.Article.Button"]);
 });
 
-test("The augmentation button should be labeled according to the content model of the augmentation result", () => {
+QUnit.test("The augmentation button should be labeled according to the content model of the augmentation result", () => {
 	let startingState = HelperFunctions.getMockClipperState();
 	startingState.augmentationResult = {
 		data: {
@@ -326,7 +326,7 @@ test("The augmentation button should be labeled according to the content model o
 	strictEqual(label.textContent, stringsJson["WebClipper.ClipType.Recipe.Button"]);
 });
 
-test("The augmentation button should have its image set to the article icon by default", () => {
+QUnit.test("The augmentation button should have its image set to the article icon by default", () => {
 	HelperFunctions.mountToFixture(defaultComponent);
 
 	let modeButtonSelector = HelperFunctions.getFixture().firstElementChild;
@@ -336,7 +336,7 @@ test("The augmentation button should have its image set to the article icon by d
 	strictEqual(HelperFunctions.getBaseFileName(icon.src).toLowerCase(), "article");
 });
 
-test("The augmentation button should have its image set according to the content model of the augmentation result", () => {
+QUnit.test("The augmentation button should have its image set according to the content model of the augmentation result", () => {
 	let startingState = HelperFunctions.getMockClipperState();
 	startingState.augmentationResult = {
 		data: {

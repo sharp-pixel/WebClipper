@@ -13,7 +13,7 @@ QUnit.module("clipperData", {
 	}
 });
 
-test("getFreshValue should not store anything if it's retrieving notebooks and no userInformation is in storage", (assert: QUnitAssert) => {
+QUnit.test("getFreshValue should not store anything if it's retrieving notebooks and no userInformation is in storage", (assert: QUnitAssert) => {
 	let done = assert.async();
 
 	let key = ClipperStorageKeys.cachedNotebooks;
@@ -37,7 +37,7 @@ test("getFreshValue should not store anything if it's retrieving notebooks and n
 	});
 });
 
-test("getFreshValue should store notebooks if it's retrieving notebooks and userInformation is in storage", (assert: QUnitAssert) => {
+QUnit.test("getFreshValue should store notebooks if it's retrieving notebooks and userInformation is in storage", (assert: QUnitAssert) => {
 	let done = assert.async();
 
 	let key = ClipperStorageKeys.cachedNotebooks;
@@ -64,7 +64,7 @@ test("getFreshValue should store notebooks if it's retrieving notebooks and user
 	});
 });
 
-test("getFreshValue should not store anything if it's setting notebooks and no userInformation is in storage", () => {
+QUnit.test("getFreshValue should not store anything if it's setting notebooks and no userInformation is in storage", () => {
 	let key = ClipperStorageKeys.cachedNotebooks;
 	let expectedTimeStampedData = JSON.stringify({
 		parsedResponse: "{ notebooks: {} }",
@@ -77,7 +77,7 @@ test("getFreshValue should not store anything if it's setting notebooks and no u
 		"Notebooks should not be stored if userInformation does not exist in storage");
 });
 
-test("getFreshValue should store notebooks if it's setting notebooks and userInformation is in storage", () => {
+QUnit.test("getFreshValue should store notebooks if it's setting notebooks and userInformation is in storage", () => {
 	let key = ClipperStorageKeys.cachedNotebooks;
 	let expectedTimeStampedData = JSON.stringify({
 		parsedResponse: "{ notebooks: {} }",
@@ -92,7 +92,7 @@ test("getFreshValue should store notebooks if it's setting notebooks and userInf
 		"Notebooks should be stored if userInformation exists in storage");
 });
 
-test("getFreshValue should not store anything if it's setting current section and no userInformation is in storage", () => {
+QUnit.test("getFreshValue should not store anything if it's setting current section and no userInformation is in storage", () => {
 	let key = ClipperStorageKeys.currentSelectedSection;
 	let expectedTimeStampedData = JSON.stringify({
 		parsedResponse: "{ section: {} }",
@@ -105,7 +105,7 @@ test("getFreshValue should not store anything if it's setting current section an
 		"Current section should not be stored if userInformation does not exist in storage");
 });
 
-test("getFreshValue should store notebooks if it's setting current section and userInformation is in storage", () => {
+QUnit.test("getFreshValue should store notebooks if it's setting current section and userInformation is in storage", () => {
 	let key = ClipperStorageKeys.currentSelectedSection;
 	let expectedTimeStampedData = JSON.stringify({
 		parsedResponse: "{ section: {} }",

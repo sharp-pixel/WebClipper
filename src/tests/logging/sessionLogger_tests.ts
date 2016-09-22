@@ -60,7 +60,7 @@ class MockSessionLogger extends SessionLogger {
 	protected handleSetContext(key: Log.Context.Custom, value: string | number | boolean): void {}
 }
 
-test("logEvent should call handleEvent if the context requirements are met", () => {
+QUnit.test("logEvent should call handleEvent if the context requirements are met", () => {
 	let mockSessionLogger: SessionLogger = new MockSessionLogger({
 		contextStrategy: mockAlwaysTrueContext
 	});
@@ -76,7 +76,7 @@ test("logEvent should call handleEvent if the context requirements are met", () 
 	ok(handleEventSpy.calledWith(baseEvent), "handleEvent should be passed the same event object");
 });
 
-test("logEvent should not call handleEvent if the event parameter is undefined", () => {
+QUnit.test("logEvent should not call handleEvent if the event parameter is undefined", () => {
 	let mockSessionLogger: SessionLogger = new MockSessionLogger({
 		contextStrategy: mockAlwaysTrueContext
 	});
@@ -95,7 +95,7 @@ test("logEvent should not call handleEvent if the event parameter is undefined",
 		"logFailure should be called with InvalidArgument and Unexpected parameters");
 });
 
-test("logEvent should not call handleEvent if context requirements are not met", () => {
+QUnit.test("logEvent should not call handleEvent if context requirements are not met", () => {
 	let mockSessionLogger: SessionLogger = new MockSessionLogger({
 		contextStrategy: mockAlwaysFalseContext
 	});
@@ -110,7 +110,7 @@ test("logEvent should not call handleEvent if context requirements are not met",
 	ok(handleEventSpy.notCalled, "handleEvent should not be called");
 });
 
-test("logFailure should call handleFailure if the context requirements are met", () => {
+QUnit.test("logFailure should call handleFailure if the context requirements are met", () => {
 	let mockSessionLogger: SessionLogger = new MockSessionLogger({
 		contextStrategy: mockAlwaysTrueContext
 	});
@@ -127,7 +127,7 @@ test("logFailure should call handleFailure if the context requirements are met",
 		"logFailure should be called with the piped parameters");
 });
 
-test("logFailure should call logFailure again as an invalid method use if label is undefined", () => {
+QUnit.test("logFailure should call logFailure again as an invalid method use if label is undefined", () => {
 	let mockSessionLogger: SessionLogger = new MockSessionLogger({
 		contextStrategy: mockAlwaysTrueContext
 	});
@@ -142,7 +142,7 @@ test("logFailure should call logFailure again as an invalid method use if label 
 		"logFailure should be called with InvalidArgument and Unexpected parameters");
 });
 
-test("logFailure should call logFailure again as an invalid method use if failureType is undefined", () => {
+QUnit.test("logFailure should call logFailure again as an invalid method use if failureType is undefined", () => {
 	let mockSessionLogger: SessionLogger = new MockSessionLogger({
 		contextStrategy: mockAlwaysTrueContext
 	});
@@ -157,7 +157,7 @@ test("logFailure should call logFailure again as an invalid method use if failur
 		"logFailure should be called with InvalidArgument and Unexpected parameters");
 });
 
-test("logFailure should not call handleFailure if context requirements are not met", () => {
+QUnit.test("logFailure should not call handleFailure if context requirements are not met", () => {
 	let mockSessionLogger: SessionLogger = new MockSessionLogger({
 		contextStrategy: mockAlwaysFalseContext
 	});
@@ -171,7 +171,7 @@ test("logFailure should not call handleFailure if context requirements are not m
 	ok(handleFailureSpy.notCalled, "handleFailure should not be called");
 });
 
-test("logUserFunnel should call handleUserFunnel if the context requirements are met", () => {
+QUnit.test("logUserFunnel should call handleUserFunnel if the context requirements are met", () => {
 	let mockSessionLogger: SessionLogger = new MockSessionLogger({
 		contextStrategy: mockAlwaysTrueContext
 	});
@@ -186,7 +186,7 @@ test("logUserFunnel should call handleUserFunnel if the context requirements are
 	ok(handleUserFunnelSpy.calledWith(0), "handleUserFunnel should be passed the same label");
 });
 
-test("logUserFunnel should not call handleUserFunnel if the label parameter is undefined", () => {
+QUnit.test("logUserFunnel should not call handleUserFunnel if the label parameter is undefined", () => {
 	let mockSessionLogger: SessionLogger = new MockSessionLogger({
 		contextStrategy: mockAlwaysTrueContext
 	});
@@ -205,7 +205,7 @@ test("logUserFunnel should not call handleUserFunnel if the label parameter is u
 		"logFailure should be called with InvalidArgument and Unexpected parameters");
 });
 
-test("logUserFunnel should not call handleUserFunnel if context requirements are not met", () => {
+QUnit.test("logUserFunnel should not call handleUserFunnel if context requirements are not met", () => {
 	let mockSessionLogger: SessionLogger = new MockSessionLogger({
 		contextStrategy: mockAlwaysFalseContext
 	});
@@ -219,7 +219,7 @@ test("logUserFunnel should not call handleUserFunnel if context requirements are
 	ok(handleUserFunnelSpy.notCalled, "handleUserFunnel should not be called");
 });
 
-test("logSession should call executeSessionStart and handleSetUserSessionId if the context requirements are met", () => {
+QUnit.test("logSession should call executeSessionStart and handleSetUserSessionId if the context requirements are met", () => {
 	let mockSessionLogger: SessionLogger = new MockSessionLogger({
 		contextStrategy: mockAlwaysTrueContext
 	});
@@ -237,7 +237,7 @@ test("logSession should call executeSessionStart and handleSetUserSessionId if t
 	ok(handleSetUserSessionIdSpy.calledOnce, "handleSetUserSessionId should be called once");
 });
 
-test("logSession should called logFailure if the same session state is set twice in a row", () => {
+QUnit.test("logSession should called logFailure if the same session state is set twice in a row", () => {
 	let mockSessionLogger: SessionLogger = new MockSessionLogger({
 		contextStrategy: mockAlwaysTrueContext
 	});
@@ -253,7 +253,7 @@ test("logSession should called logFailure if the same session state is set twice
 		"logFailure should be called with session already set information");
 });
 
-test("logSession should called logFailure if the first it's called, it's called with Ended (as we assume it's Ended to begin with)", () => {
+QUnit.test("logSession should called logFailure if the first it's called, it's called with Ended (as we assume it's Ended to begin with)", () => {
 	let mockSessionLogger: SessionLogger = new MockSessionLogger({
 		contextStrategy: mockAlwaysTrueContext
 	});
@@ -272,7 +272,7 @@ test("logSession should called logFailure if the first it's called, it's called 
 	ok(handleSessionSpy.notCalled, "handleSession should not be called");
 });
 
-test("logSession End should log each stream as an event without checking all the usual logEvent requirements (i.e., call the pure version of the function)", () => {
+QUnit.test("logSession End should log each stream as an event without checking all the usual logEvent requirements (i.e., call the pure version of the function)", () => {
 	let mockSessionLogger: SessionLogger = new MockSessionLogger({
 		contextStrategy: mockAlwaysTrueContext
 	});
@@ -288,7 +288,7 @@ test("logSession End should log each stream as an event without checking all the
 	ok(handleEventPureSpy.calledTwice, "handleEventPure should be called once for every stream");
 });
 
-test("logSession Start should clear the streams", () => {
+QUnit.test("logSession Start should clear the streams", () => {
 	let mockSessionLogger: SessionLogger = new MockSessionLogger({
 		contextStrategy: mockAlwaysTrueContext
 	});
@@ -308,7 +308,7 @@ test("logSession Start should clear the streams", () => {
 	ok(handleEventPureSpy.calledTwice, "handleEventPure should not be called additional times");
 });
 
-test("logSession should not call handleSession if context requirements are not met", () => {
+QUnit.test("logSession should not call handleSession if context requirements are not met", () => {
 	let mockSessionLogger: SessionLogger = new MockSessionLogger({
 		contextStrategy: mockAlwaysFalseContext
 	});
@@ -322,7 +322,7 @@ test("logSession should not call handleSession if context requirements are not m
 	ok(handleSessionSpy.notCalled, "handleSession should not be called");
 });
 
-test("logTrace should call handleTrace if the context requirements are met", () => {
+QUnit.test("logTrace should call handleTrace if the context requirements are met", () => {
 	let mockSessionLogger: SessionLogger = new MockSessionLogger({
 		contextStrategy: mockAlwaysTrueContext
 	});
@@ -337,7 +337,7 @@ test("logTrace should call handleTrace if the context requirements are met", () 
 	ok(handleTraceSpy.calledWith(0, 0, "hi"), "handleTrace should be passed the same event object");
 });
 
-test("logTrace should not call handleTrace if the label parameter is undefined", () => {
+QUnit.test("logTrace should not call handleTrace if the label parameter is undefined", () => {
 	let mockSessionLogger: SessionLogger = new MockSessionLogger({
 		contextStrategy: mockAlwaysTrueContext
 	});
@@ -356,7 +356,7 @@ test("logTrace should not call handleTrace if the label parameter is undefined",
 		"logFailure should be called with InvalidArgument and Unexpected parameters");
 });
 
-test("logTrace should not call handleTrace if the level parameter is undefined", () => {
+QUnit.test("logTrace should not call handleTrace if the level parameter is undefined", () => {
 	let mockSessionLogger: SessionLogger = new MockSessionLogger({
 		contextStrategy: mockAlwaysTrueContext
 	});
@@ -375,7 +375,7 @@ test("logTrace should not call handleTrace if the level parameter is undefined",
 		"logFailure should be called with InvalidArgument and Unexpected parameters");
 });
 
-test("logTrace should not call handleTrace if context requirements are not met", () => {
+QUnit.test("logTrace should not call handleTrace if context requirements are not met", () => {
 	let mockSessionLogger: SessionLogger = new MockSessionLogger({
 		contextStrategy: mockAlwaysFalseContext
 	});
@@ -389,7 +389,7 @@ test("logTrace should not call handleTrace if context requirements are not met",
 	ok(handleTraceSpy.notCalled, "handleTrace should not be called");
 });
 
-test("pushToStream should call logFailure if the label is undefined", () => {
+QUnit.test("pushToStream should call logFailure if the label is undefined", () => {
 	let mockSessionLogger: SessionLogger = new MockSessionLogger({
 		contextStrategy: mockAlwaysTrueContext
 	});
@@ -404,7 +404,7 @@ test("pushToStream should call logFailure if the label is undefined", () => {
 		"logFailure should be called with InvalidArgument and Unexpected parameters");
 });
 
-test("pushToStream should not call logFailure if the value is undefined", () => {
+QUnit.test("pushToStream should not call logFailure if the value is undefined", () => {
 	let mockSessionLogger: SessionLogger = new MockSessionLogger({
 		contextStrategy: mockAlwaysTrueContext
 	});
@@ -417,7 +417,7 @@ test("pushToStream should not call logFailure if the value is undefined", () => 
 	ok(logFailureSpy.notCalled, "logFailure should be called once");
 });
 
-test("logClickEvent should call handleClickEvent and pushToStream if the context requirements are met", () => {
+QUnit.test("logClickEvent should call handleClickEvent and pushToStream if the context requirements are met", () => {
 	let mockSessionLogger: SessionLogger = new MockSessionLogger({
 		contextStrategy: mockAlwaysTrueContext
 	});
@@ -438,7 +438,7 @@ test("logClickEvent should call handleClickEvent and pushToStream if the context
 		"pushToStreamSpy should be called with the click event and the clickId parameter");
 });
 
-test("logClickEvent should call logFailure if the clickId is undefined", () => {
+QUnit.test("logClickEvent should call logFailure if the clickId is undefined", () => {
 	let mockSessionLogger: SessionLogger = new MockSessionLogger({
 		contextStrategy: mockAlwaysTrueContext
 	});
@@ -461,7 +461,7 @@ test("logClickEvent should call logFailure if the clickId is undefined", () => {
 		"logFailure should be called with InvalidArgument and Unexpected parameters");
 });
 
-test("logClickEvent should not call handleClickEvent and pushToStream if the context requirements are not met", () => {
+QUnit.test("logClickEvent should not call handleClickEvent and pushToStream if the context requirements are not met", () => {
 	let mockSessionLogger: SessionLogger = new MockSessionLogger({
 		contextStrategy: mockAlwaysFalseContext
 	});
@@ -479,7 +479,7 @@ test("logClickEvent should not call handleClickEvent and pushToStream if the con
 	ok(pushToStreamSpy.notCalled, "pushToStream should not be called");
 });
 
-test("setContextProperty ensures that previous queued events are finally logged after the required context properties are met", () => {
+QUnit.test("setContextProperty ensures that previous queued events are finally logged after the required context properties are met", () => {
 	let mockSessionLogger: SessionLogger = new MockSessionLogger({
 		contextStrategy: mockOneReqContext
 	});
@@ -505,7 +505,7 @@ test("setContextProperty ensures that previous queued events are finally logged 
 	ok(handleEventSpy.calledWith(eventB), "The second event should be used as a parameter");
 });
 
-test("hasUserInteracted should return false if no click events were logged and true otherwise", () => {
+QUnit.test("hasUserInteracted should return false if no click events were logged and true otherwise", () => {
 	let mockSessionLogger: SessionLogger = new MockSessionLogger({
 		contextStrategy: mockAlwaysTrueContext
 	});
@@ -519,7 +519,7 @@ test("hasUserInteracted should return false if no click events were logged and t
 	ok(mockSessionLogger.hasUserInteracted(), "hasUserInteracted should still be true");
 });
 
-test("hasUserInteracted should return false after a session ended has been logged", () => {
+QUnit.test("hasUserInteracted should return false after a session ended has been logged", () => {
 	let mockSessionLogger: SessionLogger = new MockSessionLogger({
 		contextStrategy: mockAlwaysTrueContext
 	});

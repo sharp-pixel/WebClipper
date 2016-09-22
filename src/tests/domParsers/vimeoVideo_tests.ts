@@ -67,7 +67,7 @@ QUnit.module("vimeoExtractor");
 let pageUrl = "";
 let vimeoExtractor = new VimeoVideoExtractor();
 
-test("getVimeoVideoSrcValues should return undefined when provided unsupported parameters for the Vimeo domain", () => {
+QUnit.test("getVimeoVideoSrcValues should return undefined when provided unsupported parameters for the Vimeo domain", () => {
 	for (let pageContentSnippet of pageContentWithNoClipId) {
 		let pageContent = pageContentHtmlWrapperPrepend + pageContentSnippet + pageContentHtmlWrapperAppend;
 		let videoSrcUrls = vimeoExtractor.getVideoSrcValues(pageUrl, pageContent);
@@ -75,7 +75,7 @@ test("getVimeoVideoSrcValues should return undefined when provided unsupported p
 	}
 });
 
-test("getVimeoVideoSrcValues should return a url on supported Vimeo domain urls", () => {
+QUnit.test("getVimeoVideoSrcValues should return a url on supported Vimeo domain urls", () => {
 	for (let pageContentSnippet of pageContentWithOneClipId) {
 		let pageContent = pageContentHtmlWrapperPrepend + pageContentSnippet + pageContentHtmlWrapperAppend;
 		let videoSrcUrls = vimeoExtractor.getVideoSrcValues(pageUrl, pageContent);
@@ -89,7 +89,7 @@ test("getVimeoVideoSrcValues should return a url on supported Vimeo domain urls"
 	}
 });
 
-test("getVimeoVideoIds should return undefined for unsupported urls", () => {
+QUnit.test("getVimeoVideoIds should return undefined for unsupported urls", () => {
 	for (let pageContentSnippet of pageContentWithNoClipId) {
 		let pageContent = pageContentHtmlWrapperPrepend + pageContentSnippet + pageContentHtmlWrapperAppend;
 		let videoSrcUrls = vimeoExtractor.getVideoIds(pageUrl, pageContent);
@@ -97,7 +97,7 @@ test("getVimeoVideoIds should return undefined for unsupported urls", () => {
 	}
 });
 
-test("getVimeoVideoIds should return id for supported Vimeo video url", () => {
+QUnit.test("getVimeoVideoIds should return id for supported Vimeo video url", () => {
 	for (let pageContentSnippet of pageContentWithOneClipId) {
 		let pageContent = pageContentHtmlWrapperPrepend + pageContentSnippet + pageContentHtmlWrapperAppend;
 		let videoSrcUrls = vimeoExtractor.getVideoIds(pageUrl, pageContent);

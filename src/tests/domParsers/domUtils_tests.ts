@@ -44,7 +44,7 @@ QUnit.module("domUtils", {
 	}
 });
 
-test("removeClipperElements should remove the root script iframe", () => {
+QUnit.test("removeClipperElements should remove the root script iframe", () => {
 	fixture.appendChild(createRootScriptIFrame());
 	ok(document.getElementById(Constants.Ids.clipperRootScript),
 		"Sanity check: the root script iframe should be present before the removeClipperElements call");
@@ -54,7 +54,7 @@ test("removeClipperElements should remove the root script iframe", () => {
 		"The root script iframe should be removed");
 });
 
-test("removeClipperElements should remove the UI iframe", () => {
+QUnit.test("removeClipperElements should remove the UI iframe", () => {
 	fixture.appendChild(createUiIFrame());
 	ok(document.getElementById(Constants.Ids.clipperUiFrame),
 		"Sanity check: the UI iframe should be present before the removeClipperElements call");
@@ -64,7 +64,7 @@ test("removeClipperElements should remove the UI iframe", () => {
 		"The UI iframe should be removed");
 });
 
-test("removeClipperElements should remove the Ext iframe", () => {
+QUnit.test("removeClipperElements should remove the Ext iframe", () => {
 	fixture.appendChild(createExtIFrame());
 	ok(document.getElementById(Constants.Ids.clipperExtFrame),
 		"Sanity check: the Ext iframe should be present before the removeClipperElements call");
@@ -74,7 +74,7 @@ test("removeClipperElements should remove the Ext iframe", () => {
 		"The Ext iframe should be removed");
 });
 
-test("removeClipperElements should remove all Web Clipper iframes", () => {
+QUnit.test("removeClipperElements should remove all Web Clipper iframes", () => {
 	fixture.appendChild(createRootScriptIFrame());
 	fixture.appendChild(createUiIFrame());
 	fixture.appendChild(createExtIFrame());
@@ -88,7 +88,7 @@ test("removeClipperElements should remove all Web Clipper iframes", () => {
 		"The Ext iframe should be removed");
 });
 
-test("removeClipperElements should remove all Web Clipper iframes, but not an arbitrary iframe", () => {
+QUnit.test("removeClipperElements should remove all Web Clipper iframes, but not an arbitrary iframe", () => {
 	fixture.appendChild(createRootScriptIFrame());
 	fixture.appendChild(createUiIFrame());
 	fixture.appendChild(createExtIFrame());
@@ -115,7 +115,7 @@ test("removeClipperElements should remove all Web Clipper iframes, but not an ar
 		"The non Web Clipper iframe should still be present");
 });
 
-test("removeUnwantedElements should remove elements with tags that we don't support in full page mode", () => {
+QUnit.test("removeUnwantedElements should remove elements with tags that we don't support in full page mode", () => {
 	let tagsNotSupportedForFullPage = ["SCRIPT", "NOSCRIPT"];
 	for (let i = 0; i < tagsNotSupportedForFullPage.length; i++) {
 		let element = document.createElement(tagsNotSupportedForFullPage[i]);
@@ -131,7 +131,7 @@ test("removeUnwantedElements should remove elements with tags that we don't supp
 	}
 });
 
-test("removeUnwantedElements should not remove elements with tags that we support in full page mode", () => {
+QUnit.test("removeUnwantedElements should not remove elements with tags that we support in full page mode", () => {
 	// Example subset
 	let tagsSupportedForFullPage = ["APPLET", "IMG", "DIV", "STYLE", "SVG", "VIDEO"];
 	for (let i = 0; i < tagsSupportedForFullPage.length; i++) {
@@ -148,7 +148,7 @@ test("removeUnwantedElements should not remove elements with tags that we suppor
 	}
 });
 
-test("removeUnwantedElements should not remove elements with tags that we support in full page mode when the " +
+QUnit.test("removeUnwantedElements should not remove elements with tags that we support in full page mode when the " +
 	"document has both supported and unsupported elements", () => {
 	let tagsNotSupportedForFullPage = ["SCRIPT", "NOSCRIPT"];
 	for (let i = 0; i < tagsNotSupportedForFullPage.length; i++) {
@@ -178,7 +178,7 @@ test("removeUnwantedElements should not remove elements with tags that we suppor
 	}
 });
 
-test("removeUnwantedAttributes should remove the srcset on images without modifying other attributes", () => {
+QUnit.test("removeUnwantedAttributes should remove the srcset on images without modifying other attributes", () => {
 	let image = document.createElement("IMG") as HTMLImageElement;
 	let id = "IMG";
 	image.id = id;
@@ -197,7 +197,7 @@ test("removeUnwantedAttributes should remove the srcset on images without modify
 		"The src attribute should be unmodified");
 });
 
-test("removeUnwantedAttributes should remove the srcset on images without modifying other attributes " +
+QUnit.test("removeUnwantedAttributes should remove the srcset on images without modifying other attributes " +
 	"in the case of multiple images", () => {
 	let numberOfImages = 3;
 	let src = "https://cdn.mywebsite.doesnotexist";
@@ -225,7 +225,7 @@ test("removeUnwantedAttributes should remove the srcset on images without modify
 let vimeoPageContentWithNoClipId = "";
 let vimeoPageContentWithOneClipId = "<div id='clip_45196609'> </div>";
 let vimeoPageContentWithMultipleClipIds = "<div id='clip_45196609'></div> <DIV ID='clip_45196610'></DIV> <div id='clip_45196611'> </div>";
-test("addEmbeddedVideosWhereSupported should resolve with a video url on supported YouTube subdomains even if MainArticleContainer is undefined", (assert: QUnitAssert) => {
+QUnit.test("addEmbeddedVideosWhereSupported should resolve with a video url on supported YouTube subdomains even if MainArticleContainer is undefined", (assert: QUnitAssert) => {
 	let done = assert.async();
 
 	let previewElement = AugmentationHelper.getArticlePreviewElement(document);
@@ -242,7 +242,7 @@ test("addEmbeddedVideosWhereSupported should resolve with a video url on support
 	});
 });
 
-test("addEmbeddedVideosWhereSupported should resolve with a video url on supported YouTube subdomains", (assert: QUnitAssert) => {
+QUnit.test("addEmbeddedVideosWhereSupported should resolve with a video url on supported YouTube subdomains", (assert: QUnitAssert) => {
 	let done = assert.async();
 
 	fixture.appendChild(createMainArticleContainer());
@@ -260,7 +260,7 @@ test("addEmbeddedVideosWhereSupported should resolve with a video url on support
 	});
 });
 
-test("addEmbeddedVideosWhereSupported should resolve with a video url on supported Vimeo subdomains", (assert: QUnitAssert) => {
+QUnit.test("addEmbeddedVideosWhereSupported should resolve with a video url on supported Vimeo subdomains", (assert: QUnitAssert) => {
 	let done = assert.async();
 
 	fixture.appendChild(createMainArticleContainer());
@@ -277,7 +277,7 @@ test("addEmbeddedVideosWhereSupported should resolve with a video url on support
 	});
 });
 
-test("addEmbeddedVideosWhereSupported should resolve with multiple video urls on supported Vimeo subdomains with multiple videos", (assert: QUnitAssert) => {
+QUnit.test("addEmbeddedVideosWhereSupported should resolve with multiple video urls on supported Vimeo subdomains with multiple videos", (assert: QUnitAssert) => {
 	let done = assert.async();
 
 	fixture.appendChild(createMainArticleContainer());
@@ -297,7 +297,7 @@ test("addEmbeddedVideosWhereSupported should resolve with multiple video urls on
 	});
 });
 
-test("addEmbeddedVideosWhereSupported should resolve undefined on unsupported domains", (assert: QUnitAssert) => {
+QUnit.test("addEmbeddedVideosWhereSupported should resolve undefined on unsupported domains", (assert: QUnitAssert) => {
 	let done = assert.async();
 
 	fixture.appendChild(createMainArticleContainer());
@@ -324,7 +324,7 @@ test("addEmbeddedVideosWhereSupported should resolve undefined on unsupported do
 	});
 });
 
-test("addEmbeddedVideosWhereSupported should reject on 'supported' Vimeo subdomains that we don't actually support", (assert: QUnitAssert) => {
+QUnit.test("addEmbeddedVideosWhereSupported should reject on 'supported' Vimeo subdomains that we don't actually support", (assert: QUnitAssert) => {
 	let done = assert.async();
 
 	fixture.appendChild(createMainArticleContainer());
@@ -340,7 +340,7 @@ test("addEmbeddedVideosWhereSupported should reject on 'supported' Vimeo subdoma
 	});
 });
 
-test("imageIsBlank should return true if the image is purely white", (assert: QUnitAssert) => {
+QUnit.test("imageIsBlank should return true if the image is purely white", (assert: QUnitAssert) => {
 	let done = assert.async();
 	let img = new Image();
 	img.onload = () => {
@@ -350,7 +350,7 @@ test("imageIsBlank should return true if the image is purely white", (assert: QU
 	img.src = DataUrls.whitePixelUrl;
 });
 
-test("imageIsBlank should return false if the image is not purely white or fully transparent", (assert: QUnitAssert) => {
+QUnit.test("imageIsBlank should return false if the image is not purely white or fully transparent", (assert: QUnitAssert) => {
 	let done = assert.async();
 	let img = new Image();
 	img.onload = () => {
@@ -360,7 +360,7 @@ test("imageIsBlank should return false if the image is not purely white or fully
 	img.src = DataUrls.twoByTwoUpperCornerBlackOnTransparentUrl;
 });
 
-test("imageIsBlank should return false if the image is not purely white or fully transparent for a huge image", (assert: QUnitAssert) => {
+QUnit.test("imageIsBlank should return false if the image is not purely white or fully transparent for a huge image", (assert: QUnitAssert) => {
 	let done = assert.async();
 	let img = new Image();
 	img.onload = () => {
@@ -370,7 +370,7 @@ test("imageIsBlank should return false if the image is not purely white or fully
 	img.src = DataUrls.bigImgUrl;
 });
 
-test("imageIsBlank should return true if the image is purely white for a huge image", (assert: QUnitAssert) => {
+QUnit.test("imageIsBlank should return true if the image is purely white for a huge image", (assert: QUnitAssert) => {
 	let done = assert.async();
 	let img = new Image();
 	img.onload = () => {
@@ -380,7 +380,7 @@ test("imageIsBlank should return true if the image is purely white for a huge im
 	img.src = DataUrls.bigWhiteUrl;
 });
 
-test("imageIsBlank should return true if the image is a mix of white and transparent for a huge 1200x1200 image", (assert: QUnitAssert) => {
+QUnit.test("imageIsBlank should return true if the image is a mix of white and transparent for a huge 1200x1200 image", (assert: QUnitAssert) => {
 	let done = assert.async();
 	let img = new Image();
 	img.onload = () => {
@@ -390,7 +390,7 @@ test("imageIsBlank should return true if the image is a mix of white and transpa
 	img.src = DataUrls.bigBlankAndWhiteUrl;
 });
 
-test("toAbsoluteUrl should convert a relative url to an absolute one", () => {
+QUnit.test("toAbsoluteUrl should convert a relative url to an absolute one", () => {
 	let url = "/1";
 	let base = "http://www.base.url";
 	strictEqual(DomUtils.toAbsoluteUrl(url, base), "http://www.base.url/1");
@@ -402,25 +402,25 @@ test("toAbsoluteUrl should convert a relative url to an absolute one", () => {
 	strictEqual(DomUtils.toAbsoluteUrl(url, base), "https://www.base.url/1");
 });
 
-test("toAbsoluteUrl should convert a relative url to an absolute one for deeper relative paths", () => {
+QUnit.test("toAbsoluteUrl should convert a relative url to an absolute one for deeper relative paths", () => {
 	let url = "/1/2";
 	let base = "http://www.base.url";
 	strictEqual(DomUtils.toAbsoluteUrl(url, base), "http://www.base.url/1/2");
 });
 
-test("toAbsoluteUrl should convert a relative url to an absolute one for paths with an extension", () => {
+QUnit.test("toAbsoluteUrl should convert a relative url to an absolute one for paths with an extension", () => {
 	let url = "/1/index.html";
 	let base = "http://www.base.url";
 	strictEqual(DomUtils.toAbsoluteUrl(url, base), "http://www.base.url/1/index.html");
 });
 
-test("toAbsoluteUrl should convert a relative url to an absolute one for paths that go backwards", () => {
+QUnit.test("toAbsoluteUrl should convert a relative url to an absolute one for paths that go backwards", () => {
 	let url = "../index.html";
 	let base = "http://www.base.url/1/2/";
 	strictEqual(DomUtils.toAbsoluteUrl(url, base), "http://www.base.url/1/index.html");
 });
 
-test("toAbsoluteUrl should return the absolute url if one is passed in", () => {
+QUnit.test("toAbsoluteUrl should return the absolute url if one is passed in", () => {
 	let url = "http://www.base.url/1/2/";
 	let base = "http://www.xyz.url/1/2/";
 	strictEqual(DomUtils.toAbsoluteUrl(url, base), "http://www.base.url/1/2/");
@@ -432,7 +432,7 @@ test("toAbsoluteUrl should return the absolute url if one is passed in", () => {
 	strictEqual(DomUtils.toAbsoluteUrl(url, base), "http://www.base.url/1/2.aspx");
 });
 
-test("toAbsoluteUrl should throw an error if url is empty", () => {
+QUnit.test("toAbsoluteUrl should throw an error if url is empty", () => {
 	let url = "";
 	let base = "http://www.xyz.url/1/2/";
 	throws(() => {
@@ -440,7 +440,7 @@ test("toAbsoluteUrl should throw an error if url is empty", () => {
 	}, Error("parameters must be non-empty, but was: " + url + ", " + base));
 });
 
-test("toAbsoluteUrl should throw an error if url is undefined", () => {
+QUnit.test("toAbsoluteUrl should throw an error if url is undefined", () => {
 	let url = undefined;
 	let base = "http://www.xyz.url/1/2/";
 	throws(() => {
@@ -448,7 +448,7 @@ test("toAbsoluteUrl should throw an error if url is undefined", () => {
 	}, Error("parameters must be non-empty, but was: " + url + ", " + base));
 });
 
-test("toAbsoluteUrl should throw an error if base is empty", () => {
+QUnit.test("toAbsoluteUrl should throw an error if base is empty", () => {
 	let url = "/path";
 	let base = "";
 	throws(() => {
@@ -456,7 +456,7 @@ test("toAbsoluteUrl should throw an error if base is empty", () => {
 	}, Error("parameters must be non-empty, but was: " + url + ", " + base));
 });
 
-test("toAbsoluteUrl should throw an error if base is undefined", () => {
+QUnit.test("toAbsoluteUrl should throw an error if base is undefined", () => {
 	let url = "/path";
 	let base = undefined;
 	throws(() => {

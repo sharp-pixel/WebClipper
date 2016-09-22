@@ -33,34 +33,34 @@ QUnit.module("previewViewerAugmentationHeader", {
 	}
 });
 
-test("The highlightControl should be visible", () => {
+QUnit.test("The highlightControl should be visible", () => {
 	HelperFunctions.mountToFixture(defaultComponent);
 	ok(!!document.getElementById(Constants.Ids.highlightControl));
 });
 
-test("The highlightControl's buttons should be visible", () => {
+QUnit.test("The highlightControl's buttons should be visible", () => {
 	HelperFunctions.mountToFixture(defaultComponent);
 	ok(!!document.getElementById(Constants.Ids.highlightButton));
 });
 
-test("The serifControl should be visible", () => {
+QUnit.test("The serifControl should be visible", () => {
 	HelperFunctions.mountToFixture(defaultComponent);
 	ok(!!document.getElementById(Constants.Ids.serifControl));
 });
 
-test("The serifControl's buttons should be visible", () => {
+QUnit.test("The serifControl's buttons should be visible", () => {
 	HelperFunctions.mountToFixture(defaultComponent);
 	ok(!!document.getElementById(Constants.Ids.sansSerif));
 	ok(!!document.getElementById(Constants.Ids.serif));
 });
 
-test("The fontSizeControl's buttons should be visible", () => {
+QUnit.test("The fontSizeControl's buttons should be visible", () => {
 	HelperFunctions.mountToFixture(defaultComponent);
 	ok(!!document.getElementById(Constants.Ids.decrementFontSize));
 	ok(!!document.getElementById(Constants.Ids.incrementFontSize));
 });
 
-test("The tabbing should flow from highlight to font family selectors to font size selectors, and each tab index should not be less than 1", () => {
+QUnit.test("The tabbing should flow from highlight to font family selectors to font size selectors, and each tab index should not be less than 1", () => {
 	HelperFunctions.mountToFixture(defaultComponent);
 
 	let elementsInExpectedTabOrder = [
@@ -81,7 +81,7 @@ test("The tabbing should flow from highlight to font family selectors to font si
 	}
 });
 
-test("The togglehighlight callback prop should be called exactly once whenever the highlight button is clicked", () => {
+QUnit.test("The togglehighlight callback prop should be called exactly once whenever the highlight button is clicked", () => {
 	let sectionPicker = HelperFunctions.mountToFixture(defaultComponent);
 
 	HelperFunctions.simulateAction(() => {
@@ -98,7 +98,7 @@ test("The togglehighlight callback prop should be called exactly once whenever t
 	ok(spy.calledTwice, "toggleHighlight should be called again");
 });
 
-test("The changeFontFamily callback prop should be called with true when the serif button is clicked", () => {
+QUnit.test("The changeFontFamily callback prop should be called with true when the serif button is clicked", () => {
 	let sectionPicker = HelperFunctions.mountToFixture(defaultComponent);
 
 	HelperFunctions.simulateAction(() => {
@@ -110,7 +110,7 @@ test("The changeFontFamily callback prop should be called with true when the ser
 	ok(spy.calledWith(true), "changeFontFamily should be called with true");
 });
 
-test("The changeFontFamily callback prop should be called with false when the sans-serif button is clicked", () => {
+QUnit.test("The changeFontFamily callback prop should be called with false when the sans-serif button is clicked", () => {
 	let sectionPicker = HelperFunctions.mountToFixture(defaultComponent);
 
 	HelperFunctions.simulateAction(() => {
@@ -122,7 +122,7 @@ test("The changeFontFamily callback prop should be called with false when the sa
 	ok(spy.calledWith(false), "changeFontFamily should be called with false");
 });
 
-test("The changeFontSize callback prop should be called with true when the increase button is clicked", () => {
+QUnit.test("The changeFontSize callback prop should be called with true when the increase button is clicked", () => {
 	let sectionPicker = HelperFunctions.mountToFixture(defaultComponent);
 
 	HelperFunctions.simulateAction(() => {
@@ -134,7 +134,7 @@ test("The changeFontSize callback prop should be called with true when the incre
 	ok(spy.calledWith(true), "changeFontSize should be called with true");
 });
 
-test("The changeFontSize callback prop should be called with false when the decrease button is clicked", () => {
+QUnit.test("The changeFontSize callback prop should be called with false when the decrease button is clicked", () => {
 	let sectionPicker = HelperFunctions.mountToFixture(defaultComponent);
 
 	HelperFunctions.simulateAction(() => {

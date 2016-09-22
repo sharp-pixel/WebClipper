@@ -24,7 +24,7 @@ QUnit.module("tooltipHelper", {
 
 // undefined clipped time, undefined lastSeenTime should return 0
 // null clipped time, null lastSeenTime
-test("Null or undefined passed to getTooltipInformation should throw an Error", () => {
+QUnit.test("Null or undefined passed to getTooltipInformation should throw an Error", () => {
 	/* tslint:disable:no-null-keyword */
 	throws(() => {
 		tooltipHelper.getTooltipInformation(undefined, undefined);
@@ -47,12 +47,12 @@ test("Null or undefined passed to getTooltipInformation should throw an Error", 
 	/* tslint:enable:no-null-keyword */
 });
 
-test("getTooltipInformation should return 0 for a value that is not in storage", () => {
+QUnit.test("getTooltipInformation should return 0 for a value that is not in storage", () => {
 	let value = tooltipHelper.getTooltipInformation(ClipperStorageKeys.lastSeenTooltipTimeBase, testType);
 	strictEqual(value, 0);
 });
 
-test("getTooltipInformation should return 0 for an invalid value", () => {
+QUnit.test("getTooltipInformation should return 0 for an invalid value", () => {
 	let storageKey = TooltipHelper.getStorageKeyForTooltip(ClipperStorageKeys.lastSeenTooltipTimeBase, testType);
 	let expected = "blah";
 	mockStorage.setValue(storageKey, expected);
@@ -60,7 +60,7 @@ test("getTooltipInformation should return 0 for an invalid value", () => {
 	strictEqual(value, 0);
 });
 
-test("getTooltipInformation should return correct information for a value that is in storage", () => {
+QUnit.test("getTooltipInformation should return correct information for a value that is in storage", () => {
 	let storageKey = TooltipHelper.getStorageKeyForTooltip(ClipperStorageKeys.lastSeenTooltipTimeBase, testType);
 	let expected = 1234;
 	mockStorage.setValue(storageKey, expected.toString());
@@ -68,7 +68,7 @@ test("getTooltipInformation should return correct information for a value that i
 	strictEqual(value, expected);
 });
 
-test("Null or undefined passed to setTooltipInformation should throw an Error", () => {
+QUnit.test("Null or undefined passed to setTooltipInformation should throw an Error", () => {
 	/* tslint:disable:no-null-keyword */
 	throws(() => {
 		tooltipHelper.setTooltipInformation(undefined, undefined, "");
@@ -91,14 +91,14 @@ test("Null or undefined passed to setTooltipInformation should throw an Error", 
 	/* tslint:enable:no-null-keyword */
 });
 
-test("setTooltipInformation should correctly set the key and value when given valid arguments", () => {
+QUnit.test("setTooltipInformation should correctly set the key and value when given valid arguments", () => {
 	let val = 4134134;
 	tooltipHelper.setTooltipInformation(ClipperStorageKeys.lastSeenTooltipTimeBase, testType, val.toString());
 	let actual = tooltipHelper.getTooltipInformation(ClipperStorageKeys.lastSeenTooltipTimeBase, testType);
 	strictEqual(actual, val);
 });
 
-test("Null or undefined passed to tooltipDelayIsOver should throw an Error", () => {
+QUnit.test("Null or undefined passed to tooltipDelayIsOver should throw an Error", () => {
 	/* tslint:disable:no-null-keyword */
 	throws(() => {
 		tooltipHelper.tooltipDelayIsOver(undefined, null);
@@ -133,35 +133,35 @@ function setNumTimesTooltipHasBeenSeen(times: number) {
 	tooltipHelper.setTooltipInformation(ClipperStorageKeys.numTimesTooltipHasBeenSeenBase, testType, times.toString());
 }
 
-test("tooltipHasBeenSeenInLastTimePeriod should return FALSE when nothing is in storage", () => {
+QUnit.test("tooltipHasBeenSeenInLastTimePeriod should return FALSE when nothing is in storage", () => {
 	ok(!tooltipHelper.tooltipHasBeenSeenInLastTimePeriod(baseTime, testType, Constants.Settings.timeBetweenSameTooltip));
 });
 
-test("tooltipHasBeenSeenInLastTimePeriod should return FALSE when a value is in storage but it is outside the time period", () => {
+QUnit.test("tooltipHasBeenSeenInLastTimePeriod should return FALSE when a value is in storage but it is outside the time period", () => {
 	setSeenTimeOutsideOfRange(testType, Constants.Settings.timeBetweenSameTooltip);
 	ok(!tooltipHelper.tooltipHasBeenSeenInLastTimePeriod(baseTime, testType, Constants.Settings.timeBetweenSameTooltip));
 });
 
-test("tooltipHasBeenSeenInLastTimePeriod should return TRUE when a value is in storage and is within the time period", () => {
+QUnit.test("tooltipHasBeenSeenInLastTimePeriod should return TRUE when a value is in storage and is within the time period", () => {
 	setSeenTimeWithinRange(testType, Constants.Settings.timeBetweenSameTooltip);
 	ok(tooltipHelper.tooltipHasBeenSeenInLastTimePeriod(testType, baseTime, Constants.Settings.timeBetweenSameTooltip));
 });
 
-test("hasAnyTooltipBeenSeenInLastTimePeriod should return FALSE when nothing is in storage", () => {
+QUnit.test("hasAnyTooltipBeenSeenInLastTimePeriod should return FALSE when nothing is in storage", () => {
 	ok(!tooltipHelper.hasAnyTooltipBeenSeenInLastTimePeriod(baseTime, validTypes, Constants.Settings.timeBetweenDifferentTooltips));
 });
 
-test("hasAnyTooltipBeenSeenInLastTimePeriod should return TRUE if at least one of the tooltips has a lastSeenTooltipTime in Storage within the time period", () => {
+QUnit.test("hasAnyTooltipBeenSeenInLastTimePeriod should return TRUE if at least one of the tooltips has a lastSeenTooltipTime in Storage within the time period", () => {
 	setSeenTimeWithinRange(testType, Constants.Settings.timeBetweenDifferentTooltips);
 	ok(tooltipHelper.hasAnyTooltipBeenSeenInLastTimePeriod(baseTime, validTypes, Constants.Settings.timeBetweenDifferentTooltips));
 });
 
-test("tooltipDelayIsOver should return TRUE when nothing in in storage", () => {
+QUnit.test("tooltipDelayIsOver should return TRUE when nothing in in storage", () => {
 	ok(tooltipHelper.tooltipDelayIsOver(testType, baseTime));
 });
 
 // Have they clipped this content? If so, return FALSE
-test("tooltipDelayIsOver should return FALSE when the user has clipped this content type regardless of when they Clipped it and the rest of the values in storage", () => {
+QUnit.test("tooltipDelayIsOver should return FALSE when the user has clipped this content type regardless of when they Clipped it and the rest of the values in storage", () => {
 	setClipTimeWithinRange();
 	ok(!tooltipHelper.tooltipDelayIsOver(testType, baseTime));
 	setClipTimeOutsideOfRange();
@@ -169,33 +169,33 @@ test("tooltipDelayIsOver should return FALSE when the user has clipped this cont
 });
 
 // Have they seen ANY content? If so, return FALSE
-test("tooltipDelayIsOver should return FALSE when they have seen a tooltip in the last Constants.Settings.timeBetweenSameTooltip period", () => {
+QUnit.test("tooltipDelayIsOver should return FALSE when they have seen a tooltip in the last Constants.Settings.timeBetweenSameTooltip period", () => {
 	setSeenTimeWithinRange(testType, Constants.Settings.timeBetweenSameTooltip);
 	ok(!tooltipHelper.tooltipDelayIsOver(testType, baseTime));
 });
 
-test("tooltipDelayIsOver should return FALSE when they have seen a tooltip (not the same one) in the last Constants.Settings.timeBetweenDifferentTooltipsPeriod", () => {
+QUnit.test("tooltipDelayIsOver should return FALSE when they have seen a tooltip (not the same one) in the last Constants.Settings.timeBetweenDifferentTooltipsPeriod", () => {
 	setSeenTimeWithinRange(TooltipType.Pdf, Constants.Settings.timeBetweenDifferentTooltips);
 	ok(!tooltipHelper.tooltipDelayIsOver(TooltipType.Product, baseTime));
 });
 
-test("tooltipDelayIsOver should return TRUE if they have NOT seen a different tooltip in the last Constants.Settings.timeBetweenDifferentTooltipsPeriod", () => {
+QUnit.test("tooltipDelayIsOver should return TRUE if they have NOT seen a different tooltip in the last Constants.Settings.timeBetweenDifferentTooltipsPeriod", () => {
 	setSeenTimeOutsideOfRange(TooltipType.Product, Constants.Settings.timeBetweenDifferentTooltips);
 	ok(tooltipHelper.tooltipDelayIsOver(testType, baseTime));
 });
 
 // Has the user has seen the tooltip more than maxTooltipsShown times? If so, return FALSE
-test("tooltipDelayIsOVer should return FALSE when the user has seen this tooltip more than maxTooltipsShown times", () => {
+QUnit.test("tooltipDelayIsOVer should return FALSE when the user has seen this tooltip more than maxTooltipsShown times", () => {
 	setNumTimesTooltipHasBeenSeen(Constants.Settings.maximumNumberOfTimesToShowTooltips);
 	ok(!tooltipHelper.tooltipDelayIsOver(testType, baseTime));
 });
 
-test("tooltipDelayIsOver should return TRUE when the user hasn't seen a tooltip in a while, they've never clipped this content, and they haven't gone over the max number of times to see the tooltip", () => {
+QUnit.test("tooltipDelayIsOver should return TRUE when the user hasn't seen a tooltip in a while, they've never clipped this content, and they haven't gone over the max number of times to see the tooltip", () => {
 	setSeenTimeOutsideOfRange(testType, Constants.Settings.timeBetweenSameTooltip);
 	ok(tooltipHelper.tooltipDelayIsOver(testType, baseTime));
 });
 
-test("tooltipDelayIsOver should return FALSE when the user has seen a tooltip in the last Constants.Settings.timeBetweenSameTooltip period, no matter the value of lastClippedTime", () => {
+QUnit.test("tooltipDelayIsOver should return FALSE when the user has seen a tooltip in the last Constants.Settings.timeBetweenSameTooltip period, no matter the value of lastClippedTime", () => {
 	setSeenTimeWithinRange(testType, Constants.Settings.timeBetweenSameTooltip);
 	ok(!tooltipHelper.tooltipDelayIsOver(testType, baseTime));
 
@@ -206,7 +206,7 @@ test("tooltipDelayIsOver should return FALSE when the user has seen a tooltip in
 	ok(!tooltipHelper.tooltipDelayIsOver(testType, baseTime));
 });
 
-test("tooltipDelayIsOver should return FALSE when the user has clipped a tooltip, no matter the value of lastSeenTime", () => {
+QUnit.test("tooltipDelayIsOver should return FALSE when the user has clipped a tooltip, no matter the value of lastSeenTime", () => {
 	setClipTimeWithinRange();
 	ok(!tooltipHelper.tooltipDelayIsOver(testType, baseTime));
 

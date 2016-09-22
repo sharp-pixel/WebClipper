@@ -34,7 +34,7 @@ function getMockFullPageModeState(): ClipperState {
 
 QUnit.module("fullPagePreview", {});
 
-test("The full page header should be displayed in Full Page mode", () => {
+QUnit.test("The full page header should be displayed in Full Page mode", () => {
 	let mockClipperState = getMockFullPageModeState();
 	let defaultComponent = <FullPagePreview clipperState={mockClipperState} />;
 	HelperFunctions.mountToFixture(defaultComponent);
@@ -47,7 +47,7 @@ test("The full page header should be displayed in Full Page mode", () => {
 	ok(!document.getElementById(Constants.Ids.incrementFontSize), "The increment font size button should not exist");
 });
 
-test("The editable title of the page should be displayed in the preview title in Full Page mode", () => {
+QUnit.test("The editable title of the page should be displayed in the preview title in Full Page mode", () => {
 	let mockClipperState = getMockFullPageModeState();
 	let defaultComponent = <FullPagePreview clipperState={mockClipperState} />;
 	HelperFunctions.mountToFixture(defaultComponent);
@@ -58,7 +58,7 @@ test("The editable title of the page should be displayed in the preview title in
 	ok(!previewHeaderInput.readOnly);
 });
 
-test("When the call to the full page screenshot fetch has not started, the preview should indicate that it is loading in Full Page mode", () => {
+QUnit.test("When the call to the full page screenshot fetch has not started, the preview should indicate that it is loading in Full Page mode", () => {
 	let clipperState = getMockFullPageModeState();
 	clipperState.currentMode.set(ClipMode.FullPage);
 	clipperState.fullPageResult = {
@@ -77,7 +77,7 @@ test("When the call to the full page screenshot fetch has not started, the previ
 		"The spinner should be present in the preview body");
 });
 
-test("When the call to the full page screenshot fetch is in progress, the preview should indicate that it is loading in Full Page mode", () => {
+QUnit.test("When the call to the full page screenshot fetch is in progress, the preview should indicate that it is loading in Full Page mode", () => {
 	let clipperState = getMockFullPageModeState();
 	clipperState.currentMode.set(ClipMode.FullPage);
 	clipperState.fullPageResult = {
@@ -96,7 +96,7 @@ test("When the call to the full page screenshot fetch is in progress, the previe
 		"The spinner should be present in the preview body");
 });
 
-test("When the call to the full patch screenshot fetch successfully completes, but no data is returned, the preview should indicate no content was found in Full Page mode", () => {
+QUnit.test("When the call to the full patch screenshot fetch successfully completes, but no data is returned, the preview should indicate no content was found in Full Page mode", () => {
 	let clipperState = getMockFullPageModeState();
 	clipperState.currentMode.set(ClipMode.FullPage);
 	clipperState.fullPageResult = {
@@ -114,7 +114,7 @@ test("When the call to the full patch screenshot fetch successfully completes, b
 		"The preview body should be empty");
 });
 
-test("There should be one image rendered for every data url in state in Full Page mode", () => {
+QUnit.test("There should be one image rendered for every data url in state in Full Page mode", () => {
 	let mockClipperState = getMockFullPageModeState();
 	let defaultComponent = <FullPagePreview clipperState={mockClipperState} />;
 	HelperFunctions.mountToFixture(defaultComponent);
@@ -131,7 +131,7 @@ test("There should be one image rendered for every data url in state in Full Pag
 	}
 });
 
-test("When the full page screenshot response is a failure, the preview should display an error message in Full Page mode", () => {
+QUnit.test("When the full page screenshot response is a failure, the preview should display an error message in Full Page mode", () => {
 	let expectedMessage = "An error message.";
 
 	let clipperState = HelperFunctions.getMockClipperState();
@@ -150,7 +150,7 @@ test("When the full page screenshot response is a failure, the preview should di
 	ok(previewHeaderInput.readOnly);
 });
 
-test("When the pdf screenshot response is a failure, the preview should display an error message in Full Page mode", () => {
+QUnit.test("When the pdf screenshot response is a failure, the preview should display an error message in Full Page mode", () => {
 	let expectedMessage = "An error message.";
 
 	let clipperState = HelperFunctions.getMockClipperState();

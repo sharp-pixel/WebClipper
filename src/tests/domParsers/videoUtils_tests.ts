@@ -45,7 +45,7 @@ let unsupportedOtherUrls = [
 
 QUnit.module("videoUtils");
 
-test("videoDomainIfSupported", () => {
+QUnit.test("videoDomainIfSupported", () => {
 	for (let pageUrl of unsupportedYouTubeUrls) {
 		let domain = VideoUtils.videoDomainIfSupported(pageUrl);
 		strictEqual(domain, undefined, pageUrl + " should NOT be supported");

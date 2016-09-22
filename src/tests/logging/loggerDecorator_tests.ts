@@ -17,7 +17,7 @@ class MockLoggerDecorator extends LoggerDecorator {
 	protected outputSetContext(key: Log.Context.Custom, value: string | number | boolean): void {}
 }
 
-test("handleClickEvent should call the child's implementation while logging the click event on the parent", () => {
+QUnit.test("handleClickEvent should call the child's implementation while logging the click event on the parent", () => {
 	let inner: LoggerDecorator = new MockLoggerDecorator();
 	let outer: LoggerDecorator = new MockLoggerDecorator({ component: inner });
 
@@ -30,7 +30,7 @@ test("handleClickEvent should call the child's implementation while logging the 
 	ok(executeClickEventSpy.calledWith("abc"), "inner's logClickEvent should be called with the same parameter(s)");
 });
 
-test("handleEvent should call the child's implementation while logging the event on the parent", () => {
+QUnit.test("handleEvent should call the child's implementation while logging the event on the parent", () => {
 	let inner: LoggerDecorator = new MockLoggerDecorator();
 	let outer: LoggerDecorator = new MockLoggerDecorator({ component: inner });
 
@@ -44,7 +44,7 @@ test("handleEvent should call the child's implementation while logging the event
 	ok(logEventSpy.calledWith(event), "inner's logEvent should be called with the same parameter(s)");
 });
 
-test("handleSession should call the child's executeSessionStart implementation while logging the session on the parent", () => {
+QUnit.test("handleSession should call the child's executeSessionStart implementation while logging the session on the parent", () => {
 	let inner: LoggerDecorator = new MockLoggerDecorator();
 	let outer: LoggerDecorator = new MockLoggerDecorator({ component: inner });
 
@@ -56,7 +56,7 @@ test("handleSession should call the child's executeSessionStart implementation w
 	ok(executeSessionStartSpy.calledOnce, "inner's executeSessionStartSpy should be called once");
 });
 
-test("handleFailure should call the child's implementation while logging the session on the parent", () => {
+QUnit.test("handleFailure should call the child's implementation while logging the session on the parent", () => {
 	let inner: LoggerDecorator = new MockLoggerDecorator();
 	let outer: LoggerDecorator = new MockLoggerDecorator({ component: inner });
 
@@ -69,7 +69,7 @@ test("handleFailure should call the child's implementation while logging the ses
 	ok(logFailureSpy.calledWith(0, 0), "inner's logFailure should be called with the same parameter(s)");
 });
 
-test("handleUserFunnel should call the child's implementation while logging the session on the parent", () => {
+QUnit.test("handleUserFunnel should call the child's implementation while logging the session on the parent", () => {
 	let inner: LoggerDecorator = new MockLoggerDecorator();
 	let outer: LoggerDecorator = new MockLoggerDecorator({ component: inner });
 
@@ -82,7 +82,7 @@ test("handleUserFunnel should call the child's implementation while logging the 
 	ok(logUserFunnelSpy.calledWith(0), "inner's logUserFunnel should be called with the same parameter(s)");
 });
 
-test("handleTrace should call the child's implementation while logging the session on the parent", () => {
+QUnit.test("handleTrace should call the child's implementation while logging the session on the parent", () => {
 	let inner: LoggerDecorator = new MockLoggerDecorator();
 	let outer: LoggerDecorator = new MockLoggerDecorator({ component: inner });
 
@@ -95,7 +95,7 @@ test("handleTrace should call the child's implementation while logging the sessi
 	ok(logTraceSpy.calledWith(0, 0), "inner's logTrace should be called with the same parameter(s)");
 });
 
-test("handleSetContext should call the child's implementation while logging the session on the parent", () => {
+QUnit.test("handleSetContext should call the child's implementation while logging the session on the parent", () => {
 	let inner: LoggerDecorator = new MockLoggerDecorator();
 	let outer: LoggerDecorator = new MockLoggerDecorator({ component: inner });
 

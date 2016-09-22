@@ -25,7 +25,7 @@ function getMockRegionModeState(): ClipperState {
 
 QUnit.module("regionPreview", {});
 
-test("The tab order flow from the header to the preview title is correct in Region mode", () => {
+QUnit.test("The tab order flow from the header to the preview title is correct in Region mode", () => {
 	let mockClipperState = getMockRegionModeState();
 	let defaultComponent = <RegionPreview clipperState={mockClipperState} />;
 	HelperFunctions.mountToFixture(defaultComponent);
@@ -41,7 +41,7 @@ test("The tab order flow from the header to the preview title is correct in Regi
 	}
 });
 
-test("The tab order flow from the preview title through the region delete buttons is correct in Region mode, and each tab index should not be less than 1", () => {
+QUnit.test("The tab order flow from the preview title through the region delete buttons is correct in Region mode, and each tab index should not be less than 1", () => {
 	let mockClipperState = getMockRegionModeState();
 	let defaultComponent = <RegionPreview clipperState={mockClipperState} />;
 	HelperFunctions.mountToFixture(defaultComponent);
@@ -70,7 +70,7 @@ test("The tab order flow from the preview title through the region delete button
 	}
 });
 
-test("The region header and all related controls should be displayed in Region mode", () => {
+QUnit.test("The region header and all related controls should be displayed in Region mode", () => {
 	let mockClipperState = getMockRegionModeState();
 	let defaultComponent = <RegionPreview clipperState={mockClipperState} />;
 	HelperFunctions.mountToFixture(defaultComponent);
@@ -83,7 +83,7 @@ test("The region header and all related controls should be displayed in Region m
 	ok(!document.getElementById(Constants.Ids.incrementFontSize), "The increment font size button should not exist");
 });
 
-test("The editable title of the page should be displayed in the preview title in Region mode", () => {
+QUnit.test("The editable title of the page should be displayed in the preview title in Region mode", () => {
 	let mockClipperState = getMockRegionModeState();
 	let defaultComponent = <RegionPreview clipperState={mockClipperState} />;
 	HelperFunctions.mountToFixture(defaultComponent);
@@ -94,7 +94,7 @@ test("The editable title of the page should be displayed in the preview title in
 	ok(!previewHeaderInput.readOnly);
 });
 
-test("There should be one image rendered for every data url in state in Region mode", () => {
+QUnit.test("There should be one image rendered for every data url in state in Region mode", () => {
 	let mockClipperState = getMockRegionModeState();
 	let defaultComponent = <RegionPreview clipperState={mockClipperState} />;
 	HelperFunctions.mountToFixture(defaultComponent);
@@ -113,7 +113,7 @@ test("There should be one image rendered for every data url in state in Region m
 	}
 });
 
-test("When multiple images are rendered, clicking a middle image's remove button should remove it and only it in Region mode", () => {
+QUnit.test("When multiple images are rendered, clicking a middle image's remove button should remove it and only it in Region mode", () => {
 	let mockClipperState = getMockRegionModeState();
 	let defaultComponent = <RegionPreview clipperState={mockClipperState} />;
 	HelperFunctions.mountToFixture(defaultComponent);
@@ -141,7 +141,7 @@ test("When multiple images are rendered, clicking a middle image's remove button
 	}
 });
 
-test("When multiple images are rendered, clicking the first image's remove button should remove it and only it in Region mode", () => {
+QUnit.test("When multiple images are rendered, clicking the first image's remove button should remove it and only it in Region mode", () => {
 	let mockClipperState = getMockRegionModeState();
 	let defaultComponent = <RegionPreview clipperState={mockClipperState} />;
 	HelperFunctions.mountToFixture(defaultComponent);
@@ -169,7 +169,7 @@ test("When multiple images are rendered, clicking the first image's remove butto
 	}
 });
 
-test("When multiple images are rendered, clicking the last image's remove button should remove it and only it in Region mode", () => {
+QUnit.test("When multiple images are rendered, clicking the last image's remove button should remove it and only it in Region mode", () => {
 	let mockClipperState = getMockRegionModeState();
 	let defaultComponent = <RegionPreview clipperState={mockClipperState} />;
 	HelperFunctions.mountToFixture(defaultComponent);
@@ -197,7 +197,7 @@ test("When multiple images are rendered, clicking the last image's remove button
 	}
 });
 
-test("When region clipping is disabled, remove image buttons are not rendered. The mode itself is still available because of context image selection mode.", () => {
+QUnit.test("When region clipping is disabled, remove image buttons are not rendered. The mode itself is still available because of context image selection mode.", () => {
 	let mockClipperState = getMockRegionModeState();
 	mockClipperState.injectOptions.enableRegionClipping = false;
 	let defaultComponent = <RegionPreview clipperState={mockClipperState} />;
@@ -207,7 +207,7 @@ test("When region clipping is disabled, remove image buttons are not rendered. T
 	strictEqual(regionButtons.length, 0, "No remove image buttons should be rendered");
 });
 
-test("When region clipping is disabled, the add another region button should not be rendered.", () => {
+QUnit.test("When region clipping is disabled, the add another region button should not be rendered.", () => {
 	let mockClipperState = getMockRegionModeState();
 	mockClipperState.injectOptions.enableRegionClipping = false;
 	let defaultComponent = <RegionPreview clipperState={mockClipperState} />;

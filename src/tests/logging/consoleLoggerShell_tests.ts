@@ -22,13 +22,13 @@ QUnit.module("consoleLoggerShell", {
 	}
 });
 
-test("logToConsole should throw an error if no event is passed in", () => {
+QUnit.test("logToConsole should throw an error if no event is passed in", () => {
 	throws(() => {
 		consoleLoggerShell.logToConsole(undefined);
 	}, Error("'event' argument to logToConsole was: undefined"));
 });
 
-test("logToConsole should always contain the EventName of the event in the message logged to the console", () => {
+QUnit.test("logToConsole should always contain the EventName of the event in the message logged to the console", () => {
 	let event: { [key: string]: string | number | boolean } = {
 		EventName: "MyEvent"
 	};
@@ -38,7 +38,7 @@ test("logToConsole should always contain the EventName of the event in the messa
 		"The log function should be called with the message and object");
 });
 
-test("If a Level property is present on the event, the message should contain that string", () => {
+QUnit.test("If a Level property is present on the event, the message should contain that string", () => {
 	let event: { [key: string]: string | number | boolean } = {
 		EventName: "MyEvent",
 		Level: "None"
@@ -49,7 +49,7 @@ test("If a Level property is present on the event, the message should contain th
 		"The log message should contain the EventName and Level tag");
 });
 
-test("If an Event has a Failed Status, the message should be logged as an error", () => {
+QUnit.test("If an Event has a Failed Status, the message should be logged as an error", () => {
 	let event: { [key: string]: string | number | boolean } = {
 		EventName: "MyEvent",
 		Status: "Failed"
@@ -60,7 +60,7 @@ test("If an Event has a Failed Status, the message should be logged as an error"
 		"The error message should contain the EventName and Level Error tag");
 });
 
-test("If an Event has a Level and Message property, that message should be contained in the message logged to console", () => {
+QUnit.test("If an Event has a Level and Message property, that message should be contained in the message logged to console", () => {
 	let event: { [key: string]: string | number | boolean } = {
 		EventName: "MyEvent",
 		Level: "None",
@@ -72,7 +72,7 @@ test("If an Event has a Level and Message property, that message should be conta
 		"The log message should contain the EventName, Level tag, and message");
 });
 
-test("If an Event has a Message property but no Level, the message should simply not include the Level", () => {
+QUnit.test("If an Event has a Message property but no Level, the message should simply not include the Level", () => {
 	let event: { [key: string]: string | number | boolean } = {
 		EventName: "MyEvent",
 		Message: "Hello world"
@@ -83,7 +83,7 @@ test("If an Event has a Message property but no Level, the message should simply
 		"The log message should contain the EventName and message");
 });
 
-test("If the Level property is Warning, the warn function should be called on the console object", () => {
+QUnit.test("If the Level property is Warning, the warn function should be called on the console object", () => {
 	let event: { [key: string]: string | number | boolean } = {
 		EventName: "MyEvent",
 		Level: "Warning",
@@ -95,7 +95,7 @@ test("If the Level property is Warning, the warn function should be called on th
 		"The warn message should contain the EventName and message");
 });
 
-test("If the Level property is Error, the error function should be called on the console object", () => {
+QUnit.test("If the Level property is Error, the error function should be called on the console object", () => {
 	let event: { [key: string]: string | number | boolean } = {
 		EventName: "MyEvent",
 		Level: "Error",
@@ -107,7 +107,7 @@ test("If the Level property is Error, the error function should be called on the
 		"The error message should contain the EventName and message");
 });
 
-test("If the Level property is Verbose, the info function should be called on the console object", () => {
+QUnit.test("If the Level property is Verbose, the info function should be called on the console object", () => {
 	let event: { [key: string]: string | number | boolean } = {
 		EventName: "MyEvent",
 		Level: "Verbose",
@@ -119,7 +119,7 @@ test("If the Level property is Verbose, the info function should be called on th
 		"The info message should contain the EventName and message");
 });
 
-test("If the Level property is Information, the info function should be called on the console object", () => {
+QUnit.test("If the Level property is Information, the info function should be called on the console object", () => {
 	let event: { [key: string]: string | number | boolean } = {
 		EventName: "MyEvent",
 		Level: "Information",
@@ -131,7 +131,7 @@ test("If the Level property is Information, the info function should be called o
 		"The info message should contain the EventName and message");
 });
 
-test("If the Level property is some arbitrary value, the log function should be called on the console object", () => {
+QUnit.test("If the Level property is some arbitrary value, the log function should be called on the console object", () => {
 	let event: { [key: string]: string | number | boolean } = {
 		EventName: "MyEvent",
 		Level: "asdf",

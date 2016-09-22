@@ -23,7 +23,7 @@ function getMockCommunicators() {
 	};
 }
 
-test("Calling a remote function with a data package should send it across to the other side untampered", () => {
+QUnit.test("Calling a remote function with a data package should send it across to the other side untampered", () => {
 	let comm = getMockCommunicators();
 
 	comm.alpha.registerFunction(TestConstants.sampleFunction, (data) => {
@@ -33,7 +33,7 @@ test("Calling a remote function with a data package should send it across to the
 	comm.beta.callRemoteFunction(TestConstants.sampleFunction, { param: "sample data" });
 });
 
-test("callRemoteFunction should call the callback with the resolved data if it is specified", (assert: QUnitAssert) => {
+QUnit.test("callRemoteFunction should call the callback with the resolved data if it is specified", (assert: QUnitAssert) => {
 	let done = assert.async();
 	let comm = getMockCommunicators();
 
@@ -47,7 +47,7 @@ test("callRemoteFunction should call the callback with the resolved data if it i
 	}});
 });
 
-test("If callRemoteFunction is called before the other side's function has been registered, it should be called when it is", (assert: QUnitAssert) => {
+QUnit.test("If callRemoteFunction is called before the other side's function has been registered, it should be called when it is", (assert: QUnitAssert) => {
 	let done = assert.async();
 	let comm = getMockCommunicators();
 
@@ -61,7 +61,7 @@ test("If callRemoteFunction is called before the other side's function has been 
 	});
 });
 
-test("Test passing smart values across the communicator and updating them", (assert: QUnitAssert) => {
+QUnit.test("Test passing smart values across the communicator and updating them", (assert: QUnitAssert) => {
 	let done = assert.async();
 	let comm = getMockCommunicators();
 
@@ -83,7 +83,7 @@ test("Test passing smart values across the communicator and updating them", (ass
 	betaValue.set("updated value");
 });
 
-test("Robustly test two Communicators coming online at different times and registering/calling methods", () => {
+QUnit.test("Robustly test two Communicators coming online at different times and registering/calling methods", () => {
 	let mock1 = new MockMessageHandler();
 	let mock2 = new MockMessageHandler(mock1);
 	mock1.setOtherSide(mock2);
@@ -164,7 +164,7 @@ test("Robustly test two Communicators coming online at different times and regis
 	comm2.registerFunction("functionName2", undefined);
 });
 
-test("Test parseMessage with malformed data", () => {
+QUnit.test("Test parseMessage with malformed data", () => {
 	let mockHandler = new MockMessageHandler();
 	let communicator = new Communicator(mockHandler, "myId");
 
@@ -178,7 +178,7 @@ test("Test parseMessage with malformed data", () => {
 	ok(true, "No exceptions thrown for malformed data");
 });
 
-test("Calling a remote function through a bad connection should throw an error and allow it to bubble", () => {
+QUnit.test("Calling a remote function through a bad connection should throw an error and allow it to bubble", () => {
 	let mock1 = new MockMessageHandler();
 	let mock2 = new MockMessageHandler(mock1);
 	mock1.setOtherSide(mock2);
@@ -195,7 +195,7 @@ test("Calling a remote function through a bad connection should throw an error a
 	}, Error(MockMessageHandler.corruptError));
 });
 
-test("Calling a remote function through a bad connection should call the error handler with the error object if it is set", () => {
+QUnit.test("Calling a remote function through a bad connection should call the error handler with the error object if it is set", () => {
 	let mock1 = new MockMessageHandler();
 	let mock2 = new MockMessageHandler(mock1);
 	mock1.setOtherSide(mock2);

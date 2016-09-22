@@ -12,7 +12,7 @@ QUnit.module("cachedHttp", {
 	}
 });
 
-test("valueHasExpired should return true if the timestamped data is older than the expiry time", () => {
+QUnit.test("valueHasExpired should return true if the timestamped data is older than the expiry time", () => {
 	let expiry = 500;
 	let value = {
 		data: {},
@@ -23,7 +23,7 @@ test("valueHasExpired should return true if the timestamped data is older than t
 		"A timestamped value with a lastUpdated value older than the expiry should return true");
 });
 
-test("valueHasExpired should return false if the timestamped data is not older than the expiry time", () => {
+QUnit.test("valueHasExpired should return false if the timestamped data is not older than the expiry time", () => {
 	let expiry = 999999999999;
 	let value = {
 		data: {},
@@ -34,13 +34,13 @@ test("valueHasExpired should return false if the timestamped data is not older t
 		"A timestamped value with a lastUpdated value newer than the expiry should return false");
 });
 
-test("valueHasExpired should return true if value is undefined", () => {
+QUnit.test("valueHasExpired should return true if value is undefined", () => {
 	let expiry = 999999999999;
 	ok(CachedHttp.valueHasExpired(undefined, expiry),
 		"A timestamped value with an undefined value should return true");
 });
 
-test("valueHasExpired should return true if value is undefined", () => {
+QUnit.test("valueHasExpired should return true if value is undefined", () => {
 	let expiry = 999999999999;
 	let value = {
 		data: {},
@@ -51,7 +51,7 @@ test("valueHasExpired should return true if value is undefined", () => {
 		"A timestamped value with an undefined value should return true");
 });
 
-test("getFreshValue where the value in storage is still fresh should not return or retrieve the value from the specified remote call", (assert: QUnitAssert) => {
+QUnit.test("getFreshValue where the value in storage is still fresh should not return or retrieve the value from the specified remote call", (assert: QUnitAssert) => {
 	let done = assert.async();
 
 	let expected = "expected";
@@ -86,7 +86,7 @@ test("getFreshValue where the value in storage is still fresh should not return 
 	});
 });
 
-test("Given that lastUpdated is a small non-0 value, getFreshValue where the value in storage is too old should return the value from the specified remote call", (assert: QUnitAssert) => {
+QUnit.test("Given that lastUpdated is a small non-0 value, getFreshValue where the value in storage is too old should return the value from the specified remote call", (assert: QUnitAssert) => {
 	let done = assert.async();
 
 	let timeOfStorage = Date.now() - 9999999999;
@@ -121,7 +121,7 @@ test("Given that lastUpdated is a small non-0 value, getFreshValue where the val
 	});
 });
 
-test("getFreshValue with a forced remote call should set the timestamped value in storage when it is retrieved from the remote", (assert: QUnitAssert) => {
+QUnit.test("getFreshValue with a forced remote call should set the timestamped value in storage when it is retrieved from the remote", (assert: QUnitAssert) => {
 	let done = assert.async();
 
 	let cachedHttp = new CachedHttp(mockStorage);
@@ -151,7 +151,7 @@ test("getFreshValue with a forced remote call should set the timestamped value i
 	});
 });
 
-test("getFreshValue with a forced remote call should not set anything in storage if the remote function rejected", (assert: QUnitAssert) => {
+QUnit.test("getFreshValue with a forced remote call should not set anything in storage if the remote function rejected", (assert: QUnitAssert) => {
 	let done = assert.async();
 
 	let cachedHttp = new CachedHttp(mockStorage);
@@ -174,7 +174,7 @@ test("getFreshValue with a forced remote call should not set anything in storage
 	});
 });
 
-test("When getFreshValue is called with an undefined key, an Error should be thrown", () => {
+QUnit.test("When getFreshValue is called with an undefined key, an Error should be thrown", () => {
 	let cachedHttp = new CachedHttp(mockStorage);
 
 	let getRemoteValue = () => {
@@ -186,7 +186,7 @@ test("When getFreshValue is called with an undefined key, an Error should be thr
 	}, Error("key must be a non-empty string, but was: undefined"));
 });
 
-test("When getFreshValue is called with an empty key, an Error should be thrown", () => {
+QUnit.test("When getFreshValue is called with an empty key, an Error should be thrown", () => {
 	let cachedHttp = new CachedHttp(mockStorage);
 
 	let getRemoteValue = () => {
@@ -198,7 +198,7 @@ test("When getFreshValue is called with an empty key, an Error should be thrown"
 	}, Error("key must be a non-empty string, but was: "));
 });
 
-test("When getFreshValue is called with an getRemoteValue key, an Error should be thrown", () => {
+QUnit.test("When getFreshValue is called with an getRemoteValue key, an Error should be thrown", () => {
 	let cachedHttp = new CachedHttp(mockStorage);
 
 	throws(() => {

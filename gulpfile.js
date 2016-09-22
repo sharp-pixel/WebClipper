@@ -7,7 +7,6 @@ var browserify = require("browserify");
 var concat = require("gulp-concat");
 var del = require("del");
 var fileExists = require("file-exists");
-var forever = require("forever");
 var globby = require("globby");
 var gulp = require("gulp");
 var less = require("gulp-less");
@@ -15,13 +14,11 @@ var merge = require("merge-stream");
 var mergeJSON = require("gulp-merge-json");
 var minifyCSS = require("gulp-cssnano");
 var msx = require("gulp-msx");
-var open = require("gulp-open");
 var plumber = require("gulp-plumber");
 var qunit = require("node-qunit-phantomjs");
 var rename = require("gulp-rename");
 var rtlcss = require("gulp-rtlcss");
 var runSequence = require("run-sequence");
-var shell = require("gulp-shell");
 var source = require("vinyl-source-stream");
 var ts = require("gulp-typescript");
 var tslint = require("gulp-tslint");
@@ -208,9 +205,10 @@ gulp.task("compile", function(callback) {
 ////////////////////////////////////////
 // TSLINT
 ////////////////////////////////////////
-//The actual task to run
 gulp.task("tslint", function() {
-	var tsErrorReport = tslint.report("prose", {
+	var tsErrorReport = tslint.report({
+		formatter: "prose"
+	}, {
 		emitError: false,
 		reportLimit: 50
 	});

@@ -47,7 +47,7 @@ let pageUrl = "";
 
 QUnit.module("khanAcademyVideoExtractor");
 
-test("getVideoSrcValues should return undefined when provided unsupported parameters for the KhanAcademy domain", () => {
+QUnit.test("getVideoSrcValues should return undefined when provided unsupported parameters for the KhanAcademy domain", () => {
 	for (let pageContentSnippet of pageContentWithNoClipId) {
 		let pageContent = pageContentHtmlWrapperPrepend + pageContentSnippet + pageContentHtmlWrapperAppend;
 		let videoSrcUrl = khanAcademyVideoExtractor.getVideoSrcValues(pageUrl, pageContent);
@@ -55,7 +55,7 @@ test("getVideoSrcValues should return undefined when provided unsupported parame
 	}
 });
 
-test("getVideoSrcValues should return a url on supported KhanAcademy domain urls", () => {
+QUnit.test("getVideoSrcValues should return a url on supported KhanAcademy domain urls", () => {
 	for (let pageContentSnippet of pageContentWithHyphenatedVideoIds) {
 		let pageContent = pageContentHtmlWrapperPrepend + pageContentSnippet + pageContentHtmlWrapperAppend;
 		let videoSrcUrl = khanAcademyVideoExtractor.getVideoSrcValues(pageUrl, pageContent);
@@ -69,7 +69,7 @@ test("getVideoSrcValues should return a url on supported KhanAcademy domain urls
 	}
 });
 
-test("getVideoIds should return undefined for unsupported urls", () => {
+QUnit.test("getVideoIds should return undefined for unsupported urls", () => {
 	for (let pageContentSnippet of pageContentWithNoClipId) {
 		let pageContent = pageContentHtmlWrapperPrepend + pageContentSnippet + pageContentHtmlWrapperAppend;
 		let videoSrcUrls = khanAcademyVideoExtractor.getVideoIds(pageUrl, pageContent);
@@ -77,7 +77,7 @@ test("getVideoIds should return undefined for unsupported urls", () => {
 	}
 });
 
-test("getVideoIds should return id for supported KhanAcademy video url", () => {
+QUnit.test("getVideoIds should return id for supported KhanAcademy video url", () => {
 	for (let pageContentSnippet of pageContentWithHyphenatedVideoIds) {
 		let pageContent = pageContentHtmlWrapperPrepend + pageContentSnippet + pageContentHtmlWrapperAppend;
 		let videoSrcUrls = khanAcademyVideoExtractor.getVideoIds(pageUrl, pageContent);

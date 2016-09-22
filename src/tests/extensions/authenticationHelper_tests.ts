@@ -36,7 +36,7 @@ QUnit.module("authenticationHelper-sinon", {
 let clipperId = "XX-1a23456b-a1b2-12ab-1a2b-12a34b567c8d";
 let authUrl = "https://www.onenote.com/webclipper/userinfo?clipperId=" + clipperId;
 
-test("retrieveUserInformation resolves the response as a json string if it represents valid user information", (assert: QUnitAssert) => {
+QUnit.test("retrieveUserInformation resolves the response as a json string if it represents valid user information", (assert: QUnitAssert) => {
 	let done = assert.async();
 
 	server.respondWith(
@@ -56,7 +56,7 @@ test("retrieveUserInformation resolves the response as a json string if it repre
 	server.respond();
 });
 
-test("retrieveUserInformation resolves the response with no parameter if it returns an empty object", (assert: QUnitAssert) => {
+QUnit.test("retrieveUserInformation resolves the response with no parameter if it returns an empty object", (assert: QUnitAssert) => {
 	let done = assert.async();
 
 	server.respondWith(
@@ -75,7 +75,7 @@ test("retrieveUserInformation resolves the response with no parameter if it retu
 	server.respond();
 });
 
-test("retrieveUserInformation resolves the response with no parameter if it returns an empty string", (assert: QUnitAssert) => {
+QUnit.test("retrieveUserInformation resolves the response with no parameter if it returns an empty string", (assert: QUnitAssert) => {
 	let done = assert.async();
 
 	server.respondWith(
@@ -94,7 +94,7 @@ test("retrieveUserInformation resolves the response with no parameter if it retu
 	server.respond();
 });
 
-test("retrieveUserInformation resolves the response with no parameter if it represents incomplete user information", (assert: QUnitAssert) => {
+QUnit.test("retrieveUserInformation resolves the response with no parameter if it represents incomplete user information", (assert: QUnitAssert) => {
 	let done = assert.async();
 
 	let invalidUserInformation = getValidUserInformationJson();
@@ -115,7 +115,7 @@ test("retrieveUserInformation resolves the response with no parameter if it repr
 	server.respond();
 });
 
-test("retrieveUserInformation resolves the response with no parameter if it represents empty user information", (assert: QUnitAssert) => {
+QUnit.test("retrieveUserInformation resolves the response with no parameter if it represents empty user information", (assert: QUnitAssert) => {
 	let done = assert.async();
 
 	let invalidUserInformation: UserInfoData = {
@@ -142,7 +142,7 @@ test("retrieveUserInformation resolves the response with no parameter if it repr
 	server.respond();
 });
 
-test("retrieveUserInformation rejects the response with error object if the status code is 4XX", (assert: QUnitAssert) => {
+QUnit.test("retrieveUserInformation rejects the response with error object if the status code is 4XX", (assert: QUnitAssert) => {
 	let done = assert.async();
 
 	let responseMessage = "Something went wrong";
@@ -169,7 +169,7 @@ test("retrieveUserInformation rejects the response with error object if the stat
 	server.respond();
 });
 
-test("retrieveUserInformation rejects the response with error object if the status code is 5XX", (assert: QUnitAssert) => {
+QUnit.test("retrieveUserInformation rejects the response with error object if the status code is 5XX", (assert: QUnitAssert) => {
 	let done = assert.async();
 
 	let responseMessage = "Something went wrong on our end";
@@ -201,28 +201,28 @@ QUnit.module("authenticationHelper", {});
 
 /* tslint:disable:no-null-keyword */
 
-test("A valid userInfo should be validated by isValidUserInformationJsonString", () => {
+QUnit.test("A valid userInfo should be validated by isValidUserInformationJsonString", () => {
 	let userInfo = getValidUserInformationJson();
 	ok(AuthenticationHelper.isValidUserInformationJsonString(JSON.stringify(userInfo)),
 		"Valid userInfo should be validated");
 });
 
-test("A null userInfo should be invalidated by isValidUserInformationJsonString", () => {
+QUnit.test("A null userInfo should be invalidated by isValidUserInformationJsonString", () => {
 	ok(!AuthenticationHelper.isValidUserInformationJsonString(null),
 		"Null userInfo should be invalidated");
 });
 
-test("An undefined userInfo should be invalidated by isValidUserInformationJsonString", () => {
+QUnit.test("An undefined userInfo should be invalidated by isValidUserInformationJsonString", () => {
 	ok(!AuthenticationHelper.isValidUserInformationJsonString(undefined),
 		"Undefined userInfo should be invalidated");
 });
 
-test("A non-json-string userInfo should be invalidated by isValidUserInformationJsonString", () => {
+QUnit.test("A non-json-string userInfo should be invalidated by isValidUserInformationJsonString", () => {
 	ok(!AuthenticationHelper.isValidUserInformationJsonString("{}}"),
 		"Non-json-string userInfo should be invalidated");
 });
 
-test("Invalid accessToken should be detected by isValidUserInformationJsonString", () => {
+QUnit.test("Invalid accessToken should be detected by isValidUserInformationJsonString", () => {
 	let userInfo = getValidUserInformationJson();
 	userInfo.accessToken = null;
 	ok(!AuthenticationHelper.isValidUserInformationJsonString(JSON.stringify(userInfo)),
@@ -235,7 +235,7 @@ test("Invalid accessToken should be detected by isValidUserInformationJsonString
 		"Empty accessToken should be seen as invalid");
 });
 
-test("Invalid accessTokenExpiration should be detected by isValidUserInformationJsonString", () => {
+QUnit.test("Invalid accessTokenExpiration should be detected by isValidUserInformationJsonString", () => {
 	let userInfo = getValidUserInformationJson();
 	userInfo.accessTokenExpiration = 0;
 	ok(!AuthenticationHelper.isValidUserInformationJsonString(JSON.stringify(userInfo)),
@@ -245,7 +245,7 @@ test("Invalid accessTokenExpiration should be detected by isValidUserInformation
 		"<0 accessTokenExpiration should be seen as invalid");
 });
 
-test("Invalid authType should be detected by isValidUserInformationJsonString", () => {
+QUnit.test("Invalid authType should be detected by isValidUserInformationJsonString", () => {
 	let userInfo = getValidUserInformationJson();
 	userInfo.authType = null;
 	ok(!AuthenticationHelper.isValidUserInformationJsonString(JSON.stringify(userInfo)),
@@ -258,7 +258,7 @@ test("Invalid authType should be detected by isValidUserInformationJsonString", 
 		"Empty authType should be seen as invalid");
 });
 
-test("Valid cid should be detected by isValidUserInformationJsonString", () => {
+QUnit.test("Valid cid should be detected by isValidUserInformationJsonString", () => {
 	let userInfo = getValidUserInformationJson();
 	userInfo.cid = null;
 	ok(AuthenticationHelper.isValidUserInformationJsonString(JSON.stringify(userInfo)),
@@ -271,7 +271,7 @@ test("Valid cid should be detected by isValidUserInformationJsonString", () => {
 		"Empty cid should be seen as valid");
 });
 
-test("Valid emailAddress should be detected by isValidUserInformationJsonString", () => {
+QUnit.test("Valid emailAddress should be detected by isValidUserInformationJsonString", () => {
 	let userInfo = getValidUserInformationJson();
 	userInfo.emailAddress = null;
 	ok(AuthenticationHelper.isValidUserInformationJsonString(JSON.stringify(userInfo)),
@@ -284,7 +284,7 @@ test("Valid emailAddress should be detected by isValidUserInformationJsonString"
 		"Empty emailAddress should be seen as valid");
 });
 
-test("Valid fullName should be detected by isValidUserInformationJsonString", () => {
+QUnit.test("Valid fullName should be detected by isValidUserInformationJsonString", () => {
 	let userInfo = getValidUserInformationJson();
 	userInfo.fullName = null;
 	ok(AuthenticationHelper.isValidUserInformationJsonString(JSON.stringify(userInfo)),

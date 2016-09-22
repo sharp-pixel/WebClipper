@@ -15,7 +15,7 @@ QUnit.module("dialogPanel", {
 	}
 });
 
-test("Given a message and a button, the dialog panel should render them both correctly", () => {
+QUnit.test("Given a message and a button, the dialog panel should render them both correctly", () => {
 	let expectedMessage = "hello world";
 	let count = 0;
 	let buttons = [{
@@ -43,7 +43,7 @@ test("Given a message and a button, the dialog panel should render them both cor
 	strictEqual(count, 1, "The button callback should be called once");
 });
 
-test("Given two buttons, they should render correctly and respond to clicks using their own callbacks", () => {
+QUnit.test("Given two buttons, they should render correctly and respond to clicks using their own callbacks", () => {
 	let expectedMessage = "hello world";
 	let countA = 0;
 	let countB = 0;
@@ -86,7 +86,7 @@ test("Given two buttons, they should render correctly and respond to clicks usin
 	strictEqual(countB, 1, "The B button callback should be called once");
 });
 
-test("Given no buttons, no buttons should be rendered", () => {
+QUnit.test("Given no buttons, no buttons should be rendered", () => {
 	let expectedMessage = "hello world";
 	let buttons = [] as DialogButton[];
 
@@ -99,7 +99,7 @@ test("Given no buttons, no buttons should be rendered", () => {
 	strictEqual(renderedButtons.length, 0, "No buttons should render");
 });
 
-test("Given some buttons, they should have equal tab indexes, and each tab index should not be less than 1", () => {
+QUnit.test("Given some buttons, they should have equal tab indexes, and each tab index should not be less than 1", () => {
 	let expectedMessage = "hello world";
 	let buttons = [
 		{ id: "a", label: "a", handler: undefined },

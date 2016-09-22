@@ -135,7 +135,7 @@ module TestHelper {
 
 // bookmarkPage
 
-test("bookmarkPage rejects when url is undefined or empty", (assert: QUnitAssert) => {
+QUnit.test("bookmarkPage rejects when url is undefined or empty", (assert: QUnitAssert) => {
 	let done = assert.async();
 
 	let metadata = TestHelper.createListOfMetaTags([TestHelper.StandardMetadata.PrimaryDescription, TestHelper.StandardMetadata.PrimaryThumbnail]);
@@ -154,7 +154,7 @@ test("bookmarkPage rejects when url is undefined or empty", (assert: QUnitAssert
 	});
 });
 
-test("bookmarkPage returns complete BookmarkResult when fully-formed list of metadata exists", (assert: QUnitAssert) => {
+QUnit.test("bookmarkPage returns complete BookmarkResult when fully-formed list of metadata exists", (assert: QUnitAssert) => {
 	let done = assert.async();
 
 	let expectedResult: BookmarkResult = {
@@ -176,7 +176,7 @@ test("bookmarkPage returns complete BookmarkResult when fully-formed list of met
 	});
 });
 
-test("bookmarkPage returns BookmarkResult with just a url when list of metadata does not exist", (assert: QUnitAssert) => {
+QUnit.test("bookmarkPage returns BookmarkResult with just a url when list of metadata does not exist", (assert: QUnitAssert) => {
 	let done = assert.async();
 
 	let expectedResult: BookmarkResult = {
@@ -195,7 +195,7 @@ test("bookmarkPage returns BookmarkResult with just a url when list of metadata 
 	});
 });
 
-test("bookmarkPage returns BookmarkResult with just a url when list of metadata is empty", (assert: QUnitAssert) => {
+QUnit.test("bookmarkPage returns BookmarkResult with just a url when list of metadata is empty", (assert: QUnitAssert) => {
 	let done = assert.async();
 
 	let expectedResult: BookmarkResult = {
@@ -214,7 +214,7 @@ test("bookmarkPage returns BookmarkResult with just a url when list of metadata 
 	});
 });
 
-test("bookmarkPage returns BookmarkResult with just a url when list of metadata contains no useful information", (assert: QUnitAssert) => {
+QUnit.test("bookmarkPage returns BookmarkResult with just a url when list of metadata contains no useful information", (assert: QUnitAssert) => {
 	let done = assert.async();
 
 	let expectedResult: BookmarkResult = {
@@ -237,7 +237,7 @@ test("bookmarkPage returns BookmarkResult with just a url when list of metadata 
 
 // getPrimaryDescription
 
-test("getPrimaryDescription returns undefined if og:description meta tag does not exist", () => {
+QUnit.test("getPrimaryDescription returns undefined if og:description meta tag does not exist", () => {
 	strictEqual(BookmarkHelper.getPrimaryDescription(undefined), undefined, "undefined list of meta tags should return undefined. actual: '" + BookmarkHelper.getPrimaryDescription(undefined));
 
 	let metaTags = new Array<HTMLMetaElement>();
@@ -256,7 +256,7 @@ test("getPrimaryDescription returns undefined if og:description meta tag does no
 	strictEqual(result, undefined, "missing og:description should return undefined. actual: '" + result + "'");
 });
 
-test("getPrimaryDescription returns content of og:description meta tag", () => {
+QUnit.test("getPrimaryDescription returns content of og:description meta tag", () => {
 	let metaTags = TestHelper.createListOfMetaTags([
 		TestHelper.StandardMetadata.PrimaryDescription
 	]);
@@ -265,7 +265,7 @@ test("getPrimaryDescription returns content of og:description meta tag", () => {
 
 // getFallbackDescription
 
-test("getFallbackDescription returns undefined if fallback description meta tags do not exist", () => {
+QUnit.test("getFallbackDescription returns undefined if fallback description meta tags do not exist", () => {
 	let metaTags = TestHelper.createListOfMetaTags([
 		TestHelper.StandardMetadata.PrimaryDescription,
 		TestHelper.StandardMetadata.PrimaryThumbnail,
@@ -277,7 +277,7 @@ test("getFallbackDescription returns undefined if fallback description meta tags
 	strictEqual(BookmarkHelper.getFallbackDescription(metaTags), undefined, "missing fallback description should return undefined. actual: '" + result + "'");
 });
 
-test("getFallbackDescription returns content if fallback description meta tags with content exist", () => {
+QUnit.test("getFallbackDescription returns content if fallback description meta tags with content exist", () => {
 	let metaTags = new Array<HTMLMetaElement>();
 
 	// add all fallback description attributes to tag list
@@ -309,7 +309,7 @@ test("getFallbackDescription returns content if fallback description meta tags w
 
 // getPrimaryThumbnailSrc
 
-test("getPrimaryThumbnailSrc returns undefined if og:image meta tag does not exist", () => {
+QUnit.test("getPrimaryThumbnailSrc returns undefined if og:image meta tag does not exist", () => {
 	strictEqual(BookmarkHelper.getPrimaryThumbnailSrc(undefined), undefined, "undefined list of meta tags should return undefined");
 
 	let metaTags = new Array<HTMLMetaElement>();
@@ -328,7 +328,7 @@ test("getPrimaryThumbnailSrc returns undefined if og:image meta tag does not exi
 	strictEqual(result, undefined, "missing og:image should return undefined. actual: '" + result + "'");
 });
 
-test("getPrimaryThumbnailSrc returns content of og:image meta tag", () => {
+QUnit.test("getPrimaryThumbnailSrc returns content of og:image meta tag", () => {
 	let metaTags = TestHelper.createListOfMetaTags([
 		TestHelper.StandardMetadata.PrimaryThumbnail
 	]);
@@ -338,7 +338,7 @@ test("getPrimaryThumbnailSrc returns content of og:image meta tag", () => {
 
 // getFallbackThumbnailSrc
 
-test("getFallbackThumbnailSrc returns undefined if fallback thumbnail src meta tags do not exist", () => {
+QUnit.test("getFallbackThumbnailSrc returns undefined if fallback thumbnail src meta tags do not exist", () => {
 	let metaTags = TestHelper.createListOfMetaTags([
 		TestHelper.StandardMetadata.PrimaryDescription,
 		TestHelper.StandardMetadata.PrimaryThumbnail,
@@ -350,7 +350,7 @@ test("getFallbackThumbnailSrc returns undefined if fallback thumbnail src meta t
 	strictEqual(result, undefined, "missing fallback thumbnail src should return undefined. actual: '" + result + "'");
 });
 
-test("getFallbackThumbnailSrc returns content if fallback thumbnail src meta tags with content exist", () => {
+QUnit.test("getFallbackThumbnailSrc returns content if fallback thumbnail src meta tags with content exist", () => {
 	let metaTags = new Array<HTMLMetaElement>();
 
 	// add all fallback thumbnail src attributes to tag list
@@ -382,7 +382,7 @@ test("getFallbackThumbnailSrc returns content if fallback thumbnail src meta tag
 
 // getFirstImageOnPage
 
-test("getFirstImageOnPage returns undefined if image tags do not exist", () => {
+QUnit.test("getFirstImageOnPage returns undefined if image tags do not exist", () => {
 	let thumbnailSrcResult = BookmarkHelper.getFirstImageOnPage(undefined);
 
 	strictEqual(thumbnailSrcResult, undefined, "undefined list of image elements should return undefined");
@@ -393,7 +393,7 @@ test("getFirstImageOnPage returns undefined if image tags do not exist", () => {
 	strictEqual(thumbnailSrcResult, undefined, "empty list of image elements should return undefined");
 });
 
-test("getFirstImageOnPage returns undefined if image tag without src values exist", () => {
+QUnit.test("getFirstImageOnPage returns undefined if image tag without src values exist", () => {
 	let images: HTMLImageElement[] = new Array<HTMLImageElement>();
 
 	images.push(TestHelper.createHTMLImageElement(undefined));
@@ -404,7 +404,7 @@ test("getFirstImageOnPage returns undefined if image tag without src values exis
 	strictEqual(thumbnailSrcResult, undefined, "list of image elements without src values should return undefined");
 });
 
-test("getFirstImageOnPage returns content if image tag with content exist", () => {
+QUnit.test("getFirstImageOnPage returns content if image tag with content exist", () => {
 	let images: HTMLImageElement[] = new Array<HTMLImageElement>();
 
 	images.push(TestHelper.createHTMLImageElement(TestHelper.Content.fallbackThumbnailSrcContentBase + "0"));
@@ -417,17 +417,17 @@ test("getFirstImageOnPage returns content if image tag with content exist", () =
 
 // getMetaContent
 
-test("getMetaContent returns undefined if metatags are undefined", () => {
+QUnit.test("getMetaContent returns undefined if metatags are undefined", () => {
 	let result = BookmarkHelper.getMetaContent(undefined, BookmarkHelper.primaryThumbnailKeyValuePair);
 	strictEqual(result, undefined, "actual: " + result);
 });
 
-test("getMetaContent returns undefined if metatags are empty", () => {
+QUnit.test("getMetaContent returns undefined if metatags are empty", () => {
 	let result = BookmarkHelper.getMetaContent(new Array<HTMLMetaElement>(), BookmarkHelper.primaryThumbnailKeyValuePair);
 	strictEqual(result, undefined, "actual: " + result);
 });
 
-test("getMetaContent returns undefined if metadata is undefined", () => {
+QUnit.test("getMetaContent returns undefined if metadata is undefined", () => {
 	let metaTags = TestHelper.createListOfMetaTags([
 		TestHelper.StandardMetadata.Fake
 	]);
@@ -436,7 +436,7 @@ test("getMetaContent returns undefined if metadata is undefined", () => {
 	strictEqual(result, undefined, "actual: " + result);
 });
 
-test("getMetaContent returns undefined if metadata is empty", () => {
+QUnit.test("getMetaContent returns undefined if metadata is empty", () => {
 	let metaTags = TestHelper.createListOfMetaTags([
 		TestHelper.StandardMetadata.Fake
 	]);
@@ -446,7 +446,7 @@ test("getMetaContent returns undefined if metadata is empty", () => {
 	strictEqual(result, undefined, "actual: " + result);
 });
 
-test("getMetaContent returns undefined if the metadata exists but the content is undefined", () => {
+QUnit.test("getMetaContent returns undefined if the metadata exists but the content is undefined", () => {
 	// non-standard metadata, so not using TestHelper.createListOfMetaTags
 	let metaTags = new Array<HTMLMetaElement>();
 	metaTags.push(TestHelper.createHTMLMetaElement(BookmarkHelper.primaryThumbnailKeyValuePair, undefined));
@@ -455,7 +455,7 @@ test("getMetaContent returns undefined if the metadata exists but the content is
 	strictEqual(result, undefined, "actual: " + result);
 });
 
-test("getMetaContent returns undefined if the metadata exists but the content is empty", () => {
+QUnit.test("getMetaContent returns undefined if the metadata exists but the content is empty", () => {
 	// non-standard metadata, so not using TestHelper.createListOfMetaTags
 	let metaTags = new Array<HTMLMetaElement>();
 	metaTags.push(TestHelper.createHTMLMetaElement(BookmarkHelper.primaryThumbnailKeyValuePair, ""));
@@ -464,7 +464,7 @@ test("getMetaContent returns undefined if the metadata exists but the content is
 	strictEqual(result, undefined, "actual: " + result);
 });
 
-test("getMetaContent returns content if it exists", () => {
+QUnit.test("getMetaContent returns content if it exists", () => {
 	let metaTags = TestHelper.createListOfMetaTags([
 		TestHelper.StandardMetadata.PrimaryThumbnail
 	]);

@@ -26,7 +26,7 @@ QUnit.module("augmentationHelper-sinon", {
 	}
 });
 
-test("makeAugmentationRequest should return the parsed response and the original xhr in the resolved promise", (assert: QUnitAssert) => {
+QUnit.test("makeAugmentationRequest should return the parsed response and the original xhr in the resolved promise", (assert: QUnitAssert) => {
 	let done = assert.async();
 
 	let state = HelperFunctions.getMockClipperState();
@@ -54,7 +54,7 @@ test("makeAugmentationRequest should return the parsed response and the original
 	server.respond();
 });
 
-test("makeAugmentationRequest should return the error object in the rejected promise if the status code is not 200", (assert: QUnitAssert) => {
+QUnit.test("makeAugmentationRequest should return the error object in the rejected promise if the status code is not 200", (assert: QUnitAssert) => {
 	let done = assert.async();
 
 	let state = HelperFunctions.getMockClipperState();
@@ -79,7 +79,7 @@ test("makeAugmentationRequest should return the error object in the rejected pro
 	server.respond();
 });
 
-test("makeAugmentationRequest should return the error object in the rejected promise if the status code is 200, but the response cannot be parsed as json", (assert: QUnitAssert) => {
+QUnit.test("makeAugmentationRequest should return the error object in the rejected promise if the status code is 200, but the response cannot be parsed as json", (assert: QUnitAssert) => {
 	let done = assert.async();
 
 	let state = HelperFunctions.getMockClipperState();
@@ -117,7 +117,7 @@ QUnit.module("augmentationHelper", {
 	}
 });
 
-test("getAugmentationType returns the augmentation type as a string for types that we support", () => {
+QUnit.test("getAugmentationType returns the augmentation type as a string for types that we support", () => {
 	let supported = [ AugmentationModel.Article, AugmentationModel.Recipe, AugmentationModel.Product ];
 	let state = HelperFunctions.getMockClipperState();
 
@@ -132,7 +132,7 @@ test("getAugmentationType returns the augmentation type as a string for types th
 	}
 });
 
-test("getAugmentationType returns 'Article' if the augmentation result is unavailable", () => {
+QUnit.test("getAugmentationType returns 'Article' if the augmentation result is unavailable", () => {
 	strictEqual(AugmentationHelper.getAugmentationType(undefined), AugmentationModel[AugmentationModel.Article]);
 
 	let state = HelperFunctions.getMockClipperState();
@@ -143,7 +143,7 @@ test("getAugmentationType returns 'Article' if the augmentation result is unavai
 	strictEqual(AugmentationHelper.getAugmentationType(state), AugmentationModel[AugmentationModel.Article]);
 });
 
-test("getAugmentationType returns 'Article' for types that we don't support", () => {
+QUnit.test("getAugmentationType returns 'Article' for types that we don't support", () => {
 	let state = HelperFunctions.getMockClipperState();
 	state.augmentationResult.data = {
 		ContentInHtml: "",
@@ -155,7 +155,7 @@ test("getAugmentationType returns 'Article' for types that we don't support", ()
 
 });
 
-test("getArticlePreviewElement should return the MainArticleContainer class element if it exists", () => {
+QUnit.test("getArticlePreviewElement should return the MainArticleContainer class element if it exists", () => {
 	let mainArticleContainer = document.createElement("DIV") as HTMLHtmlElement;
 	mainArticleContainer.className = "MainArticleContainer";
 	fixture.appendChild(mainArticleContainer);
@@ -164,7 +164,7 @@ test("getArticlePreviewElement should return the MainArticleContainer class elem
 	strictEqual(actual, mainArticleContainer, "The MainArticleContainer should be retrieved");
 });
 
-test("getArticlePreviewElement should return the document's body if the MainArticleContainer class element does not exist", () => {
+QUnit.test("getArticlePreviewElement should return the document's body if the MainArticleContainer class element does not exist", () => {
 	let actual = AugmentationHelper.getArticlePreviewElement(document);
 	strictEqual(actual, document.body, "The body should be retrieved");
 });
