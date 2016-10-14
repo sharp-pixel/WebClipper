@@ -125,8 +125,10 @@ export module Constants {
 		export var fullPageHeaderTitle = "fullPageHeaderTitle";
 
 		// previewViewerPdfHeader
-		export var pageRangeControl = "pageRangeControl";
 		export var pdfControl = "pdfControl";
+		export var pageRangeControl = "pageRangeControl";
+		export var allPagesRadioButton = "allPagesRadioButton";
+		export var pageRangeRadioButton = "pageRangeRadioButton";
 
 		export var attachmentCheckboxControl = "attachmentCheckboxControl";
 		export var attachmentCheckboxLabel = "attachmentCheckboxLabel";
