@@ -33,7 +33,7 @@ class PdfPreview extends PreviewComponentBase<PdfPreviewState, ClipperStateProp>
 			let previewContentContainer = document.getElementById("previewContentContainer");
 			if (!!previewContentContainer) {
 				previewContentContainer.addEventListener("scroll", (ev) => {
-					console.log("scroll handler");
+					// console.log("scroll handler");
 				});
 				PdfPreview.scrollListenerAdded = true;
 			}

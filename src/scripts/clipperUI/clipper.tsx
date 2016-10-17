@@ -216,8 +216,6 @@ class ClipperClass extends ComponentBase<ClipperState, {}> {
 				// The clip action might be waiting on the result, so do this to consistently trigger its callback
 				this.state.pdfResult.data.forceUpdate();
 			});
-		
-
 		// Clipper.getExtensionCommunicator().callRemoteFunction(Constants.FunctionKeys.isAllowedFileSchemeAccess, {
 		// 	callback: (isAllowed) => {
 		// 		console.log("hollaback");
@@ -250,7 +248,6 @@ class ClipperClass extends ComponentBase<ClipperState, {}> {
 		// 		}
 		// 	}
 		// });
-
 	}
 
 	private askForFilePermissionFromUser(): void {
