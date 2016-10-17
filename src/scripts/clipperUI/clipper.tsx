@@ -193,37 +193,63 @@ class ClipperClass extends ComponentBase<ClipperState, {}> {
 		// If network file, send XHR, get bytes back, convert to PDFDocumentProxy
 		// If local file, get bytes back, convert to PDFDocumentProxy
 		this.state.setState({ pdfResult: { data: new SmartValue<PdfScreenshotResult>(undefined), status: Status.InProgress } });
-		Clipper.getExtensionCommunicator().callRemoteFunction(Constants.FunctionKeys.isAllowedFileSchemeAccess, {
-			callback: (isAllowed) => {
-				if (!isAllowed) {
-					this.getPdfScreenShotResultFromRawUrl(this.state.pageInfo.rawUrl)
-						.then((pdfScreenshotResult: PdfScreenshotResult) => {
-							this.state.pdfResult.data.set(pdfScreenshotResult);
-							this.state.setState({
-								pdfResult: {
-									data: this.state.pdfResult.data,
-									status: Status.Succeeded
-								}
-							});
-						})
-						.catch(() => {
-							this.state.pdfResult.data.set({
-								failureMessage: Localization.getLocalizedString("WebClipper.Preview.FullPageModeGenericError")
-							});
-							this.state.setState({
-								pdfResult: {
-									data: this.state.pdfResult.data,
-									status: Status.Failed
-								}
-							});
-							// The clip action might be waiting on the result, so do this to consistently trigger its callback
-							this.state.pdfResult.data.forceUpdate();
-						});
-				} else {
-					this.askForFilePermissionFromUser();
-				}
-			}
-		});
+		this.getPdfScreenShotResultFromRawUrl(this.state.pageInfo.rawUrl)
+			.then((pdfScreenshotResult: PdfScreenshotResult) => {
+				this.state.pdfResult.data.set(pdfScreenshotResult);
+				this.state.setState({
+					pdfResult: {
+						data: this.state.pdfResult.data,
+						status: Status.Succeeded
+					}
+				});
+			})
+			.catch(() => {
+				this.state.pdfResult.data.set({
+					failureMessage: Localization.getLocalizedString("WebClipper.Preview.FullPageModeGenericError")
+				});
+				this.state.setState({
+					pdfResult: {
+						data: this.state.pdfResult.data,
+						status: Status.Failed
+					}
+				});
+				// The clip action might be waiting on the result, so do this to consistently trigger its callback
+				this.state.pdfResult.data.forceUpdate();
+			});
+		
+
+		// Clipper.getExtensionCommunicator().callRemoteFunction(Constants.FunctionKeys.isAllowedFileSchemeAccess, {
+		// 	callback: (isAllowed) => {
+		// 		console.log("hollaback");
+		// 		if (!isAllowed) {
+		// 			this.getPdfScreenShotResultFromRawUrl(this.state.pageInfo.rawUrl)
+		// 				.then((pdfScreenshotResult: PdfScreenshotResult) => {
+		// 					this.state.pdfResult.data.set(pdfScreenshotResult);
+		// 					this.state.setState({
+		// 						pdfResult: {
+		// 							data: this.state.pdfResult.data,
+		// 							status: Status.Succeeded
+		// 						}
+		// 					});
+		// 				})
+		// 				.catch(() => {
+		// 					this.state.pdfResult.data.set({
+		// 						failureMessage: Localization.getLocalizedString("WebClipper.Preview.FullPageModeGenericError")
+		// 					});
+		// 					this.state.setState({
+		// 						pdfResult: {
+		// 							data: this.state.pdfResult.data,
+		// 							status: Status.Failed
+		// 						}
+		// 					});
+		// 					// The clip action might be waiting on the result, so do this to consistently trigger its callback
+		// 					this.state.pdfResult.data.forceUpdate();
+		// 				});
+		// 		} else {
+		// 			this.askForFilePermissionFromUser();
+		// 		}
+		// 	}
+		// });
 
 	}
 

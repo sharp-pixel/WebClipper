@@ -162,10 +162,10 @@ export abstract class ExtensionWorkerBase<TTab, TTabIdentifier> {
 	protected abstract invokeTooltipBrowserSpecific(tooltipType: TooltipType): Promise<boolean>;
 
 	/**
-	 * Returns true if the user has allowed our extension to access file:/// links. Edge does not have a function to
-	 * check this as of 10/3/2016
+	 * Returns true if the user has allowed our extension to access file:/// links.
+	 * On Edge and Firefox, this returns true by default.
 	 */
-	protected abstract isAllowedFileSchemeAccessBrowserSpecific(): boolean;
+	protected abstract isAllowedFileSchemeAccessBrowserSpecific(): Promise<boolean>;
 
 	/**
 	 * Gets the visible tab's screenshot as an image url

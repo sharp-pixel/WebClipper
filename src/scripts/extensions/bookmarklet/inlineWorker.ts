@@ -69,8 +69,8 @@ export class InlineWorker extends ExtensionWorkerBase<any, any> {
 		return this.throwNotImplementedFailure();
 	}
 
-	protected isAllowedFileSchemeAccessBrowserSpecific(): boolean {
-		return false;
+	protected isAllowedFileSchemeAccessBrowserSpecific(): Promise<boolean> {
+		return Promise.resolve(false);
 	}
 
 	protected takeTabScreenshot(): Promise<string> {

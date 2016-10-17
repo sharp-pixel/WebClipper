@@ -111,8 +111,8 @@ export class SafariWorker extends ExtensionWorkerBase<SafariBrowserTab, SafariBr
 		return this.invokePageNavBrowserSpecific();
 	}
 
-	protected isAllowedFileSchemeAccessBrowserSpecific(): boolean {
-		return false;
+	protected isAllowedFileSchemeAccessBrowserSpecific(): Promise<boolean> {
+		return Promise.resolve(false);
 	}
 
 	/**
